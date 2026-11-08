@@ -10,9 +10,9 @@ set +a
 
 `.env` 只保留在本地，不提交 Git。需要配置 `TYPESAFE_API_KEY` 和 `DASHSCOPE_API_KEY`。
 
-原始 VitaminC JSONL、实验切分 JSONL、逐条 API 日志和 SQLite 检查点保留在本地；GitHub 保存代码、数据来源说明/许可证、配置、结果汇总和图表。
+原始 VitaminC JSONL 和实验切分 JSONL 不单独提交 Git，而是打包上传；逐条 API 日志和 SQLite 检查点保留在本地。GitHub 保存代码、数据压缩包、数据来源说明/许可证、配置、结果汇总和图表。
 
-数据包位于本地 `data/vitaminc.zip`，包含原始 `vitaminc/` 和本次使用的 `vitaminc_splits/`（包括当前 2,000 条 test）。包内文件及 SHA256 记录在 `data/vitaminc_archive_manifest.json`。获得压缩包后，在仓库根目录还原：
+数据包已随仓库提供：[data/vitaminc.zip](data/vitaminc.zip)，包含原始 `vitaminc/` 和本次使用的 `vitaminc_splits/`（包括当前 2,000 条 test）。包内文件及 SHA256 记录在 `data/vitaminc_archive_manifest.json`。克隆仓库后，在仓库根目录还原：
 
 ```bash
 unzip data/vitaminc.zip -d data
