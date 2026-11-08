@@ -1,0 +1,14 @@
+{
+  "stage": "test",
+  "version": "v2",
+  "expected_per_model": 2000,
+  "terminal_by_model": {
+    "jev-1.14.0": 2000,
+    "qwen3.8-max": 2000,
+    "deepseek-v4.1-flash-1017": 2000,
+    "kimi-k3.1-pro": 2000
+  },
+  "nonterminal_attempts": 11,
+  "complete": true,
+  "updated_at_utc": "2026-11-08T20:06:11.024670+00:00"
+}

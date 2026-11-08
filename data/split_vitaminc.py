@@ -4,7 +4,7 @@
 Python 3.9+, standard library only. No model/API calls. See README.md.
 """
 import argparse
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 import hashlib
 import itertools
 import json
@@ -158,16 +158,145 @@ def verify(subsets, sizes):
                 raise ValueError(f'Leakage: {a}/{b}, {kind}')
 
 
+def identity_keys(row):
+    return {('page', norm(row['page']).replace('_', ' ')),
+            ('case', row['case_id']), ('pair', pair(row)), ('id', row['unique_id'])}
+
+
+def capped_select(groups, n, target_counts, rng, page_cap):
+    """Integral max-flow allocates exact label quotas under per-page capacities.
+
+    Consider every eligible page, not a prefix of whole groups. Seeded page and
+    bucket orders make the otherwise non-unique flow allocation reproducible.
+    """
+    need = quotas(n, target_counts)
+    buckets = defaultdict(lambda: defaultdict(list))
+    group_ids = {}
+    for group in groups:
+        group_id = min(r['unique_id'] for r in group)
+        for row in group:
+            page = norm(row['page']).replace('_', ' ')
+            buckets[page][row['label']].append(row)
+            group_ids[row['unique_id']] = group_id
+    pages = sorted(buckets)
+    rng.shuffle(pages)
+    graph = defaultdict(dict)
+
+    def edge(a, b, capacity):
+        graph[a][b] = capacity
+        graph[b].setdefault(a, 0)
+
+    for label, amount in need.items():
+        edge('source', ('label', label), amount)
+    for page in pages:
+        edge(('page', page), 'sink', page_cap)
+        for label in LABELS:
+            if buckets[page][label]:
+                edge(('label', label), ('page', page), len(buckets[page][label]))
+    flow = 0
+    while flow < n:
+        parent = {'source': None}
+        queue = deque(['source'])
+        while queue and 'sink' not in parent:
+            node = queue.popleft()
+            for other, capacity in graph[node].items():
+                if capacity > 0 and other not in parent:
+                    parent[other] = node
+                    queue.append(other)
+        if 'sink' not in parent:
+            raise ValueError(f'Page cap {page_cap} and label quotas permit only '
+                             f'{flow}/{n} rows. No constraints were relaxed.')
+        path, node = [], 'sink'
+        while parent[node] is not None:
+            path.append((parent[node], node))
+            node = parent[node]
+        amount = min(graph[a][b] for a, b in path)
+        for a, b in path:
+            graph[a][b] -= amount
+            graph[b][a] += amount
+        flow += amount
+    selected = []
+    for page in pages:
+        for label in LABELS:
+            amount = graph[('page', page)].get(('label', label), 0)
+            candidates = sorted(buckets[page][label], key=lambda r: r['unique_id'])
+            for row in rng.sample(candidates, amount):
+                selected.append(dict(row, group_id=group_ids[row['unique_id']]))
+    rng.shuffle(selected)
+    return selected
+
+
+def make_v2(args, pools, source_counts):
+    old = {}
+    for name in ('prompt_dev', 'calibration', 'test'):
+        path = args.previous / (name + '.jsonl')
+        old[name] = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line.strip()]
+    raw = {r['unique_id']: r for groups in pools.values() for group in groups for r in group}
+    for name, rows in old.items():
+        for row in rows:
+            original = raw.get(row['unique_id'])
+            if original is None or any(row.get(k) != v for k, v in original.items()):
+                raise ValueError(f'Previous {name} is not an unchanged eligible source row: {row["unique_id"]}')
+            if row.get('gold') != MAP[row['label']]:
+                raise ValueError(f'Invalid previous gold label in {name}')
+    retained = {name: old[name] for name in ('prompt_dev', 'calibration')}
+    if (len(retained['prompt_dev']), len(retained['calibration'])) != (args.prompt, args.calibration):
+        raise ValueError('v2 retains prompt/calibration exactly; requested sizes must match previous files')
+    blocked = {
+        'dev': set().union(*(identity_keys(r) for rows in retained.values() for r in rows)),
+        'test': set().union(*(identity_keys(r) for r in old['test'])),
+    }
+    eligible = {origin: [group for group in groups
+                         if not any(identity_keys(row) & blocked[origin] for row in group)]
+                for origin, groups in pools.items()}
+    rng = random.Random(args.seed)
+    subsets = dict(retained)
+    for name, origin, size in [('threshold_validation', 'dev', args.validation),
+                              ('test', 'test', args.test_size)]:
+        rows = capped_select(eligible[origin], size, source_counts[origin], rng, args.page_cap)
+        subsets[name] = [dict(row, experiment_split=name, gold=MAP[row['label']], dataset_version='v2')
+                         for row in rows]
+        assert max(Counter(norm(r['page']).replace('_', ' ') for r in rows).values()) <= args.page_cap
+    verify(subsets, {name: len(rows) for name, rows in subsets.items()})
+    if any(identity_keys(r) & blocked['test'] for r in subsets['test']):
+        raise ValueError('v2 test overlaps previously evaluated test')
+    details = {
+        'page_cap': args.page_cap,
+        'previous_sha256': {name: hashlib.sha256((args.previous / (name + '.jsonl')).read_bytes()).hexdigest()
+                            for name in old},
+        'remaining_pools': {origin: {'rows': sum(map(len, groups)), 'groups': len(groups),
+                                    'pages': len({norm(r['page']).replace('_', ' ') for g in groups for r in g})}
+                            for origin, groups in eligible.items()},
+        'retained_splits': ['prompt_dev', 'calibration'],
+        'calibration_status': 'Reserved only; no fitted calibrator. Routing uses raw confidence.',
+        'checks': 'PASS: real only; exact label quotas; page caps; no page/case/pair/id overlap; test excludes old test components',
+        'policy': 'Seeded integral label-to-page max-flow, then random rows within page/label; '
+                  'full components excluded for retained development sets and old test; no prediction-based selection.',
+    }
+    return subsets, details
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--dev', type=Path, required=True)
     p.add_argument('--test', type=Path, required=True)
-    p.add_argument('--out', type=Path, default=Path('vitaminc_splits'))
-    p.add_argument('--seed', type=int, default=20261015)
+    p.add_argument('--out', type=Path, help='default: vitaminc_splits for v1; data/vitaminc_splits_v2 for v2')
+    p.add_argument('--mode', choices=('v1', 'v2'), default='v1')
+    p.add_argument('--previous', type=Path, default=Path('data/vitaminc_splits'))
+    p.add_argument('--page-cap', type=int, default=20)
+    p.add_argument('--seed', type=int)
     for name, default in [('prompt', 200), ('calibration', 2000),
-                          ('validation', 2000), ('test-size', 5000)]:
+                          ('validation', 2000), ('test-size', None)]:
         p.add_argument('--' + name, type=int, default=default)
     args = p.parse_args()
+    if args.out is None:
+        args.out = Path('data/vitaminc_splits_v2' if args.mode == 'v2' else 'vitaminc_splits')
+    if args.seed is None:
+        args.seed = 20261109 if args.mode == 'v2' else 20261015
+    if args.test_size is None:
+        args.test_size = 2000 if args.mode == 'v2' else 5000
+    if args.page_cap < 1:
+        p.error('--page-cap must be positive')
     sizes = {'prompt_dev': args.prompt, 'calibration': args.calibration,
              'threshold_validation': args.validation, 'test': args.test_size}
     if min(sizes.values()) <= 0:
@@ -185,13 +314,17 @@ def main():
         for origin, groups in pools.items()
     }
     subsets, groups_consumed = {}, {}
-    for name, size in sizes.items():
-        origin = 'test' if name == 'test' else 'dev'
-        selected, pools[origin], consumed = select(
-            pools[origin], size, source_counts[origin], rng)
-        subsets[name] = [dict(r, experiment_split=name, gold=MAP[r['label']])
-                         for r in selected]
-        groups_consumed[name] = consumed
+    details = {}
+    if args.mode == 'v2':
+        subsets, details = make_v2(args, pools, source_counts)
+    else:
+        for name, size in sizes.items():
+            origin = 'test' if name == 'test' else 'dev'
+            selected, pools[origin], consumed = select(
+                pools[origin], size, source_counts[origin], rng)
+            subsets[name] = [dict(r, experiment_split=name, gold=MAP[r['label']])
+                             for r in selected]
+            groups_consumed[name] = consumed
     verify(subsets, sizes)
     report = {
         'seed': args.seed, 'input': {'dev': dev_stats, 'test': test_stats},
@@ -202,17 +335,29 @@ def main():
         'subsets': {name: {'rows': len(rows),
                           'labels': dict(Counter(r['gold'] for r in rows)),
                           'pages': len({r['page'] for r in rows}),
-                          'components_reserved': groups_consumed[name]}
+                          'components_reserved': groups_consumed.get(name),
+                          **({'cases': len({r['case_id'] for r in rows}),
+                              'largest_page_rows': max(Counter(norm(r['page']).replace('_', ' ') for r in rows).values()),
+                              'top_pages': Counter(norm(r['page']).replace('_', ' ') for r in rows).most_common(10)}
+                             if args.mode == 'v2' else {})}
                     for name, rows in subsets.items()},
         'policy': 'Whole connected groups reserved; exact label-stratified row '
                   'sampling within them; surplus rows are unused. No fuzzy '
                   'semantic deduplication or model-based sample selection.',
     }
+    if args.mode == 'v2':
+        report.update(dataset_version='v2', **details)
     args.out.mkdir(parents=True, exist_ok=True)
     for name, rows in subsets.items():
+        if args.mode == 'v2' and name in ('prompt_dev', 'calibration'):
+            (args.out / (name + '.jsonl')).write_bytes((args.previous / (name + '.jsonl')).read_bytes())
+            continue
         with (args.out / (name + '.jsonl')).open('w', encoding='utf-8') as f:
             for row in rows:
                 f.write(json.dumps(row, ensure_ascii=False) + '\n')
+    if args.mode == 'v2':
+        report['output_sha256'] = {name: hashlib.sha256((args.out / (name + '.jsonl')).read_bytes()).hexdigest()
+                                  for name in subsets}
     (args.out / 'split_report.json').write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(report, ensure_ascii=False, indent=2))

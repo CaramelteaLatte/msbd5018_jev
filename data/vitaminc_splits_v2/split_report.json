@@ -1,0 +1,287 @@
+{
+  "seed": 20261109,
+  "input": {
+    "dev": {
+      "total": 63054,
+      "revision_real": 42290,
+      "revision_synthetic": 20764
+    },
+    "test": {
+      "total": 55197,
+      "revision_real": 34481,
+      "revision_synthetic": 20716
+    }
+  },
+  "input_sha256": {
+    "dev": "a3258bc959754c84bade150d3bf447fd9c91a529d93bb676f034fdafda5f26e5",
+    "test": "7f799e076dec184e31533d46704fef2022d08ef68a0db2c44f138d2b4e552f36"
+  },
+  "cleaning": {
+    "conflicting_pair_count": 33,
+    "conflicting_pair_rows_removed": 66,
+    "cross_official_split_component_rows_removed": 0,
+    "same_label_duplicate_rows_removed": 336
+  },
+  "eligible_label_counts": {
+    "dev": {
+      "NOT ENOUGH INFO": 9011,
+      "SUPPORTS": 20940,
+      "REFUTES": 12080
+    },
+    "test": {
+      "NOT ENOUGH INFO": 7257,
+      "SUPPORTS": 17205,
+      "REFUTES": 9876
+    }
+  },
+  "checks": "PASS: real only; exact label quotas; page caps; no page/case/pair/id overlap; test excludes old test components",
+  "subsets": {
+    "prompt_dev": {
+      "rows": 200,
+      "labels": {
+        "S": 100,
+        "C": 57,
+        "I": 43
+      },
+      "pages": 25,
+      "components_reserved": null,
+      "cases": 74,
+      "largest_page_rows": 19,
+      "top_pages": [
+        [
+          "Excuse My French -LRB-album-RRB-",
+          19
+        ],
+        [
+          "Kentucky",
+          18
+        ],
+        [
+          "Omar Khadr",
+          15
+        ],
+        [
+          "Unbelievable -LRB-miniseries-RRB-",
+          14
+        ],
+        [
+          "Daniel Podence",
+          13
+        ],
+        [
+          "Juninho Paulista",
+          13
+        ],
+        [
+          "Rio Grande do Sul",
+          12
+        ],
+        [
+          "The Grand Budapest Hotel",
+          12
+        ],
+        [
+          "Freddie Ljungberg",
+          10
+        ],
+        [
+          "Climate of Mumbai",
+          10
+        ]
+      ]
+    },
+    "calibration": {
+      "rows": 2000,
+      "labels": {
+        "S": 996,
+        "C": 575,
+        "I": 429
+      },
+      "pages": 205,
+      "components_reserved": null,
+      "cases": 694,
+      "largest_page_rows": 256,
+      "top_pages": [
+        [
+          "Dirty Grandpa",
+          256
+        ],
+        [
+          "2020 coronavirus pandemic in Delaware",
+          149
+        ],
+        [
+          "On the Basis of Sex",
+          98
+        ],
+        [
+          "99 Homes",
+          55
+        ],
+        [
+          "Linkin Park",
+          55
+        ],
+        [
+          "Aliko Dangote",
+          49
+        ],
+        [
+          "Captain America-COLON- Civil War",
+          49
+        ],
+        [
+          "2020 coronavirus pandemic in Indiana",
+          45
+        ],
+        [
+          "Pearl Jam",
+          40
+        ],
+        [
+          "The Tragically Hip",
+          37
+        ]
+      ]
+    },
+    "threshold_validation": {
+      "rows": 2000,
+      "labels": {
+        "S": 996,
+        "I": 429,
+        "C": 575
+      },
+      "pages": 277,
+      "components_reserved": null,
+      "cases": 891,
+      "largest_page_rows": 20,
+      "top_pages": [
+        [
+          "The Lord of the Rings-COLON- The Two Towers",
+          20
+        ],
+        [
+          "Doom 3",
+          20
+        ],
+        [
+          "Manuel Pellegrini",
+          20
+        ],
+        [
+          "Danny Brown",
+          20
+        ],
+        [
+          "Stuber -LRB-film-RRB-",
+          20
+        ],
+        [
+          "Dieumerci Mbokani",
+          20
+        ],
+        [
+          "Dumbfoundead",
+          20
+        ],
+        [
+          "Use Your Illusion I",
+          20
+        ],
+        [
+          "The Neon Demon",
+          20
+        ],
+        [
+          "The Shallows -LRB-film-RRB-",
+          20
+        ]
+      ]
+    },
+    "test": {
+      "rows": 2000,
+      "labels": {
+        "I": 423,
+        "C": 575,
+        "S": 1002
+      },
+      "pages": 291,
+      "components_reserved": null,
+      "cases": 944,
+      "largest_page_rows": 20,
+      "top_pages": [
+        [
+          "2020 coronavirus pandemic in Argentina",
+          20
+        ],
+        [
+          "The Amazing Spider-Man -LRB-2012 film-RRB-",
+          20
+        ],
+        [
+          "Confessions of a Dangerous Mind -LRB-album-RRB-",
+          20
+        ],
+        [
+          "From Ashes to New",
+          20
+        ],
+        [
+          "Killswitch Engage",
+          20
+        ],
+        [
+          "Portsmouth F.C.",
+          20
+        ],
+        [
+          "Benny Blanco",
+          20
+        ],
+        [
+          "The Wedding Ringer",
+          20
+        ],
+        [
+          "Denzel Curry",
+          20
+        ],
+        [
+          "Tha Carter III",
+          20
+        ]
+      ]
+    }
+  },
+  "policy": "Seeded integral label-to-page max-flow, then random rows within page/label; full components excluded for retained development sets and old test; no prediction-based selection.",
+  "dataset_version": "v2",
+  "page_cap": 20,
+  "previous_sha256": {
+    "prompt_dev": "227fc5da74271cc1d90b098aa64acae5dcd83fd8fcabc36ccd7d261aab26d93a",
+    "calibration": "7758743905bdaae6b04e3e4dacc46f1d3e6e473eab4d862eacb89f50589a78f9",
+    "test": "33e80bfda39d376b272a7d59a54e7cc202e9e1de21e7c8e96c3592d5006c0ff7"
+  },
+  "remaining_pools": {
+    "dev": {
+      "rows": 39735,
+      "groups": 2540,
+      "pages": 2540
+    },
+    "test": {
+      "rows": 28673,
+      "groups": 2520,
+      "pages": 2520
+    }
+  },
+  "retained_splits": [
+    "prompt_dev",
+    "calibration"
+  ],
+  "calibration_status": "Reserved only; no fitted calibrator. Routing uses raw confidence.",
+  "output_sha256": {
+    "prompt_dev": "227fc5da74271cc1d90b098aa64acae5dcd83fd8fcabc36ccd7d261aab26d93a",
+    "calibration": "7758743905bdaae6b04e3e4dacc46f1d3e6e473eab4d862eacb89f50589a78f9",
+    "threshold_validation": "6a1d66d735f91fdbbda614ca999909c00b8d1f3cc6629e642883cdaf4d1993ac",
+    "test": "718c5bee6758befb95997aa9b0c4add442aa4e6238827144ba07c33550294b68"
+  }
+}

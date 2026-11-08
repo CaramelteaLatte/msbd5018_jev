@@ -1,313 +1,140 @@
 #!/usr/bin/env python3
-"""Select one Jev confidence cutoff on the held-out VitaminC validation split."""
-
+"""v2: complete validation baselines, per-model cutoffs and grouped out-of-fold evaluation."""
 import argparse
-import csv
 import fcntl
 import hashlib
-import itertools
 import json
-import math
-import os
 from pathlib import Path
 import sqlite3
 import sys
-from urllib.request import ProxyHandler, build_opener
 
-import run_pilot as pilot
-
-LLM_MODELS = ("qwen3.8-max", "deepseek-v4.1-flash-1017", "kimi-k3.1-pro")
+import experiment_v2 as ev
 
 
-def load_validation(path):
-    samples = []
-    ids = set()
-    for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
-        row = json.loads(line)
-        if row.get("experiment_split") != "threshold_validation":
-            raise ValueError(f"Expected threshold_validation at line {line_number}.")
-        sample_id = row["unique_id"]
-        if (not isinstance(sample_id, str) or not sample_id or sample_id in ids
-                or row["gold"] not in pilot.CRITERIA
-                or any(not isinstance(row[k], str) or not row[k].strip()
-                       for k in ("claim", "evidence"))):
-            raise ValueError(f"Invalid or duplicate validation sample at line {line_number}.")
-        ids.add(sample_id)
-        samples.append({"sample_id": sample_id, "gold": row["gold"],
-                        "claim": row["claim"], "evidence": row["evidence"]})
-    if not samples:
-        raise ValueError("The validation file is empty.")
-    return samples
-
-
-def register_config(db, samples):
-    stub = {"claim": "", "evidence": ""}
-    config = {
-        "sample_sha256": hashlib.sha256(json.dumps(samples, sort_keys=True).encode()).hexdigest(),
-        "sample_count": len(samples),
-        "jev_url": pilot.JEV_URL,
-        "bailian_url": pilot.BAILIAN_URL,
-        "request_configs": {model: pilot.make_payload(model, stub)
-                            for model in (pilot.JEV, *LLM_MODELS)},
-    }
-    manifest = json.dumps(config, sort_keys=True)
-    db.execute("CREATE TABLE IF NOT EXISTS config (manifest TEXT NOT NULL)")
-    db.execute("""CREATE TABLE IF NOT EXISTS results (
-        model TEXT NOT NULL, sample_id TEXT NOT NULL, body TEXT NOT NULL,
-        PRIMARY KEY(model, sample_id)
-    )""")
-    saved = db.execute("SELECT manifest FROM config").fetchone()
-    if saved is None:
-        with db:
-            db.execute("INSERT INTO config VALUES (?)", (manifest,))
-    elif saved[0] != manifest:
-        previous = json.loads(saved[0])
-        # Accept the original four-model checkpoint if only GLM was removed.
-        previous["request_configs"].pop("glm-5.3-prime", None)
-        if previous != config:
-            raise ValueError("Validation data or model settings changed. Use a new --out directory.")
-        with db:
-            db.execute("UPDATE config SET manifest = ?", (manifest,))
-    return config
-
-
-def collect(db, opener, model, samples, key, timeout):
-    records = {
-        sample_id: json.loads(body)
-        for sample_id, body in db.execute("SELECT sample_id, body FROM results WHERE model = ?", (model,))
-    }
-    for index, sample in enumerate(samples, 1):
-        sample_id = sample["sample_id"]
-        if sample_id in records:
-            continue
-        row = pilot.run_one(opener, model, key, sample, timeout)
-        # An HTTP 200 with an invalid LLM label uses the already available Jev result.
-        if (model != pilot.JEV and row["status"] != "ok"
-                and row.get("http_status") == 200 and row.get("error_type") == "invalid_response"):
-            row["status"] = "fallback_to_jev"
-        if row["status"] not in {"ok", "fallback_to_jev"}:
-            if row.get("error_type") == "connection_error":
-                retry_note = "The provider may have received the interrupted request."
-            else:
-                retry_note = ""
-            message = row.get("error_message", "")
-            request_id = row.get("request_id") or "-"
-            raise RuntimeError(
-                f"{model} {sample_id}: {row.get('provider_error_code') or row.get('error_type')} "
-                f"({message}; request_id={request_id}). Rerun the same command to resume. {retry_note}"
-            )
-        with db:
-            db.execute("INSERT INTO results VALUES (?, ?, ?)", (model, sample_id, json.dumps(row)))
-        records[sample_id] = row
-        if index % 25 == 0 or index == len(samples):
-            print(f"{model}: {index}/{len(samples)}", flush=True)
-    return records
-
-
-def eligible_groups(jev, max_routes):
-    ordered = sorted(jev, key=lambda sample_id: (jev[sample_id]["confidence"], sample_id))
-    groups = []
-    routed = 0
-    for confidence, members in itertools.groupby(ordered, key=lambda sample_id: jev[sample_id]["confidence"]):
-        members = list(members)
-        if routed + len(members) > max_routes:
-            break
-        groups.append((confidence, members))
-        routed += len(members)
-    return groups
-
-
-def evaluate(jev, llms, groups):
-    n = len(jev)
-    baseline = sum(row["correct"] for row in jev.values())
-    correct = dict.fromkeys(llms, baseline)
-    failures = dict.fromkeys(llms, 0)
-    routed = 0
-    points = []
-
-    def append_point(threshold):
-        points.append({
-            "confidence_threshold": threshold,
-            "routed": routed,
-            "routing_rate": routed / n,
-            "mean_cascade_accuracy": sum(correct.values()) / (n * len(llms)),
-            "cascade_correct": correct.copy(),
-            "llm_invalid_fallbacks": failures.copy(),
-        })
-
-    append_point(None)
-    for threshold, members in groups:
-        routed += len(members)
-        for sample_id in members:
-            jev_correct = jev[sample_id]["correct"]
-            for model, predictions in llms.items():
-                result = predictions[sample_id]
-                if result["status"] == "ok":
-                    correct[model] += int(result["correct"]) - int(jev_correct)
-                else:
-                    failures[model] += 1
-        append_point(threshold)
-
-    # Integer counts avoid floating-point tie-breaking. Prefer fewer calls on ties.
-    best = max(points, key=lambda row: (sum(row["cascade_correct"].values()), -row["routed"]))
-    return baseline, points, best
-
-
-def write_plot(plt, out, n, baseline, points, best, budget_pct):
-    fig, (accuracy, routing) = plt.subplots(
-        2, 1, figsize=(10, 7), sharex=True, height_ratios=[3, 1], layout="constrained",
-    )
-    fig.suptitle("Jev confidence threshold sweep | validation set")
-    numeric = points[1:]
-    accuracy.axhline(100 * baseline / n, color="#52525b", linestyle="--",
-                     label=f"Jev only ({baseline / n:.1%})")
-    if numeric:
-        x = [row["confidence_threshold"] for row in numeric]
-        for model in best["cascade_correct"]:
-            accuracy.step(x, [100 * row["cascade_correct"][model] / n for row in numeric],
-                          where="post", marker="." if len(x) < 5 else None, label=model)
-        accuracy.step(x, [100 * row["mean_cascade_accuracy"] for row in numeric],
-                      where="post", color="#18181b", linewidth=2.2,
-                      marker="." if len(x) < 5 else None, label="Mean across three LLMs")
-        routing.step(x, [100 * row["routing_rate"] for row in numeric], where="post",
-                     color="#0f766e", marker="." if len(x) < 5 else None)
-        if len(x) == 1:
-            pad = min(0.04, max(0.005, x[0] * 0.05))
-            accuracy.set_xlim(max(0, x[0] - pad), min(1, x[0] + pad))
-    else:
-        accuracy.set_xlim(0, 1)
-        accuracy.text(0.5, 0.5, "No confidence group fits the routing budget",
-                      ha="center", transform=accuracy.transAxes)
-    cutoff = best["confidence_threshold"]
-    if cutoff is not None:
-        for axis in (accuracy, routing):
-            axis.axvline(cutoff, color="#be123c", linewidth=1, linestyle=":")
-        accuracy.scatter([cutoff], [100 * best["mean_cascade_accuracy"]],
-                         color="#be123c", zorder=5)
-        accuracy.set_title(f"Selected: confidence <= {cutoff:.6g} | routed {best['routed']}/{n}",
-                           loc="left", fontsize=10)
-    else:
-        accuracy.set_title("Selected: Jev only (zero LLM calls)", loc="left", fontsize=10)
-    accuracy.set_ylabel("Accuracy over all validation samples (%)")
-    accuracy.legend(loc="best", fontsize=8, ncols=2)
-    routing.axhline(budget_pct, color="#52525b", linestyle="--", linewidth=1)
-    routing.set_ylim(0, max(1, budget_pct * 1.12))
-    routing.set_ylabel("Routed (%)")
-    routing.set_xlabel("Raw Jev confidence cutoff (route if confidence <= cutoff)")
-    for axis in (accuracy, routing):
-        axis.grid(axis="y", alpha=0.2)
-        axis.set_axisbelow(True)
-    path = out / "threshold_curve.png"
-    temp = out / "threshold_curve.tmp.png"
-    fig.savefig(temp, dpi=180)
+def plot_reports(out, report, sweeps, folds):
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    fig, axes = plt.subplots(3, 3, figsize=(14, 10), sharex='col', layout='constrained')
+    for col, (alias, model) in enumerate(ev.LLMS.items()):
+        points = sweeps[model]
+        xs = [p['confidence_threshold'] for p in points if p['confidence_threshold'] is not None]
+        numeric = [p for p in points if p['confidence_threshold'] is not None]
+        acc, routing, net = axes[:, col]
+        acc.axhline(report['baselines'][ev.JEV]['accuracy_all'] * 100, color='#444444', ls='--', label='JEV only')
+        acc.axhline(report['baselines'][model]['accuracy_all'] * 100, color='#a66b32', ls=':', label=f'{alias} only (full validation)')
+        if xs:
+            acc.step(xs, [p['cascade_accuracy'] * 100 for p in numeric], where='post', color='#167c80', label=f'JEV + {alias}')
+            routing.step(xs, [p['routing_rate'] * 100 for p in numeric], where='post', color='#167c80')
+            for key, color in [('corrected', '#187c66'), ('harmed', '#b64d3c'), ('net', '#333333')]:
+                net.step(xs, [p[key] for p in numeric], where='post', color=color, label=key)
+        else:
+            acc.text(.5, .5, 'No confidence group fits the budget', transform=acc.transAxes, ha='center')
+        cutoff = report['selected'][model]['confidence_threshold']
+        acc.set_title(f"{alias}: selected {'no routing' if cutoff is None else format(cutoff, '.4g')}")
+        if cutoff is not None:
+            for ax in (acc, routing, net):
+                ax.axvline(cutoff, color='#b64d3c', ls=':', lw=1)
+        acc.set_ylabel('Full-validation accuracy (%)')
+        routing.set_ylabel('Routed (%)')
+        routing.axhline(report['max_routing_percent'], color='#666666', ls='--')
+        net.axhline(0, color='#999999', lw=.8)
+        net.set_ylabel('Samples')
+        net.set_xlabel('Raw JEV confidence cutoff (<=)')
+        acc.legend(fontsize=7)
+        net.legend(fontsize=7)
+        for ax in (acc, routing, net):
+            ax.grid(axis='y', alpha=.2)
+    fig.suptitle('v2 validation | apparent full-set selection (not out-of-fold estimates)')
+    fig.savefig(out / 'threshold_curve.png', dpi=160)
     plt.close(fig)
-    temp.replace(path)
+    fig, axes = plt.subplots(1, 2, figsize=(12, 4), layout='constrained')
+    for alias, model in ev.LLMS.items():
+        rows = [r for r in folds if r['model'] == model]
+        x = [r['fold'] for r in rows]
+        axes[0].plot(x, [100 * r['net'] / r['held_samples'] for r in rows], marker='o', label=alias)
+        # A separate y position explicitly denotes None; never treat None as cutoff 0.
+        axes[1].plot(x, [r['confidence_threshold'] if r['confidence_threshold'] is not None else -.05 for r in rows], marker='o', label=alias)
+    axes[0].axhline(0, color='#777777', ls='--')
+    axes[0].set_ylabel('Held-out accuracy gain vs JEV (pp)')
+    axes[1].set_ylabel('Training-fold selected cutoff')
+    axes[1].axhline(-.05, color='#aaaaaa', ls=':')
+    axes[1].text(1, -.05, 'No routing', va='bottom', fontsize=8)
+    for ax in axes:
+        ax.set_xticks(range(1, 6))
+        ax.set_xlabel('Held-out group fold')
+        ax.legend()
+        ax.grid(axis='y', alpha=.2)
+    fig.suptitle('v2 grouped cross-validation | threshold selected on the other four folds')
+    fig.savefig(out / 'cross_validation.png', dpi=160)
+    plt.close(fig)
 
 
-def write_reports(out, n, baseline, points, best, budget_pct, config, plt):
-    models = list(best["cascade_correct"])
-    temp = out / "threshold_sweep.csv.tmp"
-    with temp.open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.writer(handle)
-        writer.writerow(["confidence_threshold", "routed", "routing_rate", "jev_accuracy",
-                         "mean_cascade_accuracy", *[f"{model}_accuracy" for model in models],
-                         *[f"{model}_invalid_fallbacks" for model in models]])
-        for row in points:
-            writer.writerow([
-                row["confidence_threshold"], row["routed"], row["routing_rate"], baseline / n,
-                row["mean_cascade_accuracy"], *[row["cascade_correct"][m] / n for m in models],
-                *[row["llm_invalid_fallbacks"][m] for m in models],
-            ])
-    temp.replace(out / "threshold_sweep.csv")
-    report = {
-        "split": "threshold_validation",
-        "validation_size": n,
-        "score": "raw Jev confidence",
-        "rule": "Route when confidence <= threshold. Null threshold means never route.",
-        "max_routing_rate": budget_pct / 100,
-        "objective": "Maximize mean accuracy across the three cascades; ties prefer fewer calls.",
-        "baseline_jev_correct": baseline,
-        "baseline_jev_accuracy": baseline / n,
-        "selected": best,
-        "selected_cascade_accuracy": {m: best["cascade_correct"][m] / n for m in models},
-        "validation_sample_sha256": config["sample_sha256"],
-        "request_configs": config["request_configs"],
-    }
-    write_plot(plt, out, n, baseline, points, best, budget_pct)
-    pilot.atomic_text(out / "selected_threshold.json", json.dumps(report, indent=2) + "\n")
-    print(f"Jev accuracy: {baseline / n:.2%}; selected mean cascade accuracy: "
-          f"{best['mean_cascade_accuracy']:.2%}")
-    print(f"Selected threshold: {best['confidence_threshold']}; "
-          f"routing: {best['routed']}/{n} ({best['routing_rate']:.2%})")
-    print(f"Reports: {out.resolve()}")
+def generate_reports(out, samples, results, config):
+    baselines = {m: ev.score(samples, [ev.prediction(results[m][s['sample_id']]) for s in samples]) for m in ev.MODELS}
+    sweeps, selected = {}, {}
+    for model in ev.LLMS.values():
+        sweeps[model], selected[model] = ev.threshold_sweep(samples, results[ev.JEV], results[model], config['max_routing_percent'])
+    assignment, folds, oof = ev.cross_validate(samples, results, config['max_routing_percent'], config['fold_seed'])
+    report = dict(version='v2', complete=True, split='threshold_validation', validation_size=len(samples),
+                  validation_data_sha256=config['data_sha256'], score='raw Jev confidence',
+                  rule='Route when confidence <= threshold. Null means never route.',
+                  objective='Per-model maximum correct count; ties prefer fewer calls, including no routing.',
+                  max_routing_percent=config['max_routing_percent'], selected=selected,
+                  baselines=baselines, out_of_fold=oof, fold_seed=config['fold_seed'],
+                  request_configs=config['request_configs'], jev_url=config['jev_url'], bailian_url=config['bailian_url'],
+                  statistical_note='Full-validation selected scores are apparent estimates. OOF thresholds use other groups only. The 20% constraint applies to selection folds, not held-out/test routing rates.')
+    ev.write_csv(out / 'threshold_sweep.csv', [dict(model=m, **p) for m in ev.LLMS.values() for p in sweeps[m]])
+    ev.write_csv(out / 'cross_validation.csv', folds)
+    ev.write_json(out / 'fold_assignments.json', dict(seed=config['fold_seed'], group_to_fold={g: f + 1 for g, f in assignment.items()}))
+    rows = []
+    for model, metrics in baselines.items():
+        rows.append(dict(model=model, method='standalone_validation', samples=len(samples), accuracy=metrics['accuracy_all'], macro_f1=metrics['macro_f1_all'], threshold=None))
+    for model in ev.LLMS.values():
+        predictions = [ev.cascade_prediction(results[ev.JEV][s['sample_id']], results[model][s['sample_id']], selected[model]['confidence_threshold']) for s in samples]
+        metrics = ev.score(samples, predictions)
+        rows.append(dict(model=model, method='selected_on_full_validation', samples=len(samples), accuracy=metrics['accuracy_all'], macro_f1=metrics['macro_f1_all'], threshold=selected[model]['confidence_threshold']))
+        rows.append(dict(model=model, method='out_of_fold', samples=len(samples), accuracy=oof[model]['accuracy_all'], macro_f1=oof[model]['macro_f1_all'], threshold='fold-specific'))
+    ev.write_csv(out / 'summary.csv', rows)
+    plot_reports(out, report, sweeps, folds)
+    # Publish the artifact only after all reports succeed; the test run consumes its exact hash.
+    ev.write_json(out / 'selected_threshold.json', report)
+    print(json.dumps({'selected': selected, 'out_of_fold_accuracy': {m: v['accuracy_all'] for m, v in oof.items()}}, indent=2), flush=True)
+    return report
 
 
 def run(args):
-    samples = load_validation(args.data)
-    max_routes = len(samples) * args.max_routing_percent // 100
+    ev.validate_args(args)
+    if not 0 <= args.max_routing_percent <= 100:
+        raise ValueError('Routing budget must be 0..100')
+    samples = ev.load_samples(args.data, 'threshold_validation')
+    config = ev.make_config(args.data, samples, 'threshold_validation', max_routing_percent=args.max_routing_percent, fold_seed=ev.SEED, folds=5)
     if args.plan:
-        print(f"Validation samples: {len(samples)}")
-        print(f"Planned calls: {len(samples)} Jev + up to {max_routes * len(LLM_MODELS)} LLM")
-        print("Plan only. No API requests sent.")
+        ev.plan(samples, args)
         return
-    jev_key = (pilot.TYPESAFE_API_KEY or os.getenv("TYPESAFE_API_KEY", "")).strip()
-    llm_key = (pilot.DASHSCOPE_API_KEY or os.getenv("DASHSCOPE_API_KEY", "")).strip()
-    if not jev_key or not llm_key:
-        raise ValueError("Set TYPESAFE_API_KEY and DASHSCOPE_API_KEY in your environment. No requests sent.")
-    try:
-        import matplotlib
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-    except ImportError:
-        raise ValueError("Run python3 -m pip install matplotlib first. No requests sent.") from None
-    opener = build_opener(ProxyHandler({})) if args.no_proxy else build_opener()
     args.out.mkdir(parents=True, exist_ok=True)
-    with (args.out / ".run.lock").open("a") as lock:
-        try:
-            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BlockingIOError:
-            raise ValueError("This output directory is in use by another run.") from None
-        with sqlite3.connect(args.out / "threshold_checkpoint.sqlite3") as db:
-            config = register_config(db, samples)
-            jev = collect(db, opener, pilot.JEV, samples, jev_key, args.timeout)
-            groups = eligible_groups(jev, max_routes)
-            eligible = {sample_id for _, members in groups for sample_id in members}
-            routed_samples = [sample for sample in samples if sample["sample_id"] in eligible]
-            print(f"Eligible for the sweep: {len(routed_samples)}/{len(samples)} "
-                  f"(equal confidence values stay together).", flush=True)
-            llms = {model: collect(db, opener, model, routed_samples, llm_key, args.timeout)
-                    for model in LLM_MODELS}
-            baseline, points, best = evaluate(jev, llms, groups)
-            write_reports(args.out, len(samples), baseline, points, best,
-                          args.max_routing_percent, config, plt)
+    with (args.out / '.run.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        results = ev.collect_stage(args, samples, config, args.out / 'threshold_checkpoint.sqlite3')
+        if results is not None:
+            generate_reports(args.out, samples, results, config)
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        epilog="Keep this script next to run_pilot.py. Rerun the same command to resume.",
-    )
-    parser.add_argument("--data", type=Path, required=True, help="path to threshold_validation.jsonl")
-    parser.add_argument("--out", type=Path, default=Path("threshold_results"))
-    parser.add_argument("--max-routing-percent", type=int, default=20, metavar="0..100")
-    parser.add_argument("--timeout", type=int, default=120, help="per-request timeout in seconds")
-    parser.add_argument("--plan", action="store_true", help="show the request count without calling APIs")
-    parser.add_argument("--no-proxy", action="store_true", help="disable Python's automatic proxy")
+    parser = argparse.ArgumentParser(description=__doc__)
+    ev.add_collection_args(parser, 'code/threshold_results_v2')
+    parser.add_argument('--max-routing-percent', type=int, default=20)
     args = parser.parse_args()
-    if not 0 <= args.max_routing_percent <= 100 or args.timeout < 1:
-        parser.error("Routing percent must be 0..100 and timeout must be positive.")
     try:
         run(args)
         return 0
     except KeyboardInterrupt:
-        print("Stopped. Rerun the same command to resume.", file=sys.stderr)
+        print('Stopped; resume with the same arguments.', file=sys.stderr)
         return 130
     except (OSError, ValueError, KeyError, RuntimeError, sqlite3.Error) as exc:
-        print(f"Error: {exc}", file=sys.stderr)
+        print(f'Error: {exc}', file=sys.stderr)
         return 1
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     sys.exit(main())

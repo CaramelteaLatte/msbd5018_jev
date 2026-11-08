@@ -6,13 +6,17 @@
 # VitaminC data; keep source documentation, license and split metadata
 /data/vitaminc/*.jsonl
 /data/vitaminc_splits/*.jsonl
+/data/vitaminc_splits_v2/*.jsonl
 /data/*.zip
 !/data/vitaminc.zip
+!/data/vitaminc_v2.zip
 /data/*.tar.gz
 /data/*.zip.tmp
 
 # Per-request results and resumable checkpoints; keep reports and figures
 /code/*_results/*.jsonl
+/code/*_results_v2/*.jsonl
+*.log
 *.sqlite3
 *.sqlite3-*
 .run.lock

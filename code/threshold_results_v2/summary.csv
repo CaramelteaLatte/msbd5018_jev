@@ -1,0 +1,11 @@
+model,method,samples,accuracy,macro_f1,threshold
+jev-1.14.0,standalone_validation,2000,0.8045,0.7721641161036956,
+qwen3.8-max,standalone_validation,2000,0.7945,0.7667539263615136,
+deepseek-v4.1-flash-1017,standalone_validation,2000,0.743,0.7042721628754465,
+kimi-k3.1-pro,standalone_validation,2000,0.7545,0.7283089036280206,
+qwen3.8-max,selected_on_full_validation,2000,0.8115,0.780208334006936,0.43
+qwen3.8-max,out_of_fold,2000,0.8055,0.7732415503824029,fold-specific
+deepseek-v4.1-flash-1017,selected_on_full_validation,2000,0.8065,0.773358733949867,0.3
+deepseek-v4.1-flash-1017,out_of_fold,2000,0.8015,0.7685581911906465,fold-specific
+kimi-k3.1-pro,selected_on_full_validation,2000,0.8055,0.7732535206567984,0.09
+kimi-k3.1-pro,out_of_fold,2000,0.8045,0.7721885226564504,fold-specific

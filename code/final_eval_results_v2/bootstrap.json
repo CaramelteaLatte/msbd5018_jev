@@ -1,0 +1,65 @@
+{
+  "jev_only": {
+    "difference_accuracy": 0.0,
+    "ci95_low": 0.0,
+    "ci95_high": 0.0,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "llm_only:qwen3.8-max": {
+    "difference_accuracy": -0.0205,
+    "ci95_low": -0.03565744937895035,
+    "ci95_high": -0.005167625669303929,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "cascade:qwen3.8-max": {
+    "difference_accuracy": -0.0015,
+    "ci95_low": -0.010459144012805847,
+    "ci95_high": 0.007451743475613094,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "llm_only:deepseek-v4.1-flash-1017": {
+    "difference_accuracy": -0.065,
+    "ci95_low": -0.08173015687566589,
+    "ci95_high": -0.048639858894889844,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "cascade:deepseek-v4.1-flash-1017": {
+    "difference_accuracy": -0.009,
+    "ci95_low": -0.014529422435643605,
+    "ci95_high": -0.0036381591872246093,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "llm_only:kimi-k3.1-pro": {
+    "difference_accuracy": -0.0625,
+    "ci95_low": -0.08010613644790508,
+    "ci95_high": -0.045002610234050985,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  },
+  "cascade:kimi-k3.1-pro": {
+    "difference_accuracy": -0.0015,
+    "ci95_low": -0.003404669260700389,
+    "ci95_high": 0.0,
+    "page_groups": 291,
+    "repetitions": 10000,
+    "seed": 20261109,
+    "method": "paired page-cluster percentile bootstrap"
+  }
+}
