@@ -1,0 +1,6 @@
+model,expected,attempted,successful,failed,correct,accuracy_valid,accuracy_all_50,macro_f1_valid,avg_latency_ms,avg_input_tokens,avg_output_tokens,attempts_with_token_usage,estimated_cost_usd_low,estimated_cost_usd_high,projected_7200_usd_low,projected_7200_usd_high,low_confidence_count,paired_low_confidence_count,corrected,harmed,net_corrections
+jev-1.14.0,50,50,50,0,31,0.62,0.62,0.6152,471.36,449.3,38.0,50,,,,,,,,,
+qwen3.8-max,50,50,50,0,35,0.7,0.7,0.7034,1095.488,171.52,1.0,50,0.017452,0.017452,2.5131,2.5131,10,10,2,1,1
+deepseek-v4.1-flash-1017,50,50,50,0,33,0.66,0.66,0.6603,949.092,147.88,2.0,50,0.0011691,0.0023382,0.1684,0.3367,10,10,3,2,1
+kimi-k3.1-pro,50,50,50,0,36,0.72,0.72,0.7266,1367.818,174.9,7.22,50,0.0211,0.0211,3.0384,3.0384,10,10,4,2,2
+glm-5.3-prime,50,50,49,1,32,0.6531,0.64,0.646,4090.8347,159.2245,436.5306,50,0.2156684,0.2156684,30.8685,30.8685,10,10,1,1,0

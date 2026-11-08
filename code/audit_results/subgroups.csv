@@ -1,0 +1,493 @@
+stage,model,group,value,n,jev_correct,llm_correct,jev_accuracy,llm_accuracy,corrected,harmed,net
+pilot,qwen3.8-max,all_available,all,50,31,35,0.62,0.7,5,1,4
+pilot,qwen3.8-max,routed,all,8,2,3,0.25,0.375,2,1,1
+pilot,qwen3.8-max,routed_page,2018 World Snooker Championship,1,0,0,0.0,0.0,0,0,0
+pilot,qwen3.8-max,routed_page,Excuse My French -LRB-album-RRB-,1,1,1,1.0,1.0,0,0,0
+pilot,qwen3.8-max,routed_page,Jon Lajoie,1,0,0,0.0,0.0,0,0,0
+pilot,qwen3.8-max,routed_page,Juninho Paulista,1,0,0,0.0,0.0,0,0,0
+pilot,qwen3.8-max,routed_page,Kentucky,2,0,1,0.0,0.5,1,0,1
+pilot,qwen3.8-max,routed_page,Rio Grande do Sul,2,1,1,0.5,0.5,1,1,0
+pilot,qwen3.8-max,confidence_bin,"(-1, 0.2]",0,0,0,,,0,0,0
+pilot,qwen3.8-max,confidence_bin,"(0.2, 0.48]",8,2,3,0.25,0.375,2,1,1
+pilot,qwen3.8-max,confidence_bin,"(0.48, 0.66]",7,2,2,0.2857142857142857,0.2857142857142857,0,0,0
+pilot,qwen3.8-max,confidence_bin,"(0.66, 1]",35,27,30,0.7714285714285715,0.8571428571428571,3,0,3
+pilot,deepseek-v4.1-flash-1017,all_available,all,50,31,33,0.62,0.66,5,3,2
+pilot,deepseek-v4.1-flash-1017,routed,all,8,2,2,0.25,0.25,2,2,0
+pilot,deepseek-v4.1-flash-1017,routed_page,2018 World Snooker Championship,1,0,1,0.0,1.0,1,0,1
+pilot,deepseek-v4.1-flash-1017,routed_page,Excuse My French -LRB-album-RRB-,1,1,0,1.0,0.0,0,1,-1
+pilot,deepseek-v4.1-flash-1017,routed_page,Jon Lajoie,1,0,0,0.0,0.0,0,0,0
+pilot,deepseek-v4.1-flash-1017,routed_page,Juninho Paulista,1,0,1,0.0,1.0,1,0,1
+pilot,deepseek-v4.1-flash-1017,routed_page,Kentucky,2,0,0,0.0,0.0,0,0,0
+pilot,deepseek-v4.1-flash-1017,routed_page,Rio Grande do Sul,2,1,0,0.5,0.0,0,1,-1
+pilot,deepseek-v4.1-flash-1017,confidence_bin,"(-1, 0.2]",0,0,0,,,0,0,0
+pilot,deepseek-v4.1-flash-1017,confidence_bin,"(0.2, 0.48]",8,2,2,0.25,0.25,2,2,0
+pilot,deepseek-v4.1-flash-1017,confidence_bin,"(0.48, 0.66]",7,2,4,0.2857142857142857,0.5714285714285714,3,1,2
+pilot,deepseek-v4.1-flash-1017,confidence_bin,"(0.66, 1]",35,27,27,0.7714285714285715,0.7714285714285715,0,0,0
+pilot,kimi-k3.1-pro,all_available,all,50,31,36,0.62,0.72,7,2,5
+pilot,kimi-k3.1-pro,routed,all,8,2,5,0.25,0.625,4,1,3
+pilot,kimi-k3.1-pro,routed_page,2018 World Snooker Championship,1,0,1,0.0,1.0,1,0,1
+pilot,kimi-k3.1-pro,routed_page,Excuse My French -LRB-album-RRB-,1,1,1,1.0,1.0,0,0,0
+pilot,kimi-k3.1-pro,routed_page,Jon Lajoie,1,0,1,0.0,1.0,1,0,1
+pilot,kimi-k3.1-pro,routed_page,Juninho Paulista,1,0,0,0.0,0.0,0,0,0
+pilot,kimi-k3.1-pro,routed_page,Kentucky,2,0,2,0.0,1.0,2,0,2
+pilot,kimi-k3.1-pro,routed_page,Rio Grande do Sul,2,1,0,0.5,0.0,0,1,-1
+pilot,kimi-k3.1-pro,confidence_bin,"(-1, 0.2]",0,0,0,,,0,0,0
+pilot,kimi-k3.1-pro,confidence_bin,"(0.2, 0.48]",8,2,5,0.25,0.625,4,1,3
+pilot,kimi-k3.1-pro,confidence_bin,"(0.48, 0.66]",7,2,3,0.2857142857142857,0.42857142857142855,2,1,1
+pilot,kimi-k3.1-pro,confidence_bin,"(0.66, 1]",35,27,28,0.7714285714285715,0.8,1,0,1
+pilot,glm-5.3-prime,all_available,all,50,31,32,0.62,0.64,3,2,1
+pilot,glm-5.3-prime,routed,all,8,2,3,0.25,0.375,1,0,1
+pilot,glm-5.3-prime,routed_page,2018 World Snooker Championship,1,0,1,0.0,1.0,1,0,1
+pilot,glm-5.3-prime,routed_page,Excuse My French -LRB-album-RRB-,1,1,1,1.0,1.0,0,0,0
+pilot,glm-5.3-prime,routed_page,Jon Lajoie,1,0,0,0.0,0.0,0,0,0
+pilot,glm-5.3-prime,routed_page,Juninho Paulista,1,0,0,0.0,0.0,0,0,0
+pilot,glm-5.3-prime,routed_page,Kentucky,2,0,0,0.0,0.0,0,0,0
+pilot,glm-5.3-prime,routed_page,Rio Grande do Sul,2,1,1,0.5,0.5,0,0,0
+pilot,glm-5.3-prime,confidence_bin,"(-1, 0.2]",0,0,0,,,0,0,0
+pilot,glm-5.3-prime,confidence_bin,"(0.2, 0.48]",8,2,3,0.25,0.375,1,0,1
+pilot,glm-5.3-prime,confidence_bin,"(0.48, 0.66]",7,2,3,0.2857142857142857,0.42857142857142855,2,1,1
+pilot,glm-5.3-prime,confidence_bin,"(0.66, 1]",35,27,26,0.7714285714285715,0.7428571428571429,0,1,-1
+validation,qwen3.8-max,all_available,all,396,238,251,0.601010101010101,0.6338383838383839,68,55,13
+validation,qwen3.8-max,routed,all,209,101,120,0.48325358851674644,0.5741626794258373,48,29,19
+validation,qwen3.8-max,routed_page,2020 coronavirus pandemic in Italy,140,66,84,0.4714285714285714,0.6,37,19,18
+validation,qwen3.8-max,routed_page,2020 coronavirus pandemic in Nigeria,13,7,7,0.5384615384615384,0.5384615384615384,2,2,0
+validation,qwen3.8-max,routed_page,A Man and a Woman,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Adam Silver,2,1,2,0.5,1.0,1,0,1
+validation,qwen3.8-max,routed_page,Afro Samurai,2,2,2,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Analyze This,2,2,1,1.0,0.5,0,1,-1
+validation,qwen3.8-max,routed_page,Biriyani -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,Cairo Santos,2,2,2,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Colin Jackson,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Colorado,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Dead Rising 3,1,1,0,1.0,0.0,0,1,-1
+validation,qwen3.8-max,routed_page,Dean Lewis,2,0,1,0.0,0.5,1,0,1
+validation,qwen3.8-max,routed_page,Dragon Ball Heroes,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,English cuisine,2,2,1,1.0,0.5,0,1,-1
+validation,qwen3.8-max,routed_page,Free Territory of Trieste,2,0,1,0.0,0.5,1,0,1
+validation,qwen3.8-max,routed_page,Impulse -LRB-TV series-RRB-,2,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,John H. Sununu,1,1,0,1.0,0.0,0,1,-1
+validation,qwen3.8-max,routed_page,Kiko Alonso,4,2,3,0.5,0.75,1,0,1
+validation,qwen3.8-max,routed_page,Maynard Jackson,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Millennium Stadium,1,0,1,0.0,1.0,1,0,1
+validation,qwen3.8-max,routed_page,Mortal Kombat-COLON- Annihilation,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Nitty Gritty Dirt Band,1,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,Paolo Maldini,1,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,Professional wrestling match types,2,1,2,0.5,1.0,1,0,1
+validation,qwen3.8-max,routed_page,Red Dragon -LRB-2002 film-RRB-,1,1,0,1.0,0.0,0,1,-1
+validation,qwen3.8-max,routed_page,Same Old Love,3,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,Sharon Gless,1,0,0,0.0,0.0,0,0,0
+validation,qwen3.8-max,routed_page,"Suffolk County, Massachusetts",3,2,2,0.6666666666666666,0.6666666666666666,1,1,0
+validation,qwen3.8-max,routed_page,The Art of Getting By,4,1,0,0.25,0.0,0,1,-1
+validation,qwen3.8-max,routed_page,The Chew,2,1,0,0.5,0.0,0,1,-1
+validation,qwen3.8-max,routed_page,Tobias Wolff,1,1,1,1.0,1.0,0,0,0
+validation,qwen3.8-max,routed_page,Untitled Unmastered,5,1,2,0.2,0.4,1,0,1
+validation,qwen3.8-max,routed_page,Érik Morales,2,1,2,0.5,1.0,1,0,1
+validation,qwen3.8-max,confidence_bin,"(-1, 0.2]",24,9,10,0.375,0.4166666666666667,5,4,1
+validation,qwen3.8-max,confidence_bin,"(0.2, 0.48]",185,92,110,0.4972972972972973,0.5945945945945946,43,25,18
+validation,qwen3.8-max,confidence_bin,"(0.48, 0.66]",187,137,131,0.732620320855615,0.7005347593582888,20,26,-6
+validation,qwen3.8-max,confidence_bin,"(0.66, 1]",0,0,0,,,0,0,0
+validation,deepseek-v4.1-flash-1017,all_available,all,396,238,210,0.601010101010101,0.5303030303030303,58,86,-28
+validation,deepseek-v4.1-flash-1017,routed,all,209,101,103,0.48325358851674644,0.49282296650717705,38,36,2
+validation,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Italy,140,66,70,0.4714285714285714,0.5,27,23,4
+validation,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Nigeria,13,7,7,0.5384615384615384,0.5384615384615384,2,2,0
+validation,deepseek-v4.1-flash-1017,routed_page,A Man and a Woman,1,1,0,1.0,0.0,0,1,-1
+validation,deepseek-v4.1-flash-1017,routed_page,Adam Silver,2,1,2,0.5,1.0,1,0,1
+validation,deepseek-v4.1-flash-1017,routed_page,Afro Samurai,2,2,0,1.0,0.0,0,2,-2
+validation,deepseek-v4.1-flash-1017,routed_page,Analyze This,2,2,2,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Biriyani -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Cairo Santos,2,2,2,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Colin Jackson,1,1,1,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Colorado,1,1,1,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Dead Rising 3,1,1,0,1.0,0.0,0,1,-1
+validation,deepseek-v4.1-flash-1017,routed_page,Dean Lewis,2,0,1,0.0,0.5,1,0,1
+validation,deepseek-v4.1-flash-1017,routed_page,Dragon Ball Heroes,1,1,0,1.0,0.0,0,1,-1
+validation,deepseek-v4.1-flash-1017,routed_page,English cuisine,2,2,0,1.0,0.0,0,2,-2
+validation,deepseek-v4.1-flash-1017,routed_page,Free Territory of Trieste,2,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Impulse -LRB-TV series-RRB-,2,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,John H. Sununu,1,1,1,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Kiko Alonso,4,2,2,0.5,0.5,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Maynard Jackson,1,1,1,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Millennium Stadium,1,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Mortal Kombat-COLON- Annihilation,1,1,0,1.0,0.0,0,1,-1
+validation,deepseek-v4.1-flash-1017,routed_page,Nitty Gritty Dirt Band,1,0,1,0.0,1.0,1,0,1
+validation,deepseek-v4.1-flash-1017,routed_page,Paolo Maldini,1,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Professional wrestling match types,2,1,1,0.5,0.5,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Red Dragon -LRB-2002 film-RRB-,1,1,1,1.0,1.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Same Old Love,3,0,0,0.0,0.0,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Sharon Gless,1,0,1,0.0,1.0,1,0,1
+validation,deepseek-v4.1-flash-1017,routed_page,"Suffolk County, Massachusetts",3,2,1,0.6666666666666666,0.3333333333333333,1,2,-1
+validation,deepseek-v4.1-flash-1017,routed_page,The Art of Getting By,4,1,2,0.25,0.5,1,0,1
+validation,deepseek-v4.1-flash-1017,routed_page,The Chew,2,1,1,0.5,0.5,0,0,0
+validation,deepseek-v4.1-flash-1017,routed_page,Tobias Wolff,1,1,0,1.0,0.0,0,1,-1
+validation,deepseek-v4.1-flash-1017,routed_page,Untitled Unmastered,5,1,3,0.2,0.6,2,0,2
+validation,deepseek-v4.1-flash-1017,routed_page,Érik Morales,2,1,2,0.5,1.0,1,0,1
+validation,deepseek-v4.1-flash-1017,confidence_bin,"(-1, 0.2]",24,9,10,0.375,0.4166666666666667,6,5,1
+validation,deepseek-v4.1-flash-1017,confidence_bin,"(0.2, 0.48]",185,92,93,0.4972972972972973,0.5027027027027027,32,31,1
+validation,deepseek-v4.1-flash-1017,confidence_bin,"(0.48, 0.66]",187,137,107,0.732620320855615,0.5721925133689839,20,50,-30
+validation,deepseek-v4.1-flash-1017,confidence_bin,"(0.66, 1]",0,0,0,,,0,0,0
+validation,kimi-k3.1-pro,all_available,all,396,238,213,0.601010101010101,0.5378787878787878,59,84,-25
+validation,kimi-k3.1-pro,routed,all,209,101,101,0.48325358851674644,0.48325358851674644,41,41,0
+validation,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Italy,140,66,63,0.4714285714285714,0.45,28,31,-3
+validation,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Nigeria,13,7,6,0.5384615384615384,0.46153846153846156,1,2,-1
+validation,kimi-k3.1-pro,routed_page,A Man and a Woman,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Adam Silver,2,1,2,0.5,1.0,1,0,1
+validation,kimi-k3.1-pro,routed_page,Afro Samurai,2,2,1,1.0,0.5,0,1,-1
+validation,kimi-k3.1-pro,routed_page,Analyze This,2,2,1,1.0,0.5,0,1,-1
+validation,kimi-k3.1-pro,routed_page,Biriyani -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Cairo Santos,2,2,2,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Colin Jackson,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Colorado,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Dead Rising 3,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Dean Lewis,2,0,1,0.0,0.5,1,0,1
+validation,kimi-k3.1-pro,routed_page,Dragon Ball Heroes,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,English cuisine,2,2,2,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Free Territory of Trieste,2,0,0,0.0,0.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Impulse -LRB-TV series-RRB-,2,0,0,0.0,0.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,John H. Sununu,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Kiko Alonso,4,2,4,0.5,1.0,2,0,2
+validation,kimi-k3.1-pro,routed_page,Maynard Jackson,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Millennium Stadium,1,0,1,0.0,1.0,1,0,1
+validation,kimi-k3.1-pro,routed_page,Mortal Kombat-COLON- Annihilation,1,1,0,1.0,0.0,0,1,-1
+validation,kimi-k3.1-pro,routed_page,Nitty Gritty Dirt Band,1,0,0,0.0,0.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Paolo Maldini,1,0,1,0.0,1.0,1,0,1
+validation,kimi-k3.1-pro,routed_page,Professional wrestling match types,2,1,1,0.5,0.5,1,1,0
+validation,kimi-k3.1-pro,routed_page,Red Dragon -LRB-2002 film-RRB-,1,1,1,1.0,1.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,Same Old Love,3,0,1,0.0,0.3333333333333333,1,0,1
+validation,kimi-k3.1-pro,routed_page,Sharon Gless,1,0,0,0.0,0.0,0,0,0
+validation,kimi-k3.1-pro,routed_page,"Suffolk County, Massachusetts",3,2,2,0.6666666666666666,0.6666666666666666,1,1,0
+validation,kimi-k3.1-pro,routed_page,The Art of Getting By,4,1,2,0.25,0.5,2,1,1
+validation,kimi-k3.1-pro,routed_page,The Chew,2,1,1,0.5,0.5,0,0,0
+validation,kimi-k3.1-pro,routed_page,Tobias Wolff,1,1,0,1.0,0.0,0,1,-1
+validation,kimi-k3.1-pro,routed_page,Untitled Unmastered,5,1,1,0.2,0.2,0,0,0
+validation,kimi-k3.1-pro,routed_page,Érik Morales,2,1,1,0.5,0.5,1,1,0
+validation,kimi-k3.1-pro,confidence_bin,"(-1, 0.2]",24,9,6,0.375,0.25,3,6,-3
+validation,kimi-k3.1-pro,confidence_bin,"(0.2, 0.48]",185,92,95,0.4972972972972973,0.5135135135135135,38,35,3
+validation,kimi-k3.1-pro,confidence_bin,"(0.48, 0.66]",187,137,112,0.732620320855615,0.5989304812834224,18,43,-25
+validation,kimi-k3.1-pro,confidence_bin,"(0.66, 1]",0,0,0,,,0,0,0
+test,qwen3.8-max,all_available,all,2000,1698,1664,0.849,0.832,66,100,-34
+test,qwen3.8-max,routed,all,216,122,117,0.5648148148148148,0.5416666666666666,35,40,-5
+test,qwen3.8-max,routed_page,2002 FIFA World Cup Final,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,2007–08 Premier League,2,1,1,0.5,0.5,1,1,0
+test,qwen3.8-max,routed_page,2018 New Orleans Saints season,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,2018 United States Senate election in Arizona,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,2020 United States elections,2,1,2,0.5,1.0,1,0,1
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in Africa,10,6,4,0.6,0.4,1,3,-2
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in Bosnia and Herzegovina,17,6,9,0.35294117647058826,0.5294117647058824,6,3,3
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in Germany,11,5,4,0.45454545454545453,0.36363636363636365,1,2,-1
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in Haiti,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in Ivory Coast,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in New York -LRB-state-RRB-,9,5,7,0.5555555555555556,0.7777777777777778,3,1,2
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in the State of Palestine,3,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,2020 coronavirus pandemic in the Åland Islands,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,8 Seconds,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Aaliyah discography,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Andre Johnson,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Arundel Castle,2,1,0,0.5,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Azim Premji,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Bajirao Mastani,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Bananarama,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Bankruptcy of Lehman Brothers,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Barbarella -LRB-film-RRB-,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Barnyard -LRB-film-RRB-,2,0,1,0.0,0.5,1,0,1
+test,qwen3.8-max,routed_page,Blindspot -LRB-TV series-RRB-,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Call of Duty 2,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Chadwick Boseman,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Chipotle Mexican Grill,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Christopher McQuarrie,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Collateral Beauty,4,4,2,1.0,0.5,0,2,-2
+test,qwen3.8-max,routed_page,Coraline,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Cordilleran Ice Sheet,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Cédric Soares,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Daredevil -LRB-TV series-RRB-,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Demographics of the United States,2,2,2,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Dominic Solanke,2,2,2,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Eastwatch,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Economy of London,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Ed Sullivan Theater,2,1,0,0.5,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Education in Sweden,2,2,0,1.0,0.0,0,2,-2
+test,qwen3.8-max,routed_page,F Is for Family,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Fabio Capello,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Fabricio Coloccini,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Fair use,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Fallout 76,5,4,2,0.8,0.4,0,2,-2
+test,qwen3.8-max,routed_page,Fifth grade,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Gary Windass,3,2,2,0.6666666666666666,0.6666666666666666,1,1,0
+test,qwen3.8-max,routed_page,Gogol Bordello,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Guardians of the Galaxy -LRB-film-RRB-,3,2,1,0.6666666666666666,0.3333333333333333,1,2,-1
+test,qwen3.8-max,routed_page,Hampshire,2,2,1,1.0,0.5,0,1,-1
+test,qwen3.8-max,routed_page,Harverd Dropout,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Hyksos,2,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Indian 2000-rupee note,3,2,2,0.6666666666666666,0.6666666666666666,0,0,0
+test,qwen3.8-max,routed_page,Isan,3,3,2,1.0,0.6666666666666666,0,1,-1
+test,qwen3.8-max,routed_page,Jab Tak Hai Jaan,2,2,2,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Jack the Giant Slayer,2,1,2,0.5,1.0,1,0,1
+test,qwen3.8-max,routed_page,James Spader,2,1,0,0.5,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Japan,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Jena Malone,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Jerry Cantrell,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Justin Chambers,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Justin Houston,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Kaabil,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Katherine Jenkins,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Klaus Schulze,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Leslie Grace,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Maleficent-COLON- Mistress of Evil,4,3,4,0.75,1.0,1,0,1
+test,qwen3.8-max,routed_page,Maltese language,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Matchstick Men,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Meghan Trainor,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Melbourne City FC,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Methyl tert-butyl ether,2,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Milk -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Norman Bates,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,P.S. I Love You -LRB-film-RRB-,3,3,3,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Piranha 3D,5,3,4,0.6,0.8,1,0,1
+test,qwen3.8-max,routed_page,Poe Dameron,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,RedOne,2,1,2,0.5,1.0,1,0,1
+test,qwen3.8-max,routed_page,Resident Evil 5,2,1,1,0.5,0.5,0,0,0
+test,qwen3.8-max,routed_page,Revenge of the Dreamers III,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Rob Pelinka,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Robert Huth,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,Rocky Mountain spotted fever,3,1,1,0.3333333333333333,0.3333333333333333,0,0,0
+test,qwen3.8-max,routed_page,Sampler -LRB-musical instrument-RRB-,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,See You on the Other Side -LRB-Korn album-RRB-,1,1,0,1.0,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Shea Weber,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Shell shock,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Srimanthudu,2,1,0,0.5,0.0,0,1,-1
+test,qwen3.8-max,routed_page,Superman II,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,The Darjeeling Limited,1,0,1,0.0,1.0,1,0,1
+test,qwen3.8-max,routed_page,The Nice Guys,3,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,The Odd Life of Timothy Green,2,2,1,1.0,0.5,0,1,-1
+test,qwen3.8-max,routed_page,The Shard,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,The Stepford Wives -LRB-2004 film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,The Thin Red Line -LRB-1998 film-RRB-,1,1,1,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,The X-Files -LRB-franchise-RRB-,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Travel restrictions related to the 2019–20 coronavirus pandemic,15,7,7,0.4666666666666667,0.4666666666666667,2,2,0
+test,qwen3.8-max,routed_page,Trevor Moran,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,University of Leicester,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Visaranai,2,1,2,0.5,1.0,1,0,1
+test,qwen3.8-max,routed_page,WPLJ,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,routed_page,Wii,7,6,7,0.8571428571428571,1.0,1,0,1
+test,qwen3.8-max,routed_page,WinStar World Casino,2,2,2,1.0,1.0,0,0,0
+test,qwen3.8-max,routed_page,Zoe Saldana,1,0,0,0.0,0.0,0,0,0
+test,qwen3.8-max,confidence_bin,"(-1, 0.2]",22,9,12,0.4090909090909091,0.5454545454545454,6,3,3
+test,qwen3.8-max,confidence_bin,"(0.2, 0.48]",194,113,105,0.5824742268041238,0.5412371134020618,29,37,-8
+test,qwen3.8-max,confidence_bin,"(0.48, 0.66]",180,110,115,0.6111111111111112,0.6388888888888888,20,15,5
+test,qwen3.8-max,confidence_bin,"(0.66, 1]",1604,1466,1432,0.9139650872817955,0.8927680798004988,11,45,-34
+test,kimi-k3.1-pro,all_available,all,2000,1698,1556,0.849,0.778,56,198,-142
+test,kimi-k3.1-pro,routed,all,216,122,96,0.5648148148148148,0.4444444444444444,30,56,-26
+test,kimi-k3.1-pro,routed_page,2002 FIFA World Cup Final,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,2007–08 Premier League,2,1,2,0.5,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,2018 New Orleans Saints season,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,2018 United States Senate election in Arizona,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,2020 United States elections,2,1,0,0.5,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Africa,10,6,5,0.6,0.5,1,2,-1
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Bosnia and Herzegovina,17,6,12,0.35294117647058826,0.7058823529411765,7,1,6
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Germany,11,5,7,0.45454545454545453,0.6363636363636364,2,0,2
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Haiti,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in Ivory Coast,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in New York -LRB-state-RRB-,9,5,2,0.5555555555555556,0.2222222222222222,1,4,-3
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in the State of Palestine,3,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,2020 coronavirus pandemic in the Åland Islands,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,8 Seconds,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Aaliyah discography,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Andre Johnson,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Arundel Castle,2,1,0,0.5,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Azim Premji,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Bajirao Mastani,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Bananarama,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Bankruptcy of Lehman Brothers,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Barbarella -LRB-film-RRB-,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Barnyard -LRB-film-RRB-,2,0,1,0.0,0.5,1,0,1
+test,kimi-k3.1-pro,routed_page,Blindspot -LRB-TV series-RRB-,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Call of Duty 2,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Chadwick Boseman,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Chipotle Mexican Grill,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Christopher McQuarrie,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Collateral Beauty,4,4,1,1.0,0.25,0,3,-3
+test,kimi-k3.1-pro,routed_page,Coraline,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Cordilleran Ice Sheet,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Cédric Soares,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Daredevil -LRB-TV series-RRB-,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Demographics of the United States,2,2,1,1.0,0.5,0,1,-1
+test,kimi-k3.1-pro,routed_page,Dominic Solanke,2,2,2,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Eastwatch,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Economy of London,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Ed Sullivan Theater,2,1,0,0.5,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Education in Sweden,2,2,1,1.0,0.5,0,1,-1
+test,kimi-k3.1-pro,routed_page,F Is for Family,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Fabio Capello,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Fabricio Coloccini,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Fair use,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Fallout 76,5,4,2,0.8,0.4,0,2,-2
+test,kimi-k3.1-pro,routed_page,Fifth grade,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Gary Windass,3,2,0,0.6666666666666666,0.0,0,2,-2
+test,kimi-k3.1-pro,routed_page,Gogol Bordello,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Guardians of the Galaxy -LRB-film-RRB-,3,2,2,0.6666666666666666,0.6666666666666666,1,1,0
+test,kimi-k3.1-pro,routed_page,Hampshire,2,2,1,1.0,0.5,0,1,-1
+test,kimi-k3.1-pro,routed_page,Harverd Dropout,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Hyksos,2,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Indian 2000-rupee note,3,2,0,0.6666666666666666,0.0,0,2,-2
+test,kimi-k3.1-pro,routed_page,Isan,3,3,1,1.0,0.3333333333333333,0,2,-2
+test,kimi-k3.1-pro,routed_page,Jab Tak Hai Jaan,2,2,1,1.0,0.5,0,1,-1
+test,kimi-k3.1-pro,routed_page,Jack the Giant Slayer,2,1,1,0.5,0.5,0,0,0
+test,kimi-k3.1-pro,routed_page,James Spader,2,1,2,0.5,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Japan,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Jena Malone,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Jerry Cantrell,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Justin Chambers,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Justin Houston,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Kaabil,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Katherine Jenkins,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Klaus Schulze,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Leslie Grace,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Maleficent-COLON- Mistress of Evil,4,3,1,0.75,0.25,0,2,-2
+test,kimi-k3.1-pro,routed_page,Maltese language,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Matchstick Men,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Meghan Trainor,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Melbourne City FC,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Methyl tert-butyl ether,2,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Milk -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Norman Bates,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,P.S. I Love You -LRB-film-RRB-,3,3,2,1.0,0.6666666666666666,0,1,-1
+test,kimi-k3.1-pro,routed_page,Piranha 3D,5,3,4,0.6,0.8,1,0,1
+test,kimi-k3.1-pro,routed_page,Poe Dameron,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,RedOne,2,1,1,0.5,0.5,0,0,0
+test,kimi-k3.1-pro,routed_page,Resident Evil 5,2,1,0,0.5,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Revenge of the Dreamers III,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Rob Pelinka,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,Robert Huth,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Rocky Mountain spotted fever,3,1,1,0.3333333333333333,0.3333333333333333,0,0,0
+test,kimi-k3.1-pro,routed_page,Sampler -LRB-musical instrument-RRB-,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,See You on the Other Side -LRB-Korn album-RRB-,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Shea Weber,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Shell shock,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Srimanthudu,2,1,0,0.5,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,Superman II,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,The Darjeeling Limited,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,The Nice Guys,3,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,The Odd Life of Timothy Green,2,2,2,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,The Shard,1,1,0,1.0,0.0,0,1,-1
+test,kimi-k3.1-pro,routed_page,The Stepford Wives -LRB-2004 film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,The Thin Red Line -LRB-1998 film-RRB-,1,1,1,1.0,1.0,0,0,0
+test,kimi-k3.1-pro,routed_page,The X-Files -LRB-franchise-RRB-,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Travel restrictions related to the 2019–20 coronavirus pandemic,15,7,8,0.4666666666666667,0.5333333333333333,2,1,1
+test,kimi-k3.1-pro,routed_page,Trevor Moran,1,0,1,0.0,1.0,1,0,1
+test,kimi-k3.1-pro,routed_page,University of Leicester,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Visaranai,2,1,1,0.5,0.5,0,0,0
+test,kimi-k3.1-pro,routed_page,WPLJ,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,routed_page,Wii,7,6,1,0.8571428571428571,0.14285714285714285,0,5,-5
+test,kimi-k3.1-pro,routed_page,WinStar World Casino,2,2,1,1.0,0.5,0,1,-1
+test,kimi-k3.1-pro,routed_page,Zoe Saldana,1,0,0,0.0,0.0,0,0,0
+test,kimi-k3.1-pro,confidence_bin,"(-1, 0.2]",22,9,7,0.4090909090909091,0.3181818181818182,3,5,-2
+test,kimi-k3.1-pro,confidence_bin,"(0.2, 0.48]",194,113,89,0.5824742268041238,0.4587628865979381,27,51,-24
+test,kimi-k3.1-pro,confidence_bin,"(0.48, 0.66]",180,110,98,0.6111111111111112,0.5444444444444444,17,29,-12
+test,kimi-k3.1-pro,confidence_bin,"(0.66, 1]",1604,1466,1362,0.9139650872817955,0.8491271820448878,9,113,-104
+test,deepseek-v4.1-flash-1017,all_available,all,2000,1698,1559,0.849,0.7795,64,203,-139
+test,deepseek-v4.1-flash-1017,routed,all,216,122,105,0.5648148148148148,0.4861111111111111,27,44,-17
+test,deepseek-v4.1-flash-1017,routed_page,2002 FIFA World Cup Final,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,2007–08 Premier League,2,1,1,0.5,0.5,1,1,0
+test,deepseek-v4.1-flash-1017,routed_page,2018 New Orleans Saints season,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,2018 United States Senate election in Arizona,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,2020 United States elections,2,1,1,0.5,0.5,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Africa,10,6,5,0.6,0.5,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Bosnia and Herzegovina,17,6,9,0.35294117647058826,0.5294117647058824,5,2,3
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Germany,11,5,7,0.45454545454545453,0.6363636363636364,3,1,2
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Haiti,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in Ivory Coast,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in New York -LRB-state-RRB-,9,5,2,0.5555555555555556,0.2222222222222222,0,3,-3
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in the State of Palestine,3,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,2020 coronavirus pandemic in the Åland Islands,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,8 Seconds,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Aaliyah discography,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Andre Johnson,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Arundel Castle,2,1,2,0.5,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Azim Premji,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Bajirao Mastani,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Bananarama,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Bankruptcy of Lehman Brothers,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Barbarella -LRB-film-RRB-,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Barnyard -LRB-film-RRB-,2,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Blindspot -LRB-TV series-RRB-,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Call of Duty 2,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Chadwick Boseman,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Chipotle Mexican Grill,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Christopher McQuarrie,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Collateral Beauty,4,4,3,1.0,0.75,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Coraline,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Cordilleran Ice Sheet,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Cédric Soares,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Daredevil -LRB-TV series-RRB-,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Demographics of the United States,2,2,2,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Dominic Solanke,2,2,1,1.0,0.5,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Eastwatch,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Economy of London,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Ed Sullivan Theater,2,1,0,0.5,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Education in Sweden,2,2,1,1.0,0.5,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,F Is for Family,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Fabio Capello,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Fabricio Coloccini,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Fair use,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Fallout 76,5,4,2,0.8,0.4,0,2,-2
+test,deepseek-v4.1-flash-1017,routed_page,Fifth grade,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Gary Windass,3,2,0,0.6666666666666666,0.0,0,2,-2
+test,deepseek-v4.1-flash-1017,routed_page,Gogol Bordello,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Guardians of the Galaxy -LRB-film-RRB-,3,2,1,0.6666666666666666,0.3333333333333333,1,2,-1
+test,deepseek-v4.1-flash-1017,routed_page,Hampshire,2,2,1,1.0,0.5,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Harverd Dropout,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Hyksos,2,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Indian 2000-rupee note,3,2,1,0.6666666666666666,0.3333333333333333,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Isan,3,3,3,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Jab Tak Hai Jaan,2,2,2,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Jack the Giant Slayer,2,1,0,0.5,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,James Spader,2,1,0,0.5,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Japan,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Jena Malone,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Jerry Cantrell,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Justin Chambers,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Justin Houston,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Kaabil,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Katherine Jenkins,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Klaus Schulze,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Leslie Grace,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Maleficent-COLON- Mistress of Evil,4,3,2,0.75,0.5,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Maltese language,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Matchstick Men,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Meghan Trainor,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Melbourne City FC,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Methyl tert-butyl ether,2,0,2,0.0,1.0,2,0,2
+test,deepseek-v4.1-flash-1017,routed_page,Milk -LRB-film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Norman Bates,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,P.S. I Love You -LRB-film-RRB-,3,3,3,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Piranha 3D,5,3,2,0.6,0.4,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Poe Dameron,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,RedOne,2,1,1,0.5,0.5,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Resident Evil 5,2,1,2,0.5,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Revenge of the Dreamers III,1,1,0,1.0,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Rob Pelinka,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Robert Huth,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,Rocky Mountain spotted fever,3,1,0,0.3333333333333333,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,Sampler -LRB-musical instrument-RRB-,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,See You on the Other Side -LRB-Korn album-RRB-,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Shea Weber,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Shell shock,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Srimanthudu,2,1,1,0.5,0.5,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Superman II,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,The Darjeeling Limited,1,0,1,0.0,1.0,1,0,1
+test,deepseek-v4.1-flash-1017,routed_page,The Nice Guys,3,0,2,0.0,0.6666666666666666,2,0,2
+test,deepseek-v4.1-flash-1017,routed_page,The Odd Life of Timothy Green,2,2,0,1.0,0.0,0,2,-2
+test,deepseek-v4.1-flash-1017,routed_page,The Shard,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,The Stepford Wives -LRB-2004 film-RRB-,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,The Thin Red Line -LRB-1998 film-RRB-,1,1,1,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,The X-Files -LRB-franchise-RRB-,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Travel restrictions related to the 2019–20 coronavirus pandemic,15,7,8,0.4666666666666667,0.5333333333333333,2,1,1
+test,deepseek-v4.1-flash-1017,routed_page,Trevor Moran,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,University of Leicester,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Visaranai,2,1,0,0.5,0.0,0,1,-1
+test,deepseek-v4.1-flash-1017,routed_page,WPLJ,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Wii,7,6,3,0.8571428571428571,0.42857142857142855,1,4,-3
+test,deepseek-v4.1-flash-1017,routed_page,WinStar World Casino,2,2,2,1.0,1.0,0,0,0
+test,deepseek-v4.1-flash-1017,routed_page,Zoe Saldana,1,0,0,0.0,0.0,0,0,0
+test,deepseek-v4.1-flash-1017,confidence_bin,"(-1, 0.2]",22,9,6,0.4090909090909091,0.2727272727272727,3,6,-3
+test,deepseek-v4.1-flash-1017,confidence_bin,"(0.2, 0.48]",194,113,99,0.5824742268041238,0.5103092783505154,24,38,-14
+test,deepseek-v4.1-flash-1017,confidence_bin,"(0.48, 0.66]",180,110,95,0.6111111111111112,0.5277777777777778,22,37,-15
+test,deepseek-v4.1-flash-1017,confidence_bin,"(0.66, 1]",1604,1466,1359,0.9139650872817955,0.8472568578553616,15,122,-107

@@ -1,0 +1,58 @@
+{
+  "archive": "data/vitaminc.zip",
+  "extract_from_repo_root": "unzip data/vitaminc.zip -d data",
+  "files": [
+    {
+      "path": "vitaminc/LICENSE",
+      "bytes": 513,
+      "sha256": "e5727854e203fc66d725caa6d8e97e541f64a906d1d15d19e63f32bb52134dd1"
+    },
+    {
+      "path": "vitaminc/README.txt",
+      "bytes": 198,
+      "sha256": "aecc6e74b43865b1c8a3c9e044a296644badbf4ffd81adbb6d0ffc80a26256cd"
+    },
+    {
+      "path": "vitaminc/dev.jsonl",
+      "bytes": 27826242,
+      "sha256": "a3258bc959754c84bade150d3bf447fd9c91a529d93bb676f034fdafda5f26e5"
+    },
+    {
+      "path": "vitaminc/test.jsonl",
+      "bytes": 24285608,
+      "sha256": "7f799e076dec184e31533d46704fef2022d08ef68a0db2c44f138d2b4e552f36"
+    },
+    {
+      "path": "vitaminc/train.jsonl",
+      "bytes": 164411764,
+      "sha256": "446163d81ec9b654d2514e8ba5b8f2e4bd8938342e34c98e7660fe05a8a3ca39"
+    },
+    {
+      "path": "vitaminc_splits/calibration.jsonl",
+      "bytes": 1048795,
+      "sha256": "7758743905bdaae6b04e3e4dacc46f1d3e6e473eab4d862eacb89f50589a78f9"
+    },
+    {
+      "path": "vitaminc_splits/prompt_dev.jsonl",
+      "bytes": 107983,
+      "sha256": "227fc5da74271cc1d90b098aa64acae5dcd83fd8fcabc36ccd7d261aab26d93a"
+    },
+    {
+      "path": "vitaminc_splits/split_report.json",
+      "bytes": 1863,
+      "sha256": "117bb30a55d9f79c8d0ba2e2c8edc8a6ccec8449d8824b46054255bf7ab53e15"
+    },
+    {
+      "path": "vitaminc_splits/test.jsonl",
+      "bytes": 1074807,
+      "sha256": "33e80bfda39d376b272a7d59a54e7cc202e9e1de21e7c8e96c3592d5006c0ff7"
+    },
+    {
+      "path": "vitaminc_splits/threshold_validation.jsonl",
+      "bytes": 1077944,
+      "sha256": "52ddff1a986ce998ed0d23adc00bca8ffee0cc8c16299de755151cd52dd9f2f6"
+    }
+  ],
+  "archive_bytes": 22158032,
+  "archive_sha256": "80e46475f119a52a1acce0bf21845bae07962bf3486df2601cdab85e1c2b0c6a"
+}

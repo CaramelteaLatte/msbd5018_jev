@@ -1,0 +1,2548 @@
+{
+  "cutoff": 0.48,
+  "datasets": {
+    "calibration": {
+      "rows": 2000,
+      "labels": {
+        "S": 996,
+        "C": 575,
+        "I": 429
+      },
+      "pages": 205,
+      "cases": 694,
+      "revision_types": {
+        "real": 2000
+      },
+      "top_pages": [
+        [
+          "Dirty Grandpa",
+          256
+        ],
+        [
+          "2020 coronavirus pandemic in Delaware",
+          149
+        ],
+        [
+          "On the Basis of Sex",
+          98
+        ],
+        [
+          "99 Homes",
+          55
+        ],
+        [
+          "Linkin Park",
+          55
+        ],
+        [
+          "Aliko Dangote",
+          49
+        ],
+        [
+          "Captain America-COLON- Civil War",
+          49
+        ],
+        [
+          "2020 coronavirus pandemic in Indiana",
+          45
+        ],
+        [
+          "Pearl Jam",
+          40
+        ],
+        [
+          "The Tragically Hip",
+          37
+        ],
+        [
+          "Harry Potter and the Deathly Hallows – Part 2",
+          37
+        ],
+        [
+          "Brandon Flowers",
+          30
+        ]
+      ],
+      "largest_page_share": 0.128,
+      "unique_claims": 1042,
+      "unique_evidence": 1186
+    },
+    "prompt_dev": {
+      "rows": 200,
+      "labels": {
+        "S": 100,
+        "C": 57,
+        "I": 43
+      },
+      "pages": 25,
+      "cases": 74,
+      "revision_types": {
+        "real": 200
+      },
+      "top_pages": [
+        [
+          "Excuse My French -LRB-album-RRB-",
+          19
+        ],
+        [
+          "Kentucky",
+          18
+        ],
+        [
+          "Omar Khadr",
+          15
+        ],
+        [
+          "Unbelievable -LRB-miniseries-RRB-",
+          14
+        ],
+        [
+          "Daniel Podence",
+          13
+        ],
+        [
+          "Juninho Paulista",
+          13
+        ],
+        [
+          "Rio Grande do Sul",
+          12
+        ],
+        [
+          "The Grand Budapest Hotel",
+          12
+        ],
+        [
+          "Freddie Ljungberg",
+          10
+        ],
+        [
+          "Climate of Mumbai",
+          10
+        ],
+        [
+          "Anthony Knockaert",
+          9
+        ],
+        [
+          "Jon Lajoie",
+          8
+        ]
+      ],
+      "largest_page_share": 0.095,
+      "unique_claims": 105,
+      "unique_evidence": 137
+    },
+    "test": {
+      "rows": 2000,
+      "labels": {
+        "C": 575,
+        "S": 1002,
+        "I": 423
+      },
+      "pages": 316,
+      "cases": 1336,
+      "revision_types": {
+        "real": 2000
+      },
+      "top_pages": [
+        [
+          "2020 coronavirus pandemic in Germany",
+          294
+        ],
+        [
+          "2020 coronavirus pandemic in New York -LRB-state-RRB-",
+          206
+        ],
+        [
+          "2020 coronavirus pandemic in Bosnia and Herzegovina",
+          99
+        ],
+        [
+          "Collateral Beauty",
+          90
+        ],
+        [
+          "Travel restrictions related to the 2019–20 coronavirus pandemic",
+          70
+        ],
+        [
+          "2020 coronavirus pandemic in Africa",
+          49
+        ],
+        [
+          "2020 coronavirus pandemic in the State of Palestine",
+          34
+        ],
+        [
+          "The Nice Guys",
+          30
+        ],
+        [
+          "Maleficent-COLON- Mistress of Evil",
+          30
+        ],
+        [
+          "The Odd Life of Timothy Green",
+          24
+        ],
+        [
+          "Wii",
+          21
+        ],
+        [
+          "Barnyard -LRB-film-RRB-",
+          20
+        ]
+      ],
+      "largest_page_share": 0.147,
+      "unique_claims": 1660,
+      "unique_evidence": 1504
+    },
+    "threshold_validation": {
+      "rows": 2000,
+      "labels": {
+        "I": 429,
+        "S": 996,
+        "C": 575
+      },
+      "pages": 72,
+      "cases": 653,
+      "revision_types": {
+        "real": 2000
+      },
+      "top_pages": [
+        [
+          "2020 coronavirus pandemic in Italy",
+          1424
+        ],
+        [
+          "2020 coronavirus pandemic in Nigeria",
+          106
+        ],
+        [
+          "Dean Lewis",
+          45
+        ],
+        [
+          "Kiko Alonso",
+          41
+        ],
+        [
+          "The Art of Getting By",
+          20
+        ],
+        [
+          "Cairo Santos",
+          19
+        ],
+        [
+          "Glendale, California",
+          15
+        ],
+        [
+          "Biriyani -LRB-film-RRB-",
+          15
+        ],
+        [
+          "Red Dragon -LRB-2002 film-RRB-",
+          14
+        ],
+        [
+          "Analyze This",
+          14
+        ],
+        [
+          "Liquid Swords",
+          12
+        ],
+        [
+          "Untitled Unmastered",
+          10
+        ]
+      ],
+      "largest_page_share": 0.712,
+      "unique_claims": 1023,
+      "unique_evidence": 761
+    }
+  },
+  "checks": {
+    "calibration": {
+      "duplicate_ids": 0,
+      "duplicate_pairs": 0,
+      "gold_mapping_errors": 0,
+      "reported_rows": 2000,
+      "current_rows": 2000,
+      "source_content_mismatches": 0,
+      "original_split_reproduced_exactly": true,
+      "current_is_subset_of_original": true,
+      "current_is_original_prefix": true
+    },
+    "prompt_dev": {
+      "duplicate_ids": 0,
+      "duplicate_pairs": 0,
+      "gold_mapping_errors": 0,
+      "reported_rows": 200,
+      "current_rows": 200,
+      "source_content_mismatches": 0,
+      "original_split_reproduced_exactly": true,
+      "current_is_subset_of_original": true,
+      "current_is_original_prefix": true
+    },
+    "test": {
+      "duplicate_ids": 0,
+      "duplicate_pairs": 0,
+      "gold_mapping_errors": 0,
+      "reported_rows": 5000,
+      "current_rows": 2000,
+      "source_content_mismatches": 0,
+      "original_split_reproduced_exactly": false,
+      "current_is_subset_of_original": true,
+      "current_is_original_prefix": false
+    },
+    "threshold_validation": {
+      "duplicate_ids": 0,
+      "duplicate_pairs": 0,
+      "gold_mapping_errors": 0,
+      "reported_rows": 2000,
+      "current_rows": 2000,
+      "source_content_mismatches": 0,
+      "original_split_reproduced_exactly": true,
+      "current_is_subset_of_original": true,
+      "current_is_original_prefix": true
+    },
+    "prepared_split_overlaps": {
+      "calibration/prompt_dev": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "calibration/test": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "calibration/threshold_validation": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "prompt_dev/test": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "prompt_dev/threshold_validation": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "test/threshold_validation": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      }
+    },
+    "official_dev_sha256_matches": true,
+    "official_test_sha256_matches": true,
+    "cleaning_matches_report": true,
+    "official_train_overlapping_rows": {
+      "calibration": {
+        "id": 0,
+        "case": 0,
+        "page": 28,
+        "pair": 0
+      },
+      "prompt_dev": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      },
+      "test": {
+        "id": 0,
+        "case": 0,
+        "page": 36,
+        "pair": 0
+      },
+      "threshold_validation": {
+        "id": 0,
+        "case": 0,
+        "page": 0,
+        "pair": 0
+      }
+    },
+    "validation_data_hash_matches": true,
+    "test_data_hash_matches": true,
+    "validation_and_test_request_configs_equal": true,
+    "validation_and_test_endpoints_equal": true,
+    "final_summary_recalculation_errors": [],
+    "threshold_sweep_recalculation_errors": []
+  },
+  "runs": {
+    "pilot": {
+      "models": {
+        "jev-1.14.0": {
+          "saved": 50,
+          "status": {
+            "ok": 50
+          },
+          "returned_model": {
+            "jev-1.14.0": 50
+          },
+          "finish_reason": {
+            "null": 50
+          },
+          "paired_available": {
+            "n": 50,
+            "jev_correct": 31,
+            "llm_correct": 31,
+            "jev_accuracy": 0.62,
+            "llm_accuracy": 0.62,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "routed": {
+            "n": 8,
+            "jev_correct": 2,
+            "llm_correct": 2,
+            "jev_accuracy": 0.25,
+            "llm_accuracy": 0.25,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "per_label_available": {
+            "S": {
+              "n": 15,
+              "jev_correct": 13,
+              "llm_correct": 13,
+              "jev_accuracy": 0.8666666666666667,
+              "llm_accuracy": 0.8666666666666667,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 15,
+              "jev_correct": 10,
+              "llm_correct": 10,
+              "jev_accuracy": 0.6666666666666666,
+              "llm_accuracy": 0.6666666666666666,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 20,
+              "jev_correct": 8,
+              "llm_correct": 8,
+              "jev_accuracy": 0.4,
+              "llm_accuracy": 0.4,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 2,
+              "jev_correct": 2,
+              "llm_correct": 2,
+              "jev_accuracy": 1.0,
+              "llm_accuracy": 1.0,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 0,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.0,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 0,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.0,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 13,
+              "I": 1,
+              "C": 1
+            },
+            "C": {
+              "C": 10,
+              "S": 3,
+              "I": 2
+            },
+            "I": {
+              "C": 5,
+              "I": 8,
+              "S": 7
+            }
+          }
+        },
+        "qwen3.8-max": {
+          "saved": 50,
+          "status": {
+            "ok": 50
+          },
+          "returned_model": {
+            "qwen3.8-max": 50
+          },
+          "finish_reason": {
+            "stop": 50
+          },
+          "paired_available": {
+            "n": 50,
+            "jev_correct": 31,
+            "llm_correct": 35,
+            "jev_accuracy": 0.62,
+            "llm_accuracy": 0.7,
+            "corrected": 5,
+            "harmed": 1,
+            "net": 4
+          },
+          "routed": {
+            "n": 8,
+            "jev_correct": 2,
+            "llm_correct": 3,
+            "jev_accuracy": 0.25,
+            "llm_accuracy": 0.375,
+            "corrected": 2,
+            "harmed": 1,
+            "net": 1
+          },
+          "per_label_available": {
+            "S": {
+              "n": 15,
+              "jev_correct": 13,
+              "llm_correct": 12,
+              "jev_accuracy": 0.8666666666666667,
+              "llm_accuracy": 0.8,
+              "corrected": 0,
+              "harmed": 1,
+              "net": -1
+            },
+            "C": {
+              "n": 15,
+              "jev_correct": 10,
+              "llm_correct": 11,
+              "jev_accuracy": 0.6666666666666666,
+              "llm_accuracy": 0.7333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "I": {
+              "n": 20,
+              "jev_correct": 8,
+              "llm_correct": 12,
+              "jev_accuracy": 0.4,
+              "llm_accuracy": 0.6,
+              "corrected": 4,
+              "harmed": 0,
+              "net": 4
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 2,
+              "jev_correct": 2,
+              "llm_correct": 1,
+              "jev_accuracy": 1.0,
+              "llm_accuracy": 0.5,
+              "corrected": 0,
+              "harmed": 1,
+              "net": -1
+            },
+            "C": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "I": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 12,
+              "I": 2,
+              "C": 1
+            },
+            "C": {
+              "C": 11,
+              "S": 1,
+              "I": 3
+            },
+            "I": {
+              "C": 5,
+              "I": 12,
+              "S": 3
+            }
+          }
+        },
+        "deepseek-v4.1-flash-1017": {
+          "saved": 50,
+          "status": {
+            "ok": 50
+          },
+          "returned_model": {
+            "deepseek-v4.1-flash-1017": 50
+          },
+          "finish_reason": {
+            "stop": 50
+          },
+          "paired_available": {
+            "n": 50,
+            "jev_correct": 31,
+            "llm_correct": 33,
+            "jev_accuracy": 0.62,
+            "llm_accuracy": 0.66,
+            "corrected": 5,
+            "harmed": 3,
+            "net": 2
+          },
+          "routed": {
+            "n": 8,
+            "jev_correct": 2,
+            "llm_correct": 2,
+            "jev_accuracy": 0.25,
+            "llm_accuracy": 0.25,
+            "corrected": 2,
+            "harmed": 2,
+            "net": 0
+          },
+          "per_label_available": {
+            "S": {
+              "n": 15,
+              "jev_correct": 13,
+              "llm_correct": 13,
+              "jev_accuracy": 0.8666666666666667,
+              "llm_accuracy": 0.8666666666666667,
+              "corrected": 2,
+              "harmed": 2,
+              "net": 0
+            },
+            "C": {
+              "n": 15,
+              "jev_correct": 10,
+              "llm_correct": 10,
+              "jev_accuracy": 0.6666666666666666,
+              "llm_accuracy": 0.6666666666666666,
+              "corrected": 1,
+              "harmed": 1,
+              "net": 0
+            },
+            "I": {
+              "n": 20,
+              "jev_correct": 8,
+              "llm_correct": 10,
+              "jev_accuracy": 0.4,
+              "llm_accuracy": 0.5,
+              "corrected": 2,
+              "harmed": 0,
+              "net": 2
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 2,
+              "jev_correct": 2,
+              "llm_correct": 0,
+              "jev_accuracy": 1.0,
+              "llm_accuracy": 0.0,
+              "corrected": 0,
+              "harmed": 2,
+              "net": -2
+            },
+            "C": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "I": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 13,
+              "I": 2
+            },
+            "C": {
+              "C": 10,
+              "I": 3,
+              "S": 2
+            },
+            "I": {
+              "C": 5,
+              "I": 10,
+              "S": 5
+            }
+          }
+        },
+        "kimi-k3.1-pro": {
+          "saved": 50,
+          "status": {
+            "ok": 50
+          },
+          "returned_model": {
+            "kimi-k3.1-pro": 50
+          },
+          "finish_reason": {
+            "stop": 50
+          },
+          "paired_available": {
+            "n": 50,
+            "jev_correct": 31,
+            "llm_correct": 36,
+            "jev_accuracy": 0.62,
+            "llm_accuracy": 0.72,
+            "corrected": 7,
+            "harmed": 2,
+            "net": 5
+          },
+          "routed": {
+            "n": 8,
+            "jev_correct": 2,
+            "llm_correct": 5,
+            "jev_accuracy": 0.25,
+            "llm_accuracy": 0.625,
+            "corrected": 4,
+            "harmed": 1,
+            "net": 3
+          },
+          "per_label_available": {
+            "S": {
+              "n": 15,
+              "jev_correct": 13,
+              "llm_correct": 12,
+              "jev_accuracy": 0.8666666666666667,
+              "llm_accuracy": 0.8,
+              "corrected": 0,
+              "harmed": 1,
+              "net": -1
+            },
+            "C": {
+              "n": 15,
+              "jev_correct": 10,
+              "llm_correct": 11,
+              "jev_accuracy": 0.6666666666666666,
+              "llm_accuracy": 0.7333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "I": {
+              "n": 20,
+              "jev_correct": 8,
+              "llm_correct": 13,
+              "jev_accuracy": 0.4,
+              "llm_accuracy": 0.65,
+              "corrected": 6,
+              "harmed": 1,
+              "net": 5
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 2,
+              "jev_correct": 2,
+              "llm_correct": 1,
+              "jev_accuracy": 1.0,
+              "llm_accuracy": 0.5,
+              "corrected": 0,
+              "harmed": 1,
+              "net": -1
+            },
+            "C": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "I": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 3,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 1.0,
+              "corrected": 3,
+              "harmed": 0,
+              "net": 3
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 12,
+              "I": 3
+            },
+            "C": {
+              "C": 11,
+              "I": 3,
+              "S": 1
+            },
+            "I": {
+              "C": 2,
+              "I": 13,
+              "S": 5
+            }
+          }
+        },
+        "glm-5.3-prime": {
+          "saved": 50,
+          "status": {
+            "ok": 49,
+            "error": 1
+          },
+          "returned_model": {
+            "glm-5.3-prime": 50
+          },
+          "finish_reason": {
+            "stop": 39,
+            "length": 11
+          },
+          "paired_available": {
+            "n": 50,
+            "jev_correct": 31,
+            "llm_correct": 32,
+            "jev_accuracy": 0.62,
+            "llm_accuracy": 0.64,
+            "corrected": 3,
+            "harmed": 2,
+            "net": 1
+          },
+          "routed": {
+            "n": 8,
+            "jev_correct": 2,
+            "llm_correct": 3,
+            "jev_accuracy": 0.25,
+            "llm_accuracy": 0.375,
+            "corrected": 1,
+            "harmed": 0,
+            "net": 1
+          },
+          "per_label_available": {
+            "S": {
+              "n": 15,
+              "jev_correct": 13,
+              "llm_correct": 14,
+              "jev_accuracy": 0.8666666666666667,
+              "llm_accuracy": 0.9333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            },
+            "C": {
+              "n": 15,
+              "jev_correct": 10,
+              "llm_correct": 10,
+              "jev_accuracy": 0.6666666666666666,
+              "llm_accuracy": 0.6666666666666666,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 20,
+              "jev_correct": 8,
+              "llm_correct": 8,
+              "jev_accuracy": 0.4,
+              "llm_accuracy": 0.4,
+              "corrected": 2,
+              "harmed": 2,
+              "net": 0
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 2,
+              "jev_correct": 2,
+              "llm_correct": 2,
+              "jev_accuracy": 1.0,
+              "llm_accuracy": 1.0,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 0,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.0,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 3,
+              "jev_correct": 0,
+              "llm_correct": 1,
+              "jev_accuracy": 0.0,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 1,
+              "harmed": 0,
+              "net": 1
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 14,
+              "C": 1
+            },
+            "C": {
+              "C": 10,
+              "S": 4,
+              "I": 1
+            },
+            "I": {
+              "C": 4,
+              "I": 8,
+              "S": 7,
+              "null": 1
+            }
+          }
+        }
+      },
+      "routing_count": 8,
+      "routed_labels": {
+        "C": 3,
+        "I": 3,
+        "S": 2
+      },
+      "routed_pages": [
+        [
+          "Rio Grande do Sul",
+          2
+        ],
+        [
+          "Kentucky",
+          2
+        ],
+        [
+          "Jon Lajoie",
+          1
+        ],
+        [
+          "Juninho Paulista",
+          1
+        ],
+        [
+          "Excuse My French -LRB-album-RRB-",
+          1
+        ],
+        [
+          "2018 World Snooker Championship",
+          1
+        ]
+      ],
+      "gold_mismatches": 0,
+      "correct_flag_mismatches": 0,
+      "confidence_vs_rescaled_max_probability_max_residual": 0.00500000000000006
+    },
+    "validation": {
+      "models": {
+        "jev-1.14.0": {
+          "saved": 2000,
+          "status": {
+            "ok": 2000
+          },
+          "returned_model": {
+            "jev-1.14.0": 2000
+          },
+          "finish_reason": {
+            "null": 2000
+          },
+          "paired_available": {
+            "n": 2000,
+            "jev_correct": 1728,
+            "llm_correct": 1728,
+            "jev_accuracy": 0.864,
+            "llm_accuracy": 0.864,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "routed": {
+            "n": 209,
+            "jev_correct": 101,
+            "llm_correct": 101,
+            "jev_accuracy": 0.48325358851674644,
+            "llm_accuracy": 0.48325358851674644,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "per_label_available": {
+            "S": {
+              "n": 996,
+              "jev_correct": 919,
+              "llm_correct": 919,
+              "jev_accuracy": 0.9226907630522089,
+              "llm_accuracy": 0.9226907630522089,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 575,
+              "jev_correct": 468,
+              "llm_correct": 468,
+              "jev_accuracy": 0.8139130434782609,
+              "llm_accuracy": 0.8139130434782609,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 429,
+              "jev_correct": 341,
+              "llm_correct": 341,
+              "jev_accuracy": 0.7948717948717948,
+              "llm_accuracy": 0.7948717948717948,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 86,
+              "jev_correct": 50,
+              "llm_correct": 50,
+              "jev_accuracy": 0.5813953488372093,
+              "llm_accuracy": 0.5813953488372093,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 21,
+              "llm_correct": 21,
+              "jev_accuracy": 0.3333333333333333,
+              "llm_accuracy": 0.3333333333333333,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 60,
+              "jev_correct": 30,
+              "llm_correct": 30,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.5,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 919,
+              "I": 58,
+              "C": 19
+            },
+            "C": {
+              "C": 468,
+              "I": 80,
+              "S": 27
+            },
+            "I": {
+              "C": 36,
+              "I": 341,
+              "S": 52
+            }
+          }
+        },
+        "qwen3.8-max": {
+          "saved": 396,
+          "status": {
+            "ok": 396
+          },
+          "returned_model": {
+            "qwen3.8-max": 396
+          },
+          "finish_reason": {
+            "stop": 396
+          },
+          "paired_available": {
+            "n": 396,
+            "jev_correct": 238,
+            "llm_correct": 251,
+            "jev_accuracy": 0.601010101010101,
+            "llm_accuracy": 0.6338383838383839,
+            "corrected": 68,
+            "harmed": 55,
+            "net": 13
+          },
+          "routed": {
+            "n": 209,
+            "jev_correct": 101,
+            "llm_correct": 120,
+            "jev_accuracy": 0.48325358851674644,
+            "llm_accuracy": 0.5741626794258373,
+            "corrected": 48,
+            "harmed": 29,
+            "net": 19
+          },
+          "per_label_available": {
+            "S": {
+              "n": 154,
+              "jev_correct": 102,
+              "llm_correct": 100,
+              "jev_accuracy": 0.6623376623376623,
+              "llm_accuracy": 0.6493506493506493,
+              "corrected": 24,
+              "harmed": 26,
+              "net": -2
+            },
+            "C": {
+              "n": 116,
+              "jev_correct": 59,
+              "llm_correct": 83,
+              "jev_accuracy": 0.5086206896551724,
+              "llm_accuracy": 0.7155172413793104,
+              "corrected": 28,
+              "harmed": 4,
+              "net": 24
+            },
+            "I": {
+              "n": 126,
+              "jev_correct": 77,
+              "llm_correct": 68,
+              "jev_accuracy": 0.6111111111111112,
+              "llm_accuracy": 0.5396825396825397,
+              "corrected": 16,
+              "harmed": 25,
+              "net": -9
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 86,
+              "jev_correct": 50,
+              "llm_correct": 51,
+              "jev_accuracy": 0.5813953488372093,
+              "llm_accuracy": 0.5930232558139535,
+              "corrected": 16,
+              "harmed": 15,
+              "net": 1
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 21,
+              "llm_correct": 41,
+              "jev_accuracy": 0.3333333333333333,
+              "llm_accuracy": 0.6507936507936508,
+              "corrected": 20,
+              "harmed": 0,
+              "net": 20
+            },
+            "I": {
+              "n": 60,
+              "jev_correct": 30,
+              "llm_correct": 28,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.4666666666666667,
+              "corrected": 12,
+              "harmed": 14,
+              "net": -2
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 100,
+              "C": 15,
+              "I": 39
+            },
+            "C": {
+              "S": 13,
+              "C": 83,
+              "I": 20
+            },
+            "I": {
+              "C": 34,
+              "I": 68,
+              "S": 24
+            }
+          }
+        },
+        "deepseek-v4.1-flash-1017": {
+          "saved": 396,
+          "status": {
+            "ok": 396
+          },
+          "returned_model": {
+            "deepseek-v4.1-flash-1017": 396
+          },
+          "finish_reason": {
+            "stop": 396
+          },
+          "paired_available": {
+            "n": 396,
+            "jev_correct": 238,
+            "llm_correct": 210,
+            "jev_accuracy": 0.601010101010101,
+            "llm_accuracy": 0.5303030303030303,
+            "corrected": 58,
+            "harmed": 86,
+            "net": -28
+          },
+          "routed": {
+            "n": 209,
+            "jev_correct": 101,
+            "llm_correct": 103,
+            "jev_accuracy": 0.48325358851674644,
+            "llm_accuracy": 0.49282296650717705,
+            "corrected": 38,
+            "harmed": 36,
+            "net": 2
+          },
+          "per_label_available": {
+            "S": {
+              "n": 154,
+              "jev_correct": 102,
+              "llm_correct": 111,
+              "jev_accuracy": 0.6623376623376623,
+              "llm_accuracy": 0.7207792207792207,
+              "corrected": 30,
+              "harmed": 21,
+              "net": 9
+            },
+            "C": {
+              "n": 116,
+              "jev_correct": 59,
+              "llm_correct": 38,
+              "jev_accuracy": 0.5086206896551724,
+              "llm_accuracy": 0.3275862068965517,
+              "corrected": 13,
+              "harmed": 34,
+              "net": -21
+            },
+            "I": {
+              "n": 126,
+              "jev_correct": 77,
+              "llm_correct": 61,
+              "jev_accuracy": 0.6111111111111112,
+              "llm_accuracy": 0.48412698412698413,
+              "corrected": 15,
+              "harmed": 31,
+              "net": -16
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 86,
+              "jev_correct": 50,
+              "llm_correct": 64,
+              "jev_accuracy": 0.5813953488372093,
+              "llm_accuracy": 0.7441860465116279,
+              "corrected": 21,
+              "harmed": 7,
+              "net": 14
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 21,
+              "llm_correct": 16,
+              "jev_accuracy": 0.3333333333333333,
+              "llm_accuracy": 0.25396825396825395,
+              "corrected": 8,
+              "harmed": 13,
+              "net": -5
+            },
+            "I": {
+              "n": 60,
+              "jev_correct": 30,
+              "llm_correct": 23,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.38333333333333336,
+              "corrected": 9,
+              "harmed": 16,
+              "net": -7
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 111,
+              "C": 7,
+              "I": 36
+            },
+            "C": {
+              "S": 21,
+              "C": 38,
+              "I": 57
+            },
+            "I": {
+              "I": 61,
+              "S": 42,
+              "C": 23
+            }
+          }
+        },
+        "kimi-k3.1-pro": {
+          "saved": 396,
+          "status": {
+            "ok": 396
+          },
+          "returned_model": {
+            "kimi-k3.1-pro": 396
+          },
+          "finish_reason": {
+            "stop": 396
+          },
+          "paired_available": {
+            "n": 396,
+            "jev_correct": 238,
+            "llm_correct": 213,
+            "jev_accuracy": 0.601010101010101,
+            "llm_accuracy": 0.5378787878787878,
+            "corrected": 59,
+            "harmed": 84,
+            "net": -25
+          },
+          "routed": {
+            "n": 209,
+            "jev_correct": 101,
+            "llm_correct": 101,
+            "jev_accuracy": 0.48325358851674644,
+            "llm_accuracy": 0.48325358851674644,
+            "corrected": 41,
+            "harmed": 41,
+            "net": 0
+          },
+          "per_label_available": {
+            "S": {
+              "n": 154,
+              "jev_correct": 102,
+              "llm_correct": 73,
+              "jev_accuracy": 0.6623376623376623,
+              "llm_accuracy": 0.474025974025974,
+              "corrected": 16,
+              "harmed": 45,
+              "net": -29
+            },
+            "C": {
+              "n": 116,
+              "jev_correct": 59,
+              "llm_correct": 43,
+              "jev_accuracy": 0.5086206896551724,
+              "llm_accuracy": 0.3706896551724138,
+              "corrected": 14,
+              "harmed": 30,
+              "net": -16
+            },
+            "I": {
+              "n": 126,
+              "jev_correct": 77,
+              "llm_correct": 97,
+              "jev_accuracy": 0.6111111111111112,
+              "llm_accuracy": 0.7698412698412699,
+              "corrected": 29,
+              "harmed": 9,
+              "net": 20
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 86,
+              "jev_correct": 50,
+              "llm_correct": 35,
+              "jev_accuracy": 0.5813953488372093,
+              "llm_accuracy": 0.4069767441860465,
+              "corrected": 12,
+              "harmed": 27,
+              "net": -15
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 21,
+              "llm_correct": 23,
+              "jev_accuracy": 0.3333333333333333,
+              "llm_accuracy": 0.36507936507936506,
+              "corrected": 10,
+              "harmed": 8,
+              "net": 2
+            },
+            "I": {
+              "n": 60,
+              "jev_correct": 30,
+              "llm_correct": 43,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.7166666666666667,
+              "corrected": 19,
+              "harmed": 6,
+              "net": 13
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 73,
+              "I": 74,
+              "C": 7
+            },
+            "C": {
+              "I": 67,
+              "C": 43,
+              "S": 6
+            },
+            "I": {
+              "I": 97,
+              "S": 18,
+              "C": 11
+            }
+          }
+        }
+      },
+      "routing_count": 209,
+      "routed_labels": {
+        "C": 63,
+        "S": 86,
+        "I": 60
+      },
+      "routed_pages": [
+        [
+          "2020 coronavirus pandemic in Italy",
+          140
+        ],
+        [
+          "2020 coronavirus pandemic in Nigeria",
+          13
+        ],
+        [
+          "Untitled Unmastered",
+          5
+        ],
+        [
+          "Kiko Alonso",
+          4
+        ],
+        [
+          "The Art of Getting By",
+          4
+        ],
+        [
+          "Suffolk County, Massachusetts",
+          3
+        ],
+        [
+          "Same Old Love",
+          3
+        ],
+        [
+          "Impulse -LRB-TV series-RRB-",
+          2
+        ],
+        [
+          "Dean Lewis",
+          2
+        ],
+        [
+          "Analyze This",
+          2
+        ],
+        [
+          "Free Territory of Trieste",
+          2
+        ],
+        [
+          "Érik Morales",
+          2
+        ],
+        [
+          "The Chew",
+          2
+        ],
+        [
+          "Cairo Santos",
+          2
+        ],
+        [
+          "English cuisine",
+          2
+        ],
+        [
+          "Afro Samurai",
+          2
+        ],
+        [
+          "Adam Silver",
+          2
+        ],
+        [
+          "Professional wrestling match types",
+          2
+        ],
+        [
+          "Colin Jackson",
+          1
+        ],
+        [
+          "Nitty Gritty Dirt Band",
+          1
+        ],
+        [
+          "Tobias Wolff",
+          1
+        ],
+        [
+          "Sharon Gless",
+          1
+        ],
+        [
+          "Mortal Kombat-COLON- Annihilation",
+          1
+        ],
+        [
+          "A Man and a Woman",
+          1
+        ],
+        [
+          "Paolo Maldini",
+          1
+        ],
+        [
+          "Dead Rising 3",
+          1
+        ],
+        [
+          "Millennium Stadium",
+          1
+        ],
+        [
+          "John H. Sununu",
+          1
+        ],
+        [
+          "Dragon Ball Heroes",
+          1
+        ],
+        [
+          "Biriyani -LRB-film-RRB-",
+          1
+        ],
+        [
+          "Red Dragon -LRB-2002 film-RRB-",
+          1
+        ],
+        [
+          "Maynard Jackson",
+          1
+        ],
+        [
+          "Colorado",
+          1
+        ]
+      ],
+      "gold_mismatches": 0,
+      "correct_flag_mismatches": 0,
+      "confidence_vs_rescaled_max_probability_max_residual": 0.0050000000000001155
+    },
+    "test": {
+      "models": {
+        "jev-1.14.0": {
+          "saved": 2000,
+          "status": {
+            "ok": 2000
+          },
+          "returned_model": {
+            "jev-1.14.0": 2000
+          },
+          "finish_reason": {
+            "null": 2000
+          },
+          "paired_available": {
+            "n": 2000,
+            "jev_correct": 1698,
+            "llm_correct": 1698,
+            "jev_accuracy": 0.849,
+            "llm_accuracy": 0.849,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "routed": {
+            "n": 216,
+            "jev_correct": 122,
+            "llm_correct": 122,
+            "jev_accuracy": 0.5648148148148148,
+            "llm_accuracy": 0.5648148148148148,
+            "corrected": 0,
+            "harmed": 0,
+            "net": 0
+          },
+          "per_label_available": {
+            "S": {
+              "n": 1002,
+              "jev_correct": 923,
+              "llm_correct": 923,
+              "jev_accuracy": 0.9211576846307385,
+              "llm_accuracy": 0.9211576846307385,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 575,
+              "jev_correct": 447,
+              "llm_correct": 447,
+              "jev_accuracy": 0.7773913043478261,
+              "llm_accuracy": 0.7773913043478261,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 423,
+              "jev_correct": 328,
+              "llm_correct": 328,
+              "jev_accuracy": 0.7754137115839244,
+              "llm_accuracy": 0.7754137115839244,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 91,
+              "jev_correct": 56,
+              "llm_correct": 56,
+              "jev_accuracy": 0.6153846153846154,
+              "llm_accuracy": 0.6153846153846154,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 35,
+              "llm_correct": 35,
+              "jev_accuracy": 0.5555555555555556,
+              "llm_accuracy": 0.5555555555555556,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            },
+            "I": {
+              "n": 62,
+              "jev_correct": 31,
+              "llm_correct": 31,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.5,
+              "corrected": 0,
+              "harmed": 0,
+              "net": 0
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 923,
+              "C": 24,
+              "I": 55
+            },
+            "C": {
+              "C": 447,
+              "I": 98,
+              "S": 30
+            },
+            "I": {
+              "S": 50,
+              "I": 328,
+              "C": 45
+            }
+          }
+        },
+        "qwen3.8-max": {
+          "saved": 2000,
+          "status": {
+            "ok": 2000
+          },
+          "returned_model": {
+            "qwen3.8-max": 2000
+          },
+          "finish_reason": {
+            "stop": 2000
+          },
+          "paired_available": {
+            "n": 2000,
+            "jev_correct": 1698,
+            "llm_correct": 1664,
+            "jev_accuracy": 0.849,
+            "llm_accuracy": 0.832,
+            "corrected": 66,
+            "harmed": 100,
+            "net": -34
+          },
+          "routed": {
+            "n": 216,
+            "jev_correct": 122,
+            "llm_correct": 117,
+            "jev_accuracy": 0.5648148148148148,
+            "llm_accuracy": 0.5416666666666666,
+            "corrected": 35,
+            "harmed": 40,
+            "net": -5
+          },
+          "per_label_available": {
+            "S": {
+              "n": 1002,
+              "jev_correct": 923,
+              "llm_correct": 871,
+              "jev_accuracy": 0.9211576846307385,
+              "llm_accuracy": 0.8692614770459082,
+              "corrected": 14,
+              "harmed": 66,
+              "net": -52
+            },
+            "C": {
+              "n": 575,
+              "jev_correct": 447,
+              "llm_correct": 470,
+              "jev_accuracy": 0.7773913043478261,
+              "llm_accuracy": 0.8173913043478261,
+              "corrected": 31,
+              "harmed": 8,
+              "net": 23
+            },
+            "I": {
+              "n": 423,
+              "jev_correct": 328,
+              "llm_correct": 323,
+              "jev_accuracy": 0.7754137115839244,
+              "llm_accuracy": 0.7635933806146572,
+              "corrected": 21,
+              "harmed": 26,
+              "net": -5
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 91,
+              "jev_correct": 56,
+              "llm_correct": 45,
+              "jev_accuracy": 0.6153846153846154,
+              "llm_accuracy": 0.4945054945054945,
+              "corrected": 9,
+              "harmed": 20,
+              "net": -11
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 35,
+              "llm_correct": 43,
+              "jev_accuracy": 0.5555555555555556,
+              "llm_accuracy": 0.6825396825396826,
+              "corrected": 13,
+              "harmed": 5,
+              "net": 8
+            },
+            "I": {
+              "n": 62,
+              "jev_correct": 31,
+              "llm_correct": 29,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.46774193548387094,
+              "corrected": 13,
+              "harmed": 15,
+              "net": -2
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 871,
+              "I": 91,
+              "C": 40
+            },
+            "C": {
+              "C": 470,
+              "I": 78,
+              "S": 27
+            },
+            "I": {
+              "S": 44,
+              "I": 323,
+              "C": 56
+            }
+          }
+        },
+        "kimi-k3.1-pro": {
+          "saved": 2000,
+          "status": {
+            "ok": 2000
+          },
+          "returned_model": {
+            "kimi-k3.1-pro": 2000
+          },
+          "finish_reason": {
+            "stop": 2000
+          },
+          "paired_available": {
+            "n": 2000,
+            "jev_correct": 1698,
+            "llm_correct": 1556,
+            "jev_accuracy": 0.849,
+            "llm_accuracy": 0.778,
+            "corrected": 56,
+            "harmed": 198,
+            "net": -142
+          },
+          "routed": {
+            "n": 216,
+            "jev_correct": 122,
+            "llm_correct": 96,
+            "jev_accuracy": 0.5648148148148148,
+            "llm_accuracy": 0.4444444444444444,
+            "corrected": 30,
+            "harmed": 56,
+            "net": -26
+          },
+          "per_label_available": {
+            "S": {
+              "n": 1002,
+              "jev_correct": 923,
+              "llm_correct": 806,
+              "jev_accuracy": 0.9211576846307385,
+              "llm_accuracy": 0.8043912175648703,
+              "corrected": 7,
+              "harmed": 124,
+              "net": -117
+            },
+            "C": {
+              "n": 575,
+              "jev_correct": 447,
+              "llm_correct": 393,
+              "jev_accuracy": 0.7773913043478261,
+              "llm_accuracy": 0.6834782608695652,
+              "corrected": 8,
+              "harmed": 62,
+              "net": -54
+            },
+            "I": {
+              "n": 423,
+              "jev_correct": 328,
+              "llm_correct": 357,
+              "jev_accuracy": 0.7754137115839244,
+              "llm_accuracy": 0.8439716312056738,
+              "corrected": 41,
+              "harmed": 12,
+              "net": 29
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 91,
+              "jev_correct": 56,
+              "llm_correct": 32,
+              "jev_accuracy": 0.6153846153846154,
+              "llm_accuracy": 0.3516483516483517,
+              "corrected": 4,
+              "harmed": 28,
+              "net": -24
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 35,
+              "llm_correct": 20,
+              "jev_accuracy": 0.5555555555555556,
+              "llm_accuracy": 0.31746031746031744,
+              "corrected": 5,
+              "harmed": 20,
+              "net": -15
+            },
+            "I": {
+              "n": 62,
+              "jev_correct": 31,
+              "llm_correct": 44,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.7096774193548387,
+              "corrected": 21,
+              "harmed": 8,
+              "net": 13
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "I": 173,
+              "S": 806,
+              "C": 23
+            },
+            "C": {
+              "C": 393,
+              "I": 158,
+              "S": 24
+            },
+            "I": {
+              "S": 45,
+              "I": 357,
+              "C": 21
+            }
+          }
+        },
+        "deepseek-v4.1-flash-1017": {
+          "saved": 2000,
+          "status": {
+            "ok": 2000
+          },
+          "returned_model": {
+            "deepseek-v4.1-flash-1017": 2000
+          },
+          "finish_reason": {
+            "stop": 2000
+          },
+          "paired_available": {
+            "n": 2000,
+            "jev_correct": 1698,
+            "llm_correct": 1559,
+            "jev_accuracy": 0.849,
+            "llm_accuracy": 0.7795,
+            "corrected": 64,
+            "harmed": 203,
+            "net": -139
+          },
+          "routed": {
+            "n": 216,
+            "jev_correct": 122,
+            "llm_correct": 105,
+            "jev_accuracy": 0.5648148148148148,
+            "llm_accuracy": 0.4861111111111111,
+            "corrected": 27,
+            "harmed": 44,
+            "net": -17
+          },
+          "per_label_available": {
+            "S": {
+              "n": 1002,
+              "jev_correct": 923,
+              "llm_correct": 882,
+              "jev_accuracy": 0.9211576846307385,
+              "llm_accuracy": 0.8802395209580839,
+              "corrected": 21,
+              "harmed": 62,
+              "net": -41
+            },
+            "C": {
+              "n": 575,
+              "jev_correct": 447,
+              "llm_correct": 371,
+              "jev_accuracy": 0.7773913043478261,
+              "llm_accuracy": 0.6452173913043479,
+              "corrected": 18,
+              "harmed": 94,
+              "net": -76
+            },
+            "I": {
+              "n": 423,
+              "jev_correct": 328,
+              "llm_correct": 306,
+              "jev_accuracy": 0.7754137115839244,
+              "llm_accuracy": 0.723404255319149,
+              "corrected": 25,
+              "harmed": 47,
+              "net": -22
+            }
+          },
+          "per_label_routed": {
+            "S": {
+              "n": 91,
+              "jev_correct": 56,
+              "llm_correct": 53,
+              "jev_accuracy": 0.6153846153846154,
+              "llm_accuracy": 0.5824175824175825,
+              "corrected": 10,
+              "harmed": 13,
+              "net": -3
+            },
+            "C": {
+              "n": 63,
+              "jev_correct": 35,
+              "llm_correct": 22,
+              "jev_accuracy": 0.5555555555555556,
+              "llm_accuracy": 0.3492063492063492,
+              "corrected": 5,
+              "harmed": 18,
+              "net": -13
+            },
+            "I": {
+              "n": 62,
+              "jev_correct": 31,
+              "llm_correct": 30,
+              "jev_accuracy": 0.5,
+              "llm_accuracy": 0.4838709677419355,
+              "corrected": 12,
+              "harmed": 13,
+              "net": -1
+            }
+          },
+          "confusion_available": {
+            "S": {
+              "S": 882,
+              "C": 40,
+              "I": 80
+            },
+            "C": {
+              "C": 371,
+              "I": 160,
+              "S": 44
+            },
+            "I": {
+              "S": 81,
+              "I": 306,
+              "C": 36
+            }
+          }
+        }
+      },
+      "routing_count": 216,
+      "routed_labels": {
+        "C": 63,
+        "S": 91,
+        "I": 62
+      },
+      "routed_pages": [
+        [
+          "2020 coronavirus pandemic in Bosnia and Herzegovina",
+          17
+        ],
+        [
+          "Travel restrictions related to the 2019–20 coronavirus pandemic",
+          15
+        ],
+        [
+          "2020 coronavirus pandemic in Germany",
+          11
+        ],
+        [
+          "2020 coronavirus pandemic in Africa",
+          10
+        ],
+        [
+          "2020 coronavirus pandemic in New York -LRB-state-RRB-",
+          9
+        ],
+        [
+          "Wii",
+          7
+        ],
+        [
+          "Piranha 3D",
+          5
+        ],
+        [
+          "Fallout 76",
+          5
+        ],
+        [
+          "Maleficent-COLON- Mistress of Evil",
+          4
+        ],
+        [
+          "Collateral Beauty",
+          4
+        ],
+        [
+          "Isan",
+          3
+        ],
+        [
+          "Gary Windass",
+          3
+        ],
+        [
+          "Rocky Mountain spotted fever",
+          3
+        ],
+        [
+          "2020 coronavirus pandemic in the State of Palestine",
+          3
+        ],
+        [
+          "P.S. I Love You -LRB-film-RRB-",
+          3
+        ],
+        [
+          "Indian 2000-rupee note",
+          3
+        ],
+        [
+          "Guardians of the Galaxy -LRB-film-RRB-",
+          3
+        ],
+        [
+          "The Nice Guys",
+          3
+        ],
+        [
+          "Resident Evil 5",
+          2
+        ],
+        [
+          "The Odd Life of Timothy Green",
+          2
+        ],
+        [
+          "Barnyard -LRB-film-RRB-",
+          2
+        ],
+        [
+          "Demographics of the United States",
+          2
+        ],
+        [
+          "Srimanthudu",
+          2
+        ],
+        [
+          "Dominic Solanke",
+          2
+        ],
+        [
+          "Methyl tert-butyl ether",
+          2
+        ],
+        [
+          "Arundel Castle",
+          2
+        ],
+        [
+          "Hyksos",
+          2
+        ],
+        [
+          "Jab Tak Hai Jaan",
+          2
+        ],
+        [
+          "Hampshire",
+          2
+        ],
+        [
+          "WinStar World Casino",
+          2
+        ],
+        [
+          "James Spader",
+          2
+        ],
+        [
+          "Visaranai",
+          2
+        ],
+        [
+          "2020 United States elections",
+          2
+        ],
+        [
+          "RedOne",
+          2
+        ],
+        [
+          "Ed Sullivan Theater",
+          2
+        ],
+        [
+          "2007–08 Premier League",
+          2
+        ],
+        [
+          "Education in Sweden",
+          2
+        ],
+        [
+          "Jack the Giant Slayer",
+          2
+        ],
+        [
+          "F Is for Family",
+          1
+        ],
+        [
+          "Klaus Schulze",
+          1
+        ],
+        [
+          "The Darjeeling Limited",
+          1
+        ],
+        [
+          "Leslie Grace",
+          1
+        ],
+        [
+          "Jerry Cantrell",
+          1
+        ],
+        [
+          "Bankruptcy of Lehman Brothers",
+          1
+        ],
+        [
+          "2002 FIFA World Cup Final",
+          1
+        ],
+        [
+          "Fabricio Coloccini",
+          1
+        ],
+        [
+          "2020 coronavirus pandemic in the Åland Islands",
+          1
+        ],
+        [
+          "Aaliyah discography",
+          1
+        ],
+        [
+          "Robert Huth",
+          1
+        ],
+        [
+          "Katherine Jenkins",
+          1
+        ],
+        [
+          "Shea Weber",
+          1
+        ],
+        [
+          "2020 coronavirus pandemic in Ivory Coast",
+          1
+        ],
+        [
+          "Milk -LRB-film-RRB-",
+          1
+        ],
+        [
+          "Revenge of the Dreamers III",
+          1
+        ],
+        [
+          "Fair use",
+          1
+        ],
+        [
+          "Economy of London",
+          1
+        ],
+        [
+          "8 Seconds",
+          1
+        ],
+        [
+          "Melbourne City FC",
+          1
+        ],
+        [
+          "Japan",
+          1
+        ],
+        [
+          "University of Leicester",
+          1
+        ],
+        [
+          "Rob Pelinka",
+          1
+        ],
+        [
+          "Azim Premji",
+          1
+        ],
+        [
+          "Sampler -LRB-musical instrument-RRB-",
+          1
+        ],
+        [
+          "Zoe Saldana",
+          1
+        ],
+        [
+          "Superman II",
+          1
+        ],
+        [
+          "Daredevil -LRB-TV series-RRB-",
+          1
+        ],
+        [
+          "Trevor Moran",
+          1
+        ],
+        [
+          "2018 United States Senate election in Arizona",
+          1
+        ],
+        [
+          "Justin Chambers",
+          1
+        ],
+        [
+          "The X-Files -LRB-franchise-RRB-",
+          1
+        ],
+        [
+          "Andre Johnson",
+          1
+        ],
+        [
+          "Fabio Capello",
+          1
+        ],
+        [
+          "Christopher McQuarrie",
+          1
+        ],
+        [
+          "Fifth grade",
+          1
+        ],
+        [
+          "Harverd Dropout",
+          1
+        ],
+        [
+          "Call of Duty 2",
+          1
+        ],
+        [
+          "WPLJ",
+          1
+        ],
+        [
+          "Cédric Soares",
+          1
+        ],
+        [
+          "Barbarella -LRB-film-RRB-",
+          1
+        ],
+        [
+          "Chadwick Boseman",
+          1
+        ],
+        [
+          "Matchstick Men",
+          1
+        ],
+        [
+          "Gogol Bordello",
+          1
+        ],
+        [
+          "See You on the Other Side -LRB-Korn album-RRB-",
+          1
+        ],
+        [
+          "Justin Houston",
+          1
+        ],
+        [
+          "The Stepford Wives -LRB-2004 film-RRB-",
+          1
+        ],
+        [
+          "Norman Bates",
+          1
+        ],
+        [
+          "Blindspot -LRB-TV series-RRB-",
+          1
+        ],
+        [
+          "The Shard",
+          1
+        ],
+        [
+          "Meghan Trainor",
+          1
+        ],
+        [
+          "Chipotle Mexican Grill",
+          1
+        ],
+        [
+          "Shell shock",
+          1
+        ],
+        [
+          "Eastwatch",
+          1
+        ],
+        [
+          "The Thin Red Line -LRB-1998 film-RRB-",
+          1
+        ],
+        [
+          "Cordilleran Ice Sheet",
+          1
+        ],
+        [
+          "Maltese language",
+          1
+        ],
+        [
+          "Poe Dameron",
+          1
+        ],
+        [
+          "Coraline",
+          1
+        ],
+        [
+          "2020 coronavirus pandemic in Haiti",
+          1
+        ],
+        [
+          "Kaabil",
+          1
+        ],
+        [
+          "Jena Malone",
+          1
+        ],
+        [
+          "Bananarama",
+          1
+        ],
+        [
+          "Bajirao Mastani",
+          1
+        ],
+        [
+          "2018 New Orleans Saints season",
+          1
+        ]
+      ],
+      "gold_mismatches": 0,
+      "correct_flag_mismatches": 0,
+      "confidence_vs_rescaled_max_probability_max_residual": 0.0050000000000001155
+    }
+  },
+  "threshold_search_points_including_no_route": 40,
+  "qwen_best_validation_points": [
+    {
+      "confidence_threshold": "0.49",
+      "routed": "227",
+      "routing_rate": "0.1135",
+      "jev_accuracy": "0.864",
+      "mean_cascade_accuracy": "0.8673333333333333",
+      "qwen3.8-max_accuracy": "0.874",
+      "deepseek-v4.1-flash-1017_accuracy": "0.864",
+      "kimi-k3.1-pro_accuracy": "0.864",
+      "qwen3.8-max_invalid_fallbacks": "0",
+      "deepseek-v4.1-flash-1017_invalid_fallbacks": "0",
+      "kimi-k3.1-pro_invalid_fallbacks": "0"
+    },
+    {
+      "confidence_threshold": "0.5",
+      "routed": "238",
+      "routing_rate": "0.119",
+      "jev_accuracy": "0.864",
+      "mean_cascade_accuracy": "0.8668333333333333",
+      "qwen3.8-max_accuracy": "0.874",
+      "deepseek-v4.1-flash-1017_accuracy": "0.863",
+      "kimi-k3.1-pro_accuracy": "0.8635",
+      "qwen3.8-max_invalid_fallbacks": "0",
+      "deepseek-v4.1-flash-1017_invalid_fallbacks": "0",
+      "kimi-k3.1-pro_invalid_fallbacks": "0"
+    }
+  ],
+  "qwen_test_uncertainty": {
+    "llm_only": {
+      "case_id": {
+        "unit": "case_id",
+        "groups": 1336,
+        "repetitions": 10000,
+        "difference_llm_or_cascade_minus_jev": -0.017,
+        "percentile_95_interval": [
+          -0.029934043632673768,
+          -0.003972194637537239
+        ]
+      },
+      "page": {
+        "unit": "page",
+        "groups": 316,
+        "repetitions": 10000,
+        "difference_llm_or_cascade_minus_jev": -0.017,
+        "percentile_95_interval": [
+          -0.029000698812019568,
+          -0.004411764705882353
+        ]
+      }
+    },
+    "cascade": {
+      "case_id": {
+        "unit": "case_id",
+        "groups": 1336,
+        "repetitions": 10000,
+        "difference_llm_or_cascade_minus_jev": -0.0025,
+        "percentile_95_interval": [
+          -0.011111111111111112,
+          0.006024096385542169
+        ]
+      },
+      "page": {
+        "unit": "page",
+        "groups": 316,
+        "repetitions": 10000,
+        "difference_llm_or_cascade_minus_jev": -0.0025,
+        "percentile_95_interval": [
+          -0.011619462599854757,
+          0.0056967572304995615
+        ]
+      }
+    }
+  },
+  "uncertainty_note": "Paired cluster bootstrap, seed 20261109; conditional on this test sample. Does not correct validation threshold selection, label noise, or domain shift."
+}

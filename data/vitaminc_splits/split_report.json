@@ -1,0 +1,81 @@
+{
+  "seed": 20261015,
+  "input": {
+    "dev": {
+      "total": 63054,
+      "revision_real": 42290,
+      "revision_synthetic": 20764
+    },
+    "test": {
+      "total": 55197,
+      "revision_real": 34481,
+      "revision_synthetic": 20716
+    }
+  },
+  "input_sha256": {
+    "dev": "a3258bc959754c84bade150d3bf447fd9c91a529d93bb676f034fdafda5f26e5",
+    "test": "7f799e076dec184e31533d46704fef2022d08ef68a0db2c44f138d2b4e552f36"
+  },
+  "cleaning": {
+    "conflicting_pair_count": 33,
+    "conflicting_pair_rows_removed": 66,
+    "cross_official_split_component_rows_removed": 0,
+    "same_label_duplicate_rows_removed": 336
+  },
+  "eligible_label_counts": {
+    "dev": {
+      "SUPPORTS": 20940,
+      "REFUTES": 12080,
+      "NOT ENOUGH INFO": 9011
+    },
+    "test": {
+      "NOT ENOUGH INFO": 7257,
+      "SUPPORTS": 17205,
+      "REFUTES": 9876
+    }
+  },
+  "checks": "PASS: exact sizes; real only; no page/case/pair/id overlap",
+  "subsets": {
+    "prompt_dev": {
+      "rows": 200,
+      "labels": {
+        "S": 100,
+        "C": 57,
+        "I": 43
+      },
+      "pages": 25,
+      "components_reserved": 25
+    },
+    "calibration": {
+      "rows": 2000,
+      "labels": {
+        "S": 996,
+        "C": 575,
+        "I": 429
+      },
+      "pages": 205,
+      "components_reserved": 205
+    },
+    "threshold_validation": {
+      "rows": 2000,
+      "labels": {
+        "I": 429,
+        "S": 996,
+        "C": 575
+      },
+      "pages": 72,
+      "components_reserved": 72
+    },
+    "test": {
+      "rows": 5000,
+      "labels": {
+        "C": 1438,
+        "S": 2505,
+        "I": 1057
+      },
+      "pages": 364,
+      "components_reserved": 366
+    }
+  },
+  "policy": "Whole connected groups reserved; exact label-stratified row sampling within them; surplus rows are unused. No fuzzy semantic deduplication or model-based sample selection."
+}
