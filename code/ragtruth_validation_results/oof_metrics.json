@@ -1,0 +1,128 @@
+{
+  "qwen3.8-max": {
+    "samples": 1157,
+    "correct": 811,
+    "accuracy": 0.7009507346585998,
+    "macro_f1": 0.6971864012925791,
+    "hallucination_precision": 0.5158850226928896,
+    "hallucination_recall": 0.9291553133514986,
+    "hallucination_f1": 0.6634241245136187,
+    "invalid_predictions": 0,
+    "false_positive": 320,
+    "false_negative": 26,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 341,
+        "predicted": 661,
+        "precision": 0.5158850226928896,
+        "recall": 0.9291553133514986,
+        "f1": 0.6634241245136187
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 470,
+        "predicted": 496,
+        "precision": 0.9475806451612904,
+        "recall": 0.5949367088607594,
+        "f1": 0.7309486780715396
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 341,
+        "N": 26,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 320,
+        "N": 470,
+        "INVALID": 0
+      }
+    }
+  },
+  "deepseek-v4.1-flash-1017": {
+    "samples": 1157,
+    "correct": 835,
+    "accuracy": 0.7216940363007779,
+    "macro_f1": 0.7157725289145229,
+    "hallucination_precision": 0.536115569823435,
+    "hallucination_recall": 0.9100817438692098,
+    "hallucination_f1": 0.6747474747474748,
+    "invalid_predictions": 0,
+    "false_positive": 289,
+    "false_negative": 33,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 334,
+        "predicted": 623,
+        "precision": 0.536115569823435,
+        "recall": 0.9100817438692098,
+        "f1": 0.6747474747474748
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 501,
+        "predicted": 534,
+        "precision": 0.9382022471910112,
+        "recall": 0.6341772151898735,
+        "f1": 0.756797583081571
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 334,
+        "N": 33,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 289,
+        "N": 501,
+        "INVALID": 0
+      }
+    }
+  },
+  "kimi-k3.1-pro": {
+    "samples": 1157,
+    "correct": 834,
+    "accuracy": 0.7208297320656871,
+    "macro_f1": 0.7156605770467157,
+    "hallucination_precision": 0.5347003154574133,
+    "hallucination_recall": 0.9237057220708447,
+    "hallucination_f1": 0.6773226773226774,
+    "invalid_predictions": 0,
+    "false_positive": 295,
+    "false_negative": 28,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 339,
+        "predicted": 634,
+        "precision": 0.5347003154574133,
+        "recall": 0.9237057220708447,
+        "f1": 0.6773226773226774
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 495,
+        "predicted": 523,
+        "precision": 0.9464627151051626,
+        "recall": 0.6265822784810127,
+        "f1": 0.753998476770754
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 339,
+        "N": 28,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 295,
+        "N": 495,
+        "INVALID": 0
+      }
+    }
+  }
+}

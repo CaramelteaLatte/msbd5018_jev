@@ -1,0 +1,114 @@
+{
+  "jev_only": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    "hallucination_f1": {
+      "difference": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    }
+  },
+  "llm_only/qwen": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": -0.06857142857142857,
+      "ci95_low": -0.09464200599882552,
+      "ci95_high": -0.043131581047099146
+    },
+    "hallucination_f1": {
+      "difference": -0.05007901812285781,
+      "ci95_low": -0.06894459996542993,
+      "ci95_high": -0.03166067072932825
+    }
+  },
+  "llm_only/deepseek": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": 0.036571428571428574,
+      "ci95_low": 0.009060022650056626,
+      "ci95_high": 0.06436966787032258
+    },
+    "hallucination_f1": {
+      "difference": 0.023144046506547555,
+      "ci95_low": -0.0023193378315005063,
+      "ci95_high": 0.048756524836523665
+    }
+  },
+  "llm_only/kimi": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": 0.025142857142857144,
+      "ci95_low": -0.0022624434389140274,
+      "ci95_high": 0.05221339387060159
+    },
+    "hallucination_f1": {
+      "difference": 0.013968269025541269,
+      "ci95_low": -0.009133060526664443,
+      "ci95_high": 0.03713927190552537
+    }
+  },
+  "cascade/qwen": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    "hallucination_f1": {
+      "difference": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    }
+  },
+  "cascade/deepseek": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": -0.008,
+      "ci95_low": -0.024831401206463377,
+      "ci95_high": 0.007990867579908675
+    },
+    "hallucination_f1": {
+      "difference": -0.009333228759341616,
+      "ci95_low": -0.022737831410180962,
+      "ci95_high": 0.0035979656416056825
+    }
+  },
+  "cascade/kimi": {
+    "source_groups": 150,
+    "repetitions": 10000,
+    "seed": 20261112,
+    "method": "paired source_id cluster percentile bootstrap; response-weighted metrics",
+    "accuracy": {
+      "difference": -0.0034285714285714284,
+      "ci95_low": -0.02304147465437788,
+      "ci95_high": 0.016091954022988506
+    },
+    "hallucination_f1": {
+      "difference": -0.0074357436309516745,
+      "ci95_low": -0.024670173678633254,
+      "ci95_high": 0.00941743428452991
+    }
+  }
+}

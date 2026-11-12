@@ -1,0 +1,42 @@
+{
+  "samples": 875,
+  "correct": 715,
+  "accuracy": 0.8171428571428572,
+  "macro_f1": 0.449685534591195,
+  "hallucination_precision": 0.0,
+  "hallucination_recall": 0.0,
+  "hallucination_f1": 0.0,
+  "invalid_predictions": 0,
+  "false_positive": 0,
+  "false_negative": 160,
+  "per_label": {
+    "H": {
+      "support": 160,
+      "true_positive": 0,
+      "predicted": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "N": {
+      "support": 715,
+      "true_positive": 715,
+      "predicted": 875,
+      "precision": 0.8171428571428572,
+      "recall": 1.0,
+      "f1": 0.89937106918239
+    }
+  },
+  "confusion": {
+    "H": {
+      "H": 0,
+      "N": 160,
+      "INVALID": 0
+    },
+    "N": {
+      "H": 0,
+      "N": 715,
+      "INVALID": 0
+    }
+  }
+}

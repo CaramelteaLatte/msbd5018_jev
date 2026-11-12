@@ -1,0 +1,176 @@
+{
+  "dataset_version": "ragtruth-qa-v1",
+  "upstream_commit": "c103204b9ce28d6bbad859304bf30de72b8ed8fe",
+  "seed": 20261112,
+  "parameters": {
+    "prompt_sources": 48,
+    "validation_sources": 200
+  },
+  "input_sha256": {
+    "dataset/source_info.jsonl": "0dffc26ea9f3c1c3d7c7e8336b56ef1646e3cec876edffcca3c9c624d12d578b",
+    "dataset/response.jsonl": "e4c2e4ac24fff676d8984cc61c35d791612fadc58015335d97dd632375e18073",
+    "LICENSE": "b7fd7d6bdfe0cbba63c63a310914beb4a4acb8bf08da73849219f45385f5b244",
+    "README.md": "3686178d505a38cb20a94827917369bcb9d0aa44cf5154d7ddbac740ee06628d"
+  },
+  "output_sha256": {
+    "prompt_dev": "f18b9f93c2fabedf919e86a9f39aa1e008e9bada5b74903e7972031d66ea5e11",
+    "validation": "95edea8762810d2177a0ce8d99d840297d80eb59bd83be5d5db39ce84c0e42a7",
+    "test": "379f1c5490666b914f3af8b582da3679a447d94f3616595c690e197c82cbf0a1",
+    "train_reserved": "c37dd19e3d228d3be0ec9be88c2852ae7d27207f964345c362f3ae84f4a78acf",
+    "pilot": "943a9d747391e844ae1ce061609fd267732e2dcab2fbff560654e99702961bb4",
+    "excluded_quality": "b8d3de153930e54d534cfba7cf00eb2f66a6fb932052fd6830025b23f6bf8033"
+  },
+  "label_policy": "H iff at least one original span exists, including implicit_true; N otherwise. Binary response-level detection.",
+  "quality_policy": "Only quality=good; other responses retained in excluded_quality.jsonl, never silently relabeled.",
+  "sampling_policy": "Source-level train partition; official test reserved. Pilot: one response/source, generator-balanced without label selection.",
+  "subsets": {
+    "prompt_dev": {
+      "responses": 277,
+      "sources": 48,
+      "labels": {
+        "N": 181,
+        "H": 96
+      },
+      "labels_without_implicit_true": {
+        "N": 199,
+        "H": 78
+      },
+      "generator_models": {
+        "gpt-4-0613": 47,
+        "gpt-3.5-turbo-0613": 44,
+        "mistral-7B-instruct": 45,
+        "llama-2-7b-chat": 46,
+        "llama-2-13b-chat": 47,
+        "llama-2-70b-chat": 48
+      },
+      "input_words_median": 346,
+      "input_words_max": 701
+    },
+    "validation": {
+      "responses": 1157,
+      "sources": 200,
+      "labels": {
+        "H": 367,
+        "N": 790
+      },
+      "labels_without_implicit_true": {
+        "H": 279,
+        "N": 878
+      },
+      "generator_models": {
+        "gpt-3.5-turbo-0613": 187,
+        "mistral-7B-instruct": 187,
+        "llama-2-7b-chat": 196,
+        "llama-2-13b-chat": 198,
+        "llama-2-70b-chat": 198,
+        "gpt-4-0613": 191
+      },
+      "input_words_median": 353,
+      "input_words_max": 700
+    },
+    "test": {
+      "responses": 875,
+      "sources": 150,
+      "labels": {
+        "H": 160,
+        "N": 715
+      },
+      "labels_without_implicit_true": {
+        "H": 134,
+        "N": 741
+      },
+      "generator_models": {
+        "gpt-4-0613": 150,
+        "gpt-3.5-turbo-0613": 141,
+        "mistral-7B-instruct": 136,
+        "llama-2-7b-chat": 149,
+        "llama-2-13b-chat": 150,
+        "llama-2-70b-chat": 149
+      },
+      "input_words_median": 351,
+      "input_words_max": 755
+    },
+    "train_reserved": {
+      "responses": 3458,
+      "sources": 591,
+      "labels": {
+        "N": 2375,
+        "H": 1083
+      },
+      "labels_without_implicit_true": {
+        "N": 2630,
+        "H": 828
+      },
+      "generator_models": {
+        "gpt-4-0613": 573,
+        "gpt-3.5-turbo-0613": 558,
+        "mistral-7B-instruct": 571,
+        "llama-2-7b-chat": 580,
+        "llama-2-13b-chat": 589,
+        "llama-2-70b-chat": 587
+      },
+      "input_words_median": 359,
+      "input_words_max": 726
+    },
+    "pilot": {
+      "responses": 48,
+      "sources": 48,
+      "labels": {
+        "H": 17,
+        "N": 31
+      },
+      "labels_without_implicit_true": {
+        "H": 13,
+        "N": 35
+      },
+      "generator_models": {
+        "llama-2-7b-chat": 8,
+        "gpt-3.5-turbo-0613": 8,
+        "llama-2-13b-chat": 8,
+        "llama-2-70b-chat": 8,
+        "mistral-7B-instruct": 8,
+        "gpt-4-0613": 8
+      },
+      "input_words_median": 357,
+      "input_words_max": 634
+    }
+  },
+  "audit": {
+    "raw_sources": 2965,
+    "raw_responses": 17790,
+    "qa_sources": 989,
+    "qa_responses": 5934,
+    "quality_counts": {
+      "good": 5767,
+      "incorrect_refusal": 143,
+      "truncated": 24
+    },
+    "excluded_responses": 167,
+    "raw_qa_labels": {
+      "N": 4210,
+      "H": 1724
+    },
+    "span_types": {
+      "Evident Baseless Info": 1562,
+      "Subtle Baseless Info": 893,
+      "Evident Conflict": 423,
+      "Subtle Conflict": 49
+    },
+    "implicit_true_spans": 846,
+    "span_offsets_valid": true,
+    "source_overlap": {
+      "prompt_dev:validation": 0,
+      "prompt_dev:test": 0,
+      "prompt_dev:train_reserved": 0,
+      "validation:test": 0,
+      "validation:train_reserved": 0,
+      "test:train_reserved": 0
+    },
+    "duplicate_questions": 0,
+    "duplicate_contexts": 0,
+    "pilot_is_subset_of_prompt_dev": true
+  },
+  "pilot_initial_calls": 192,
+  "formal_validation_test_initial_calls": 8128,
+  "status": "Data prepared; model collection has not been inferred from these files."
+}

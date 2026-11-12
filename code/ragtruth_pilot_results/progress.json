@@ -1,0 +1,14 @@
+{
+  "stage": "pilot",
+  "version": "ragtruth-qa-v1",
+  "expected_per_model": 48,
+  "terminal_by_model": {
+    "jev-1.14.0": 48,
+    "qwen3.8-max": 48,
+    "deepseek-v4.1-flash-1017": 48,
+    "kimi-k3.1-pro": 48
+  },
+  "nonterminal_attempts": 0,
+  "complete": true,
+  "updated_at_utc": "2026-11-12T11:18:26.290679+00:00"
+}

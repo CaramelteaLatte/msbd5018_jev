@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/ParticleMedia/RAGTruth",
+  "commit": "c103204b9ce28d6bbad859304bf30de72b8ed8fe",
+  "files": [
+    {
+      "path": "dataset/source_info.jsonl",
+      "bytes": 15117971,
+      "sha256": "0dffc26ea9f3c1c3d7c7e8336b56ef1646e3cec876edffcca3c9c624d12d578b",
+      "url": "https://raw.githubusercontent.com/ParticleMedia/RAGTruth/c103204b9ce28d6bbad859304bf30de72b8ed8fe/dataset/source_info.jsonl"
+    },
+    {
+      "path": "dataset/response.jsonl",
+      "bytes": 21458735,
+      "sha256": "e4c2e4ac24fff676d8984cc61c35d791612fadc58015335d97dd632375e18073",
+      "url": "https://raw.githubusercontent.com/ParticleMedia/RAGTruth/c103204b9ce28d6bbad859304bf30de72b8ed8fe/dataset/response.jsonl"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1071,
+      "sha256": "b7fd7d6bdfe0cbba63c63a310914beb4a4acb8bf08da73849219f45385f5b244",
+      "url": "https://raw.githubusercontent.com/ParticleMedia/RAGTruth/c103204b9ce28d6bbad859304bf30de72b8ed8fe/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "bytes": 21234,
+      "sha256": "3686178d505a38cb20a94827917369bcb9d0aa44cf5154d7ddbac740ee06628d",
+      "url": "https://raw.githubusercontent.com/ParticleMedia/RAGTruth/c103204b9ce28d6bbad859304bf30de72b8ed8fe/README.md"
+    }
+  ]
+}

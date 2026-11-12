@@ -1,0 +1,296 @@
+{
+  "jev_only": {
+    "samples": 1157,
+    "correct": 823,
+    "accuracy": 0.7113223854796888,
+    "macro_f1": 0.7069704451427393,
+    "hallucination_precision": 0.5254237288135594,
+    "hallucination_recall": 0.9291553133514986,
+    "hallucination_f1": 0.6712598425196851,
+    "invalid_predictions": 0,
+    "false_positive": 308,
+    "false_negative": 26,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 341,
+        "predicted": 649,
+        "precision": 0.5254237288135594,
+        "recall": 0.9291553133514986,
+        "f1": 0.6712598425196851
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 482,
+        "predicted": 508,
+        "precision": 0.9488188976377953,
+        "recall": 0.610126582278481,
+        "f1": 0.7426810477657936
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 341,
+        "N": 26,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 308,
+        "N": 482,
+        "INVALID": 0
+      }
+    }
+  },
+  "llm_only/qwen": {
+    "samples": 1157,
+    "correct": 765,
+    "accuracy": 0.6611927398444253,
+    "macro_f1": 0.6598385983859838,
+    "hallucination_precision": 0.4825662482566248,
+    "hallucination_recall": 0.9427792915531336,
+    "hallucination_f1": 0.6383763837638377,
+    "invalid_predictions": 0,
+    "false_positive": 371,
+    "false_negative": 21,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 346,
+        "predicted": 717,
+        "precision": 0.4825662482566248,
+        "recall": 0.9427792915531336,
+        "f1": 0.6383763837638377
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 419,
+        "predicted": 440,
+        "precision": 0.9522727272727273,
+        "recall": 0.5303797468354431,
+        "f1": 0.6813008130081301
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 346,
+        "N": 21,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 371,
+        "N": 419,
+        "INVALID": 0
+      }
+    }
+  },
+  "llm_only/deepseek": {
+    "samples": 1157,
+    "correct": 852,
+    "accuracy": 0.7363872082973206,
+    "macro_f1": 0.7282254971107565,
+    "hallucination_precision": 0.5542168674698795,
+    "hallucination_recall": 0.8773841961852861,
+    "hallucination_f1": 0.679324894514768,
+    "invalid_predictions": 2,
+    "false_positive": 259,
+    "false_negative": 45,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 322,
+        "predicted": 581,
+        "precision": 0.5542168674698795,
+        "recall": 0.8773841961852861,
+        "f1": 0.679324894514768
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 530,
+        "predicted": 574,
+        "precision": 0.9233449477351916,
+        "recall": 0.6708860759493671,
+        "f1": 0.7771260997067448
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 322,
+        "N": 44,
+        "INVALID": 1
+      },
+      "N": {
+        "H": 259,
+        "N": 530,
+        "INVALID": 1
+      }
+    }
+  },
+  "llm_only/kimi": {
+    "samples": 1157,
+    "correct": 850,
+    "accuracy": 0.7346585998271391,
+    "macro_f1": 0.7284284304228944,
+    "hallucination_precision": 0.5500821018062397,
+    "hallucination_recall": 0.9128065395095368,
+    "hallucination_f1": 0.6864754098360656,
+    "invalid_predictions": 1,
+    "false_positive": 274,
+    "false_negative": 32,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 335,
+        "predicted": 609,
+        "precision": 0.5500821018062397,
+        "recall": 0.9128065395095368,
+        "f1": 0.6864754098360656
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 515,
+        "predicted": 547,
+        "precision": 0.9414990859232175,
+        "recall": 0.6518987341772152,
+        "f1": 0.7703814510097232
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 335,
+        "N": 32,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 274,
+        "N": 515,
+        "INVALID": 1
+      }
+    }
+  },
+  "cascade/qwen": {
+    "samples": 1157,
+    "correct": 823,
+    "accuracy": 0.7113223854796888,
+    "macro_f1": 0.7069704451427393,
+    "hallucination_precision": 0.5254237288135594,
+    "hallucination_recall": 0.9291553133514986,
+    "hallucination_f1": 0.6712598425196851,
+    "invalid_predictions": 0,
+    "false_positive": 308,
+    "false_negative": 26,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 341,
+        "predicted": 649,
+        "precision": 0.5254237288135594,
+        "recall": 0.9291553133514986,
+        "f1": 0.6712598425196851
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 482,
+        "predicted": 508,
+        "precision": 0.9488188976377953,
+        "recall": 0.610126582278481,
+        "f1": 0.7426810477657936
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 341,
+        "N": 26,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 308,
+        "N": 482,
+        "INVALID": 0
+      }
+    }
+  },
+  "cascade/deepseek": {
+    "samples": 1157,
+    "correct": 837,
+    "accuracy": 0.7234226447709594,
+    "macro_f1": 0.7176809330925772,
+    "hallucination_precision": 0.5376,
+    "hallucination_recall": 0.9155313351498637,
+    "hallucination_f1": 0.6774193548387096,
+    "invalid_predictions": 0,
+    "false_positive": 289,
+    "false_negative": 31,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 336,
+        "predicted": 625,
+        "precision": 0.5376,
+        "recall": 0.9155313351498637,
+        "f1": 0.6774193548387096
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 501,
+        "predicted": 532,
+        "precision": 0.9417293233082706,
+        "recall": 0.6341772151898735,
+        "f1": 0.7579425113464447
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 336,
+        "N": 31,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 289,
+        "N": 501,
+        "INVALID": 0
+      }
+    }
+  },
+  "cascade/kimi": {
+    "samples": 1157,
+    "correct": 841,
+    "accuracy": 0.7268798617113224,
+    "macro_f1": 0.7216225764599107,
+    "hallucination_precision": 0.5404120443740095,
+    "hallucination_recall": 0.9291553133514986,
+    "hallucination_f1": 0.6833667334669339,
+    "invalid_predictions": 0,
+    "false_positive": 290,
+    "false_negative": 26,
+    "per_label": {
+      "H": {
+        "support": 367,
+        "true_positive": 341,
+        "predicted": 631,
+        "precision": 0.5404120443740095,
+        "recall": 0.9291553133514986,
+        "f1": 0.6833667334669339
+      },
+      "N": {
+        "support": 790,
+        "true_positive": 500,
+        "predicted": 526,
+        "precision": 0.9505703422053232,
+        "recall": 0.6329113924050633,
+        "f1": 0.7598784194528876
+      }
+    },
+    "confusion": {
+      "H": {
+        "H": 341,
+        "N": 26,
+        "INVALID": 0
+      },
+      "N": {
+        "H": 290,
+        "N": 500,
+        "INVALID": 0
+      }
+    }
+  }
+}

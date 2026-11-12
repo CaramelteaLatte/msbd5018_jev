@@ -130,13 +130,13 @@ def progress(db, out, config, completed):
     counts = Counter(model for model, _ in completed)
     failures = db.execute("SELECT COUNT(*) FROM attempts WHERE terminal=0").fetchone()[0]
     write_json(out / "progress.json", dict(
-        stage=config["stage"], version="v2", expected_per_model=config["sample_count"],
+        stage=config["stage"], version=config.get("version", "v2"), expected_per_model=config["sample_count"],
         terminal_by_model={m: counts[m] for m in MODELS}, nonterminal_attempts=failures,
         complete=all(counts[m] == config["sample_count"] for m in MODELS),
         updated_at_utc=datetime.now(timezone.utc).isoformat()))
 
 
-def collect(db, completed, model, samples, key, args, config):
+def collect(db, completed, model, samples, key, args, config, request_one=None):
     pending_samples = iter(s for s in samples if (model, s["sample_id"]) not in completed)
     already = sum((model, s["sample_id"]) in completed for s in samples)
     print(f"{model}: {already}/{len(samples)} cached; workers={args.workers}", flush=True)
@@ -148,7 +148,7 @@ def collect(db, completed, model, samples, key, args, config):
 
     def request(sample):
         opener = build_opener(ProxyHandler({})) if args.no_proxy else build_opener()
-        return pilot.run_one(opener, model, key, sample, args.timeout)
+        return (request_one or pilot.run_one)(opener, model, key, sample, args.timeout)
 
     def submit_next(pool):
         sample = next(pending_samples, None)
@@ -208,7 +208,7 @@ def collect(db, completed, model, samples, key, args, config):
         raise RuntimeError(stopped + "; successful in-flight requests saved. Resume with the same output directory.")
 
 
-def collect_stage(args, samples, config, checkpoint):
+def collect_stage(args, samples, config, checkpoint, request_one=None):
     """Collect selected models, or regenerate reports with --report-only."""
     args.out.mkdir(parents=True, exist_ok=True)
     if args.report_only and not checkpoint.exists():
@@ -237,7 +237,7 @@ def collect_stage(args, samples, config, checkpoint):
                     key = os.getenv(name, "").strip()
                     if not key:
                         raise ValueError(f"Set {name} in the environment; see README")
-                    collect(db, completed, model, samples, key, args, config)
+                    collect(db, completed, model, samples, key, args, config, request_one=request_one)
         finally:
             progress(db, args.out, config, completed)
             pilot.atomic_text(args.out / "api_attempts.jsonl", "".join(body + "\n" for (body,) in db.execute("SELECT body FROM attempts ORDER BY id")))

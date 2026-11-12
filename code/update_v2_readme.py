@@ -6,6 +6,37 @@ import hashlib
 import json
 from pathlib import Path
 
+THRESHOLD_GUIDE = """**这张图怎么看（VitaminC v2 validation，2,000 条）：** 三列从左到右是 Qwen、DeepSeek、Kimi；每列都有三幅图，共用横轴——JEV confidence 阈值。图中的阶梯表示跨过一个实际 confidence 值后，有一整组同分样本被纳入转交；这不是拟合曲线。
+
+| 位置 | 纵轴与图形的含义 | 读图重点 |
+|---|---|---|
+| 第一行 | 全部 2,000 条验证样本的 accuracy（%）。绿色阶梯是级联，灰色横虚线是 JEV only，棕色横点线是该 LLM only | 绿色高于 JEV 线，表示在这份验证集上多答对了题；这里是用完整验证集选出来的分数，不能直接当作最终测试成绩 |
+| 第二行 | 转交比例（%），横虚线是 20% 选择上限 | 横轴的 0.3 表示 confidence 阈值，纵轴才表示有多少比例被转交 |
+| 第三行 | 样本条数。corrected 是纠正，harmed 是改错，net 是前者减后者；零线表示正确总数没有变化 | 净值大于 0 才是比 JEV 多答对。三个量不是三个不同的 accuracy |
+
+红色竖点线和每列标题标明该模型最终选中的阈值；这三列可以选不同阈值。这里每个 LLM 都预测了完整验证集，因此 LLM only 横线是完整单模型基线。
+"""
+
+CV_GUIDE = """**这张五折图怎么看：** 两幅图的横轴都是留出折编号 1～5，即五份不同来源的验证题，不是时间顺序或训练轮数；颜色区分三个 LLM。点之间的连线只方便识别同一个模型，不表示拟合趋势。
+
+- **左图纵轴：** 在该份留出题上，级联 accuracy 减去 JEV accuracy，单位是百分点。高于 0 表示这份题上有收益，低于 0 表示有损失。每个点使用的阈值都只从另外四份题中选出。
+- **右图纵轴：** 那次从另外四折选出的 confidence 阈值。图中 −0.05 的位置专门表示“不转交”，不是合法的负 confidence。各折阈值不同，说明选择受抽到哪些来源影响。
+
+例如 Qwen 在完整验证集选阈值后的 accuracy 是 81.15%，合并五份留出预测后的 accuracy 是 80.55%。后者是在每条题目没有参与自身阈值选择时得到的结果，不能与前者混为一谈。
+"""
+
+FINAL_GUIDE = """**这张图怎么看（VitaminC v2 独立 test，2,000 条）：** 四幅图的纵轴都是七种方案：JEV、三个 LLM only 和三个 JEV + LLM。灰色表示 JEV，蓝色表示 LLM only，绿色表示级联。
+
+| 位置 | 横轴、点与线的含义 | 读图重点 |
+|---|---|---|
+| 左上 | test accuracy（%），横柱越长越准确 | 比较同一份测试题上的结果；这里的阈值已经固定 |
+| 右上 | 与 JEV 的 accuracy 差值（百分点）；圆点是本次差值，横线是按页面配对 bootstrap 得到的 95% 区间，竖虚线是 0 | 整段在右边才支持正收益；整段在左边支持负收益；跨过 0 时不能确定稳定改善或下降 |
+| 左下 | 根据终态请求重建的每条样本耗时（秒）；圆点是平均值，叉号是 P95 | 越靠左越快。级联把 JEV 耗时与被转交时的 LLM 耗时相加，不含排队、重试与编排 |
+| 右下 | 按历史价格假设计算的 LLM 部分费用（美元）；短线是价格假设上下界，不是 95% 统计区间 | 不含 JEV 费用。Token usage incomplete 表示缺少 token 用量，不能当作零费用；JEV only 的 LLM 部分为零也不表示 JEV 免费 |
+
+右上图中三个级联都没有落在明确的正收益区间；其中 DeepSeek 级联的整个区间在 0 左侧。少用 LLM 与提高准确率是两个不同问题，要分别看。
+"""
+
 
 def read(path):
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
@@ -56,8 +87,8 @@ def main():
         for model, selected in threshold['selected'].items():
             cutoff = selected['confidence_threshold']
             lines.append(f"| {model} | {threshold['baselines'][model]['accuracy_all']:.2%} | {'不转交' if cutoff is None else cutoff} | {selected['routed']} | {selected['cascade_accuracy']:.2%} | {threshold['out_of_fold'][model]['accuracy_all']:.2%} |")
-        lines += ['', '![v2 阈值与净收益](code/threshold_results_v2/threshold_curve.png)', '',
-                  '![v2 按连通组的五折验证](code/threshold_results_v2/cross_validation.png)', '',
+        lines += ['', '![v2 阈值与净收益](code/threshold_results_v2/threshold_curve.png)', '', THRESHOLD_GUIDE.strip(), '',
+                  '![v2 按连通组的五折验证](code/threshold_results_v2/cross_validation.png)', '', CV_GUIDE.strip(), '',
                   '[固定阈值产物](code/threshold_results_v2/selected_threshold.json)。']
     else:
         lines += ['', '尚无完整 validation 预测，因此尚未生成真实阈值、验证指标及图表。']
@@ -82,7 +113,7 @@ def main():
         if refusals:
             fallbacks = sum(int(row['llm_fallbacks']) for row in rows if row['method'] == 'cascade')
             lines += ['', '服务商内容审查拒绝：' + '；'.join(refusals) + f'。这些样本保留在分母中，单模型计错，若被转交则回退 JEV；本轮三个级联合计实际回退 {fallbacks} 条。未报告 token 用量的请求不假定免费，相应费用估算留空。']
-        lines += ['', '![v2 最终评估](code/final_eval_results_v2/final_eval_results.png)', '',
+        lines += ['', '![v2 最终评估](code/final_eval_results_v2/final_eval_results.png)', '', FINAL_GUIDE.strip(), '',
                   '完整成本、延迟及调用量见 [summary.csv](code/final_eval_results_v2/summary.csv)，口径见 [报告元数据](code/final_eval_results_v2/report_metadata.json)。', '']
         for row in rows:
             if row['method'] != 'cascade':

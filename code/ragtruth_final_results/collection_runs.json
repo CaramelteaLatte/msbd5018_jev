@@ -1,0 +1,15 @@
+[
+  {
+    "started_at_utc": "2026-11-12T12:03:42.342899+00:00",
+    "workers": 16,
+    "timeout_seconds": 120,
+    "retries": 2,
+    "selected_models": [
+      "jev-1.14.0",
+      "qwen3.8-max",
+      "deepseek-v4.1-flash-1017",
+      "kimi-k3.1-pro"
+    ],
+    "cached_terminal_responses": 0
+  }
+]

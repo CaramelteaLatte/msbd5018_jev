@@ -1,0 +1,41 @@
+{
+  "total_attempts": 4628,
+  "terminal_outcomes": 4628,
+  "nonterminal_attempts": 0,
+  "nonterminal_errors": [],
+  "invalid_terminal": [
+    {
+      "model": "deepseek-v4.1-flash-1017",
+      "sample_id": "17469",
+      "gold": "H",
+      "http_status": 200,
+      "error_type": "invalid_response",
+      "provider_error_code": null,
+      "finish_reason": "length",
+      "input_tokens": 743,
+      "output_tokens": 32
+    },
+    {
+      "model": "deepseek-v4.1-flash-1017",
+      "sample_id": "15843",
+      "gold": "N",
+      "http_status": 200,
+      "error_type": "invalid_response",
+      "provider_error_code": null,
+      "finish_reason": "length",
+      "input_tokens": 655,
+      "output_tokens": 32
+    },
+    {
+      "model": "kimi-k3.1-pro",
+      "sample_id": "12783",
+      "gold": "N",
+      "http_status": 200,
+      "error_type": "invalid_response",
+      "provider_error_code": null,
+      "finish_reason": "length",
+      "input_tokens": 604,
+      "output_tokens": 32
+    }
+  ]
+}

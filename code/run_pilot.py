@@ -155,7 +155,7 @@ def parse_response(model, response, record):
     record.update(status="ok", prediction=label, correct=label == record["gold"])
 
 
-def run_one(opener, model, key, sample, timeout):
+def run_one(opener, model, key, sample, timeout, *, payload_builder=None, response_parser=None):
     record = {
         "sample_id": sample["sample_id"], "gold": sample["gold"],
         "model": model, "started_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -163,7 +163,7 @@ def run_one(opener, model, key, sample, timeout):
     }
     request = Request(
         JEV_URL if model == JEV else BAILIAN_URL,
-        data=json.dumps(make_payload(model, sample), ensure_ascii=False).encode("utf-8"),
+        data=json.dumps((payload_builder or make_payload)(model, sample), ensure_ascii=False).encode("utf-8"),
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
         method="POST",
     )
@@ -173,7 +173,7 @@ def run_one(opener, model, key, sample, timeout):
             record["http_status"] = response.status
             record["request_id"] = response.headers.get("x-request-id")
             result = json.load(response)
-        parse_response(model, result, record)
+        (response_parser or parse_response)(model, result, record)
     except HTTPError as exc:
         record.update(http_status=exc.code, request_id=exc.headers.get("x-request-id"))
         record["error_type"] = "http_error"

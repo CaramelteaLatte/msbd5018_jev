@@ -13,6 +13,13 @@
 /data/*.tar.gz
 /data/*.zip.tmp
 
+# RAGTruth: reproduce downloads/splits from scripts; keep provenance and reports
+/data/ragtruth_raw/*
+!/data/ragtruth_raw/LICENSE
+!/data/ragtruth_raw/download_manifest.json
+/data/ragtruth_qa/*.jsonl
+/code/ragtruth_*_results/*.jsonl
+
 # Per-request results and resumable checkpoints; keep reports and figures
 /code/*_results/*.jsonl
 /code/*_results_v2/*.jsonl
