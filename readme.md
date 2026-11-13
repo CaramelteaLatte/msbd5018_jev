@@ -132,9 +132,30 @@ v1 使用 [阿里云百炼](https://bailian.console.aliyun.com/cn-beijing/model/
 - 每条结果存下来，最少记录样本 ID、模型、预测标签、耗时和输入／输出 token。Jev 额外保存三类概率和 confidence。请求失败或返回无法解析的标签时，单独记为失败，避免算成 I。
 - 看三项结果。 看每个模型的标签输出是否稳定、实际单条成本是多少，以及在 Jev 低置信度的样本里，纠正了几条、改错了几条。
 
-一个测试，大致看一下预算需要多少。实验结果是 cut 掉 glm，一个模型占据了 80% 的开销。
+这次小规模测试也用于估计后续预算。GLM 占四个 LLM 费用估算合计的约 84%，因此后续正式实验没有继续使用它。这里的费用不包含 JEV。
 
-实验结果在 `code/pilot_results`
+实验结果在 [首次 pilot 汇总表](code/pilot_results/summary.csv)。以下图表直接读取这张表及当时的配置记录，不重新调用 API。
+
+![First VitaminC pilot: accuracy, mean request latency, estimated cost, and output tokens](code/pilot_results/pilot_comparison.png)
+
+**这张图怎么看（VitaminC v1 pilot，同一批 50 条样本）：** 四幅图的纵轴都是五个核验模型；橙红色突出显示 GLM，其他模型为蓝绿色。所有横轴均从 0 开始。
+
+| 小图 | 横轴是什么 | 如何读 |
+|---|---|---|
+| A，左上：准确率 | 全部 50 条中判断正确的比例（%） | 条形越长越准确；旁边同时标出答对条数。GLM 答对 32/50，为 64%，其 1 条无效输出也保留在分母里 |
+| B，右上：平均耗时 | 一次有效请求的平均耗时（秒） | 越短越快。JEV 0.47 秒，Qwen 1.10 秒，DeepSeek 0.95 秒，Kimi 1.37 秒，GLM 4.09 秒；不是整轮实验的运行时间 |
+| C，左下：费用 | 这批请求按历史价格计算的费用（美元） | GLM 约 $0.21567；DeepSeek 的短线表示 $0.00117～$0.00234 的价格假设范围，不是统计置信区间。JEV 单价未知，空白不能理解成免费 |
+| D，右下：输出量 | 每次有效响应的平均输出 token 数 | GLM 为 436.53，其他三个 LLM 分别为 1.00、2.00、7.22；JEV 为 38.00。输出多有助于理解耗时和费用，但不代表判断更准确，不同模型的 token 也不是统一的字数单位 |
+
+耗时与输出量沿用表中的统计口径：GLM 只统计 49 次有效响应，其他模型各 50 次；费用包含有 token 用量记录的无效响应。GLM 当时开启 thinking、输出上限 1,024 tokens，Qwen、DeepSeek、Kimi 则关闭 thinking、上限 32 tokens，JEV 使用独立接口。因此图中比较的是**当时各自配置下的表现**，不能把差异全部归因于模型本身，也不能将这 50 条开发试跑当作最终测试结论。
+
+从仓库根目录重画：
+
+```bash
+python code/plot_pilot_v1.py
+```
+
+默认输出英文图，标题、坐标、数值注释和统计口径均为英文。也可加 `--chinese` 生成中文版本；没有可用中文字体时自动回退到英文。
 
 ### 2.4 v1 threshold 验证
 
@@ -700,6 +721,7 @@ RAGTruth 中尤其要注意误报：JEV 找到了 160 段原标注幻觉回答�
 
 | 图表 | 绘图代码或来源 |
 |---|---|
+| VitaminC v1 首次 pilot 对比 | [plot_pilot_v1.py](code/plot_pilot_v1.py)，读取原始 summary.csv 与 manifest.json |
 | VitaminC v1 阈值散点 | [plot_threshold_v1.py](code/plot_threshold_v1.py)，读取保存的 threshold_sweep.csv |
 | VitaminC v1 阈值阶梯留档 | Git 历史 `02478e5` 的 `code/run_threshold.py` 中 `write_plot()` |
 | VitaminC v1 最终结果 | 保留的 [历史图](assets/eval_final_results.png)，图内注明来自 v1 summary.csv；当前 final eval 入口已升级为 v2 |
