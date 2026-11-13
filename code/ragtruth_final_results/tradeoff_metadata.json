@@ -1,0 +1,24 @@
+{
+  "analysis": "Post-hoc descriptive comparison; thresholds and predictions unchanged",
+  "data_sha256": "379f1c5490666b914f3af8b582da3679a447d94f3616595c690e197c82cbf0a1",
+  "thresholds_sha256": "1127a80ef8103ec39dc3afe31b5f91d3837bd4e6dfe0226d7a7ef18a215a0e0c",
+  "samples": 875,
+  "source_groups": 150,
+  "bootstrap": {
+    "repetitions": 10000,
+    "seed": 20261112,
+    "unit": "source_id",
+    "method": "paired cluster percentile; response-weighted accuracy and H F1"
+  },
+  "notes": [
+    "Differences are cascade minus the explicitly named baseline.",
+    "Latency is reconstructed from cached terminal requests; no real cascade timing experiment or latency confidence intervals.",
+    "No acceptable loss margin was prespecified; these results do not establish non-inferiority.",
+    "Intervals are pointwise; no multiple-comparison correction."
+  ],
+  "source_sha256": {
+    "predictions.jsonl": "b7e2bb6ea53e4316335d99c494071e6ce9dfc0be3dff1cb566ede675c63177e0",
+    "summary.csv": "380a82974d98ce5b7d77d8bd1452be4721605850daf04e2643108e98c26e7c79",
+    "run_config.json": "c3bf9baa9fcd0130e72adc62010fe82998502691610616f092f204511aba0080"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "dataset": "RAGTruth QA",
+  "model": "jev-1.14.0",
+  "source": "User-reported aggregate spend in this conversation; no invoice independently inspected",
+  "reported_date": "2026-11-14",
+  "currency": "USD",
+  "reported_requests": 2080,
+  "reported_total_cost_usd": 0.085,
+  "matched_terminal_requests": {
+    "pilot": 48,
+    "validation": 1157,
+    "test": 875
+  },
+  "allocation_method": "Reported aggregate spend divided by 2080 terminal requests, multiplied by scenario JEV calls",
+  "limitations": [
+    "Effective average spend per request, not a verified fixed provider tariff",
+    "Test allocation assumes the same mean cost as the combined pilot, validation and test requests; per-request token costs may differ",
+    "The log also contains 18 nonterminal JEV connection failures; their billing treatment is not separately known",
+    "Main figure uses historical LLM USD pricing assumptions; separate bill reconciliation uses llm_billing.json",
+    "Applies only to this RAGTruth run, not VitaminC"
+  ]
+}

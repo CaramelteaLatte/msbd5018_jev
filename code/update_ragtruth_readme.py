@@ -65,6 +65,71 @@ def interval(value):
     return f"{value['difference']*100:+.2f} [{value['ci95_low']*100:+.2f}, {value['ci95_high']*100:+.2f}]"
 
 
+def cost_section():
+    from plot_ragtruth_costs import NAMES, load_report, cost_range
+    rows, metadata = load_report(T, pricing='historical')
+    billing = metadata['jev_billing']
+    n = metadata['sample_count']
+    per_call = metadata['jev_effective_average_usd_per_request']
+    lines = [
+        '**JEV、纯 LLM 和级联的开销对比（历史单价假设，美元估算）**', '',
+        f'本节比较 RAGTruth 独立 test 的同一批 {n} 条回答，固定验证阶段已选择的阈值。LLM 费用使用记录的实际 token 数乘以原实验保存的历史美元单价；JEV 使用用户提供的 ${billing["reported_total_cost_usd"]:.3f} / {billing["reported_requests"]:,} 次平均分摊。这是一项价格情景分析，不是实际账单节省结论。', '',
+        f'JEV 平均每次约 ${per_call:.8f}；875 次 test 请求约 ${per_call*n:.5f}。所有级联都包含这 875 次 JEV。JEV 分摊不是已验证的固定每次报价；LLM 历史单价见 [report_metadata.json](code/ragtruth_final_results/report_metadata.json)，DeepSeek 保留两种单价假设。', '',
+        '![RAGTruth QA: historical-price USD scenario, calls and latency](code/ragtruth_final_results/cost_comparison.png)', '',
+        '**这张图怎么看：** 三幅图的每一行对应同一个方案；横轴均从 0 开始。', '',
+        '| 小图 | 横轴、柱子与标记 | 如何理解 |', '|---|---|---|',
+        f'| A，左侧：总费用估算 | 处理全部 {n} 条的费用（美元）；灰色为 JEV 分摊，蓝色为 LLM 估算，两段相加 | 越短表示在这些价格假设下越便宜。DeepSeek 的横短线是价格假设范围，不是统计置信区间；不是实付费用 |',
+        f'| B，中间：调用次数 | 处理全部 {n} 条的终态请求数；灰色为 JEV，蓝色为 LLM，右侧数字为总数 | 级联先全部调用 JEV，再追加被转交的 LLM 请求；减少 LLM 次数不一定减少总请求数 |',
+        '| C，右侧：每条回答耗时 | 秒；蓝柱为平均值，橙色菱形为 P95，即约 95% 回答不超过的耗时 | 级联按 JEV 加上被转交 LLM 的请求耗时重建，不含重试、排队和编排；不是整轮实验运行时间 |', '',
+        '| 方案 | JEV 调用 | LLM 调用 | JEV 分摊（美元） | LLM 估算（美元） | 总费用估算（美元） |', '|---|---:|---:|---:|---:|---:|']
+    for row in rows:
+        lines.append(f"| {NAMES[row['scenario']]} | {row['jev_calls']} | {row['llm_calls']} | ${row['jev_cost']:.5f} | {cost_range(row, 'llm_cost_')} | {cost_range(row)} |")
+    lines += ['', '**相对对应纯 LLM，在相同历史价格假设下：**', '',
+              '| 级联 | 估算总费用降低 | LLM 调用减少 |', '|---|---:|---:|']
+    for row in rows:
+        if row['scenario'].startswith('cascade/'):
+            low, high = row['total_cost_reduction_low_percent'], row['total_cost_reduction_high_percent']
+            reduction = f'{low:.2f}%' if low == high else f'{low:.2f}%～{high:.2f}%'
+            lines.append(f"| {NAMES[row['scenario']]} | {reduction} | {1-int(row['llm_calls'])/n:.2%} |")
+    lines += ['', 'DeepSeek 降幅分别按低价与低价、高价与高价比较，不混用价格端点。Qwen 完全不转交，实际就是 JEV only；其较低估算费用不能当作非零转交策略有效的证据。', '',
+        '**本节结论仅在上述定价假设下成立。** 成本降低的比较对象是对应纯 LLM；与纯 JEV 比，额外转交仍增加费用。为获得单模型基线，本轮实际全量请求四个模型；这里是固定策略的部署场景重建，不是本次收集过程已经实现的费用节省。LLM 历史估算排除失败重试，JEV 报告总额中的重试计费无法单独拆分。', '',
+        '美元结果见 [cost_comparison.csv](code/ragtruth_final_results/cost_comparison.csv)，假设与来源哈希见 [cost_comparison_metadata.json](code/ragtruth_final_results/cost_comparison_metadata.json)。实际账单复核另存于 [复核记录](docs/ragtruth_billing_reconciliation.md)，其成本结论与本节价格情景不同，不将两者混用。', '',
+        '从仓库根目录重画（默认历史美元单价，无新增 API 请求）：', '', '```bash', 'python code/plot_ragtruth_costs.py', '```', '']
+    return lines
+
+
+def tradeoff_section():
+    path = T/'tradeoff_comparisons.csv'
+    metadata = read(T/'tradeoff_metadata.json')
+    if metadata['source_sha256']['summary.csv'] != shared.digest(T/'summary.csv'):
+        raise ValueError('Tradeoff analysis is stale; run analyze_ragtruth_tradeoffs.py')
+    rows = list(csv.DictReader(path.open()))
+    lines = ['**历史单价假设下，成本、准确率和延迟如何取舍？**', '',
+        '以上美元情景显示级联可以降低估算成本；效果与延迟仍使用原实验记录，必须相对同一个基线比较。不能用相对纯 JEV 的较小分数差，搭配相对纯 LLM 的费用下降，来构造同一个收益结论。', '',
+        '以下统一与**对应纯 LLM**比较，差值为级联减去纯 LLM；正的 accuracy 差值更好，负的延迟变化表示更快。', '',
+        '| 级联 | Accuracy：纯 LLM → 级联 | Accuracy 差值 [95% 区间]（百分点） | 平均延迟：纯 LLM → 级联（秒） | P95：纯 LLM → 级联（秒） |',
+        '|---|---:|---|---|---|']
+    for r in rows:
+        if not r['baseline'].startswith('llm_only/'):
+            continue
+        values = {k:float(v) for k,v in r.items() if k not in ('cascade','baseline')}
+        v = values
+        delta = f"{v['accuracy_difference_pp']:+.2f} [{v['accuracy_ci95_low_pp']:+.2f}, {v['accuracy_ci95_high_pp']:+.2f}]"
+        mean = f"{v['mean_latency_ms_baseline']/1000:.3f} → {v['mean_latency_ms_cascade']/1000:.3f}（{v['mean_latency_ms_change_percent']:+.2f}%）"
+        tail = f"{v['p95_latency_ms_baseline']/1000:.3f} → {v['p95_latency_ms_cascade']/1000:.3f}（{v['p95_latency_ms_change_percent']:+.2f}%）"
+        lines.append(f"| {r['cascade']} | {v['accuracy_baseline']:.2%} → {v['accuracy_cascade']:.2%} | {delta} | {mean} | {tail} |")
+    lines += ['', '区间是本次补充分析：固定原预测与阈值，对 150 个 source_id 做 10,000 次配对 bootstrap（seed 20261112），直接比较每种级联与对应 LLM；不是把已有的两个相对 JEV 区间相减。区间未做多重比较校正。延迟仅报告记录重建值，未重新实跑级联或计算延迟置信区间。', '',
+        '- JEV + Qwen：不转交，实际就是 JEV；不能作为非零转交策略有效的证据。',
+        '- JEV + DeepSeek：accuracy 下降 4.46 个百分点，平均延迟只减少 1.29%，P95 增加 16.37%。',
+        '- JEV + Kimi：accuracy 下降 2.86 个百分点，平均延迟减少 40.77%，P95 减少 10.66%；在该历史价格情景下估算总成本降低 73.35%，体现了成本、速度与准确率的取舍。', '',
+        'DeepSeek、Kimi 相对纯 LLM 的 accuracy 差值区间均低于 0。H F1 也分别下降 3.25 和 2.14 个百分点，对应 95% 区间为 [-5.26, -1.27]、[-3.59, -0.76]。不能把这些差值说成没有下降；“下降不太多”需要预先定义业务可接受界限，本轮没有预设，不能事后宣称非劣效。', '',
+        '若改与纯 JEV 比，DeepSeek、Kimi 级联的 accuracy 分别只下降 0.80、0.34 个百分点，但平均延迟分别增加 17.66%、66.67%，总成本也增加；这同样不是全面改善。', '',
+        '**可报告的结论：** 在本次 RAGTruth QA 独立测试中，按历史 LLM 单价与 JEV 平均费用分摊估算，JEV + Kimi 相对纯 Kimi 的总成本降低 73.35%，重建的平均请求延迟降低 40.77%，P95 降低 10.66%；accuracy 从 70.51% 降至 67.66%，损失 2.86 个百分点。这表明在该定价情景下，可以用明确的准确率损失换取较低的估算成本与延迟。它不是实际账单省钱或准确率无损的证明，也不能外推成所有级联都能同时改善成本与延迟。', '',
+        '后续若研究“以较少损失换取成本下降”，应先固定同一个比较对象、可接受的 accuracy/H F1 下降幅度与延迟要求，再用开发数据选择满足这些约束的策略，并用新的独立测试验证。当前 test 不用于反向挑选支持结论的新阈值。', '',
+        '[直接配对比较](code/ragtruth_final_results/tradeoff_comparisons.csv) · [统计口径](code/ragtruth_final_results/tradeoff_metadata.json)。从仓库根目录复算：`python code/analyze_ragtruth_tradeoffs.py`（需要本地 predictions.jsonl；不调用 API）。', '']
+    return lines
+
+
 def main():
     vp,tp=read(V/'progress.json'),read(T/'progress.json')
     if not (vp['complete'] and tp['complete']):
@@ -118,6 +183,8 @@ def main():
     testing += ['', '![RAGTruth 独立测试指标与区间](code/ragtruth_final_results/final_results.png)', '', FINAL_GUIDE.strip(), '',
                 '![RAGTruth 七种方案的混淆矩阵](code/ragtruth_final_results/confusion_matrices.png)', '', CONFUSION_GUIDE.strip(), '',
                 '[混淆矩阵图](code/ragtruth_final_results/confusion_matrices.png) · [完整指标、调用与成本](code/ragtruth_final_results/summary.csv) · [bootstrap](code/ragtruth_final_results/bootstrap.json) · [按原回答生成模型分组](code/ragtruth_final_results/by_generator.csv) · [排除 implicit_true 的敏感性评分](code/ragtruth_final_results/sensitivity_without_implicit_true.csv)', '']
+    testing += cost_section()
+    testing += tradeoff_section()
     sensitivity={r['scenario']:r for r in csv.DictReader((T/'sensitivity_without_implicit_true.csv').open())}
     testing += ['**如果不把 implicit_true 算作幻觉，结果会怎样？** 这项检查保留同一批预测和固定阈值，只改变评分标签：某段回答如果只有“材料没写、但可能真实”的片段，就从 H 改按 N 评分。test 的 H 从 160 段变为 134 段，回答总数仍为 875。', '',
                 '| 方案 | 主口径 H F1 | 排除 implicit_true 后的 H F1 |', '|---|---:|---:|']
@@ -143,7 +210,7 @@ def main():
         for r in invalid:
             testing.append(f"- {r['model']} / sample {r['sample_id']}：未返回合法 H/N；finish_reason={r['finish_reason']}，output_tokens={r['output_tokens']}。单模型计错，被转交时回退 JEV；未为该条改变配置或重新请求。")
     testing += ['', '区间包含零不等于证明等价或非劣效。上述结论以当前 QA 样本和原人工标注为条件；模型误报可能涉及推断边界或标注覆盖疑点，不能仅凭模型一致判错就修改 gold。敏感性分析仅改变评分标签，不重调提示词或阈值。', '',
-                '实验为获得单模型基线而全量调用四个模型；级联调用量、费用和延迟由缓存离线重建，表示固定策略的部署场景。费用沿用历史价格假设，JEV 价格未知时完整总费用留空；延迟按终态请求累计，不含重试、排队和编排。验证阶段 20% 是选择约束，独立测试如实报告实际转交率。']
+                '实验为获得单模型基线而全量调用四个模型；级联调用量、费用和延迟由缓存离线重建，表示固定策略的部署场景。主图采用历史 LLM 美元单价和 JEV 平均请求费用分摊，总费用情景见 cost_comparison.csv；这是条件性的成本估算，不是实际支出结论。延迟按终态请求累计，不含重试、排队和编排。验证阶段 20% 是选择约束，独立测试如实报告实际转交率。']
     budget=[f"正式 validation/test 已完成 **8,128 个终态结果**；另记录验证阶段 {vp['nonterminal_attempts']} 次、测试阶段 {tp['nonterminal_attempts']} 次非终态尝试。pilot 的 192 次请求未重复运行。收集并发与重试设置见各目录的 `collection_runs.json`，失败类型和无效终态见 `attempt_summary.json`。", '',
             '[冻结协议](code/ragtruth_protocol.json) · [pilot 案例审阅](docs/ragtruth_pilot_review.md)。两阶段数据、配置与固定阈值通过哈希关联；代码可从逐条本地检查点独立复算结果。']
     block='\n'.join([START,*budget,'',*validation,'',*testing,END])

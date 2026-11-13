@@ -1,0 +1,85 @@
+{
+  "stage": "test",
+  "sample_count": 875,
+  "data_sha256": "379f1c5490666b914f3af8b582da3679a447d94f3616595c690e197c82cbf0a1",
+  "thresholds_sha256": "1127a80ef8103ec39dc3afe31b5f91d3837bd4e6dfe0226d7a7ef18a215a0e0c",
+  "pricing_basis": "billed",
+  "cost_currency": "CNY",
+  "jev_billing": {
+    "dataset": "RAGTruth QA",
+    "model": "jev-1.14.0",
+    "source": "User-reported aggregate spend in this conversation; no invoice independently inspected",
+    "reported_date": "2026-11-14",
+    "currency": "USD",
+    "reported_requests": 2080,
+    "reported_total_cost_usd": 0.085,
+    "matched_terminal_requests": {
+      "pilot": 48,
+      "validation": 1157,
+      "test": 875
+    },
+    "allocation_method": "Reported aggregate spend divided by 2080 terminal requests, multiplied by scenario JEV calls",
+    "limitations": [
+      "Effective average spend per request, not a verified fixed provider tariff",
+      "Test allocation assumes the same mean cost as the combined pilot, validation and test requests; per-request token costs may differ",
+      "The log also contains 18 nonterminal JEV connection failures; their billing treatment is not separately known",
+      "Main figure uses historical LLM USD pricing assumptions; separate bill reconciliation uses llm_billing.json",
+      "Applies only to this RAGTruth run, not VitaminC"
+    ]
+  },
+  "jev_effective_average_usd_per_request": 4.086538461538462e-05,
+  "cost_source_sha256": {
+    "ragtruth_final_results/summary.csv": "380a82974d98ce5b7d77d8bd1452be4721605850daf04e2643108e98c26e7c79",
+    "ragtruth_final_results/report_metadata.json": "255c6b980e71b6d7d1de09bcfc16d5da92aa70f8a24fd5b5886c9c6da890de9e",
+    "ragtruth_final_results/jev_billing.json": "1952108bd794728cfa118689e0be9564d06f6d2ad29f3a399cbc579b0f66bf92",
+    "ragtruth_final_results/llm_billing.json": "d2f0a43287f87b63ad4f0f06836940c2d32e57c7385e1a5a74ed19b51887806f",
+    "ragtruth_pilot_results/progress.json": "82cec6000c23aec79ef80d692099ef39f7776708a4ee3bb8990bfc1e87b3b7b9",
+    "ragtruth_validation_results/progress.json": "94b8745ea93fffc637162ee4d0e8cfda50148561d02451221570091c291e3735",
+    "ragtruth_final_results/progress.json": "a34334f3b429e1de52ac8aafbb286cd56d3e562337b1bd19d0f3280d61904386"
+  },
+  "llm_billing": {
+    "dataset": "RAGTruth QA",
+    "source": "User-provided billing screenshot, transcribed; user confirmed it covers only the 2080 RAGTruth responses per model",
+    "billing_date": "2026-11-12",
+    "recorded_date": "2026-11-14",
+    "currency": "CNY",
+    "reported_total_cost_cny": 1.095,
+    "sum_of_displayed_model_costs_cny": 1.096,
+    "display_rounding_note": "Displayed model amounts sum to 1.096, which is 0.001 higher than the header total 1.095. Possibly display rounding; use each displayed model amount without forcing reconciliation.",
+    "scope_confirmed_by_user": true,
+    "requests_per_model": 2080,
+    "matched_terminal_requests": {
+      "pilot": 48,
+      "validation": 1157,
+      "test": 875
+    },
+    "model_costs_cny": {
+      "kimi-k3.1-pro": 0.516,
+      "qwen3.8-max": 0.507,
+      "deepseek-v4.1-flash-1017": 0.073
+    },
+    "other_displayed_models_cny": {
+      "glm-5.3-prime": 0.0,
+      "qwen-plus": 0.0
+    },
+    "fx": {
+      "date": "2026-11-12",
+      "cny_per_usd": 6.7174,
+      "type": "Official daily USD/CNY central parity, used for analytical conversion; not a verified card settlement rate",
+      "retrieved_date": "2026-11-14",
+      "source_url": "https://www.safe.gov.cn/AppStructured/hlw/RMBQuery.do?COLLCC=546877760",
+      "corroborating_url": "https://www.chinamoney.com.cn/chinese/bkccpr/index.html?tab=2",
+      "source_observation": "2026-11-12: 671.74 CNY per 100 USD; CFETS USD/CNY 6.7174"
+    },
+    "allocation_method": "For each model, divide its reported total by 2080 terminal requests and multiply by scenario calls; use the same mean-per-request allocation as JEV",
+    "limitations": [
+      "Stage and routed-subset costs are allocations, not separately measured bills",
+      "No per-request billed prices, cache discounts or retry charges can be recovered from the screenshot",
+      "Screenshot amounts are displayed to three decimal places",
+      "No additional retry surcharge is added to the aggregate reported spend",
+      "Used for a separate billing reconciliation; main figure uses an explicitly labeled historical USD pricing scenario"
+    ]
+  },
+  "method": "Each reported model bill divided by 2080 times scenario calls; JEV converted at billing-date central parity.",
+  "cost_reduction": "Positive means lower scenario cost versus the corresponding pure LLM; negative means higher. Low/low and high/high price comparisons; not a confidence interval."
+}

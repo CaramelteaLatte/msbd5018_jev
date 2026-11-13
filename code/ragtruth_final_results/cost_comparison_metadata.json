@@ -1,0 +1,83 @@
+{
+  "stage": "test",
+  "sample_count": 875,
+  "data_sha256": "379f1c5490666b914f3af8b582da3679a447d94f3616595c690e197c82cbf0a1",
+  "thresholds_sha256": "1127a80ef8103ec39dc3afe31b5f91d3837bd4e6dfe0226d7a7ef18a215a0e0c",
+  "pricing_basis": "historical",
+  "cost_currency": "USD",
+  "jev_billing": {
+    "dataset": "RAGTruth QA",
+    "model": "jev-1.14.0",
+    "source": "User-reported aggregate spend in this conversation; no invoice independently inspected",
+    "reported_date": "2026-11-14",
+    "currency": "USD",
+    "reported_requests": 2080,
+    "reported_total_cost_usd": 0.085,
+    "matched_terminal_requests": {
+      "pilot": 48,
+      "validation": 1157,
+      "test": 875
+    },
+    "allocation_method": "Reported aggregate spend divided by 2080 terminal requests, multiplied by scenario JEV calls",
+    "limitations": [
+      "Effective average spend per request, not a verified fixed provider tariff",
+      "Test allocation assumes the same mean cost as the combined pilot, validation and test requests; per-request token costs may differ",
+      "The log also contains 18 nonterminal JEV connection failures; their billing treatment is not separately known",
+      "Main figure uses historical LLM USD pricing assumptions; separate bill reconciliation uses llm_billing.json",
+      "Applies only to this RAGTruth run, not VitaminC"
+    ]
+  },
+  "jev_effective_average_usd_per_request": 4.086538461538462e-05,
+  "cost_source_sha256": {
+    "ragtruth_final_results/summary.csv": "380a82974d98ce5b7d77d8bd1452be4721605850daf04e2643108e98c26e7c79",
+    "ragtruth_final_results/report_metadata.json": "255c6b980e71b6d7d1de09bcfc16d5da92aa70f8a24fd5b5886c9c6da890de9e",
+    "ragtruth_final_results/jev_billing.json": "1952108bd794728cfa118689e0be9564d06f6d2ad29f3a399cbc579b0f66bf92",
+    "ragtruth_pilot_results/progress.json": "82cec6000c23aec79ef80d692099ef39f7776708a4ee3bb8990bfc1e87b3b7b9",
+    "ragtruth_validation_results/progress.json": "94b8745ea93fffc637162ee4d0e8cfda50148561d02451221570091c291e3735",
+    "ragtruth_final_results/progress.json": "a34334f3b429e1de52ac8aafbb286cd56d3e562337b1bd19d0f3280d61904386"
+  },
+  "rates_usd_per_million_tokens": {
+    "qwen3.8-max": [
+      [
+        2.0,
+        6.0
+      ],
+      [
+        2.0,
+        6.0
+      ]
+    ],
+    "deepseek-v4.1-flash-1017": [
+      [
+        0.15,
+        0.6
+      ],
+      [
+        0.3,
+        1.2
+      ]
+    ],
+    "kimi-k3.1-pro": [
+      [
+        2.0,
+        10.0
+      ],
+      [
+        2.0,
+        10.0
+      ]
+    ],
+    "glm-5.3-prime": [
+      [
+        2.8,
+        8.8
+      ],
+      [
+        2.8,
+        8.8
+      ]
+    ]
+  },
+  "method": "JEV reported aggregate mean times calls, plus recorded LLM tokens at historical USD rates. A pricing scenario, not actual billed savings.",
+  "cost_reduction": "Positive means lower scenario cost versus the corresponding pure LLM; negative means higher. Low/low and high/high price comparisons; not a confidence interval."
+}

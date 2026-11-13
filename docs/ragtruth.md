@@ -75,7 +75,9 @@ pilot 已完成 192 次真实 API 请求，无失败或重试。实际指标与�
 - `exploratory_routing.csv`、`pilot_results.png`：完整同置信度组、转交最多 20% 的探索性结果，展示纠正/改错；不从 pilot 发布正式阈值。
 - 本地 `predictions.jsonl`、`disagreements.jsonl` 和 SQLite：逐条复算、人工检查及断点续跑。
 
-原始证据与回答不截断。模型实际返回的 token 用量单独记录，不用字符数冒充 token。费用字段沿用明确标记的历史价格假设，不是当前账单；JEV 单价未知，不给出完整总费用。报告中耗时是并发收集时的终态请求耗时，不含重试与排队。
+原始证据与回答不截断。模型实际返回的 token 用量单独记录，不用字符数冒充 token。原始 summary.csv 保存实际 token、耗时与历史 LLM 美元单价估算。README 主图默认采用这一历史价格情景，加上 JEV 用户报告总额 $0.085 / 2,080 次的平均费用分摊，输出美元 `cost_comparison.csv`、元数据及英文图；它是条件性的费用估算，不是实际支出节省结论。JEV 分摊也不是固定单次报价。报告中耗时是并发收集时的终态请求耗时，不含重试与排队。
+
+`python code/plot_ragtruth_costs.py` 默认生成历史美元情景；`python code/plot_ragtruth_costs.py --pricing billed` 单独生成 `billed_cost_comparison.*`，用于已提供账单的人民币复核，两种口径互不覆盖。原账单与汇率记录见 [账单复核记录](ragtruth_billing_reconciliation.md)。
 
 这批 48 个问题只验证接入、标签和探索性行为；不据此声明模型能力排名、最优阈值或正式测试增益。核验输出不会自动修正原回答；转交改善的是幻觉判断。
 
@@ -124,4 +126,6 @@ python code/update_ragtruth_readme.py
 - `code/ragtruth_final_results/`：七种方案的 `summary.csv`、`metrics.json`、`bootstrap.json`、`by_generator.csv`、`sensitivity_without_implicit_true.csv`、最终结果图及混淆矩阵图。
 - 两阶段均保存调用记录、配置和数据哈希，`attempt_summary.json` 汇总失败类型及无效终态；逐条预测 JSONL、原始请求日志和 SQLite 仅保存在本机。`verify_ragtruth_formal.py` 从逐条响应独立复算评分、阈值最优选择、留出折与 bootstrap 区间。
 
-级联调用、成本和延迟是基于完整预测重建的部署场景。本轮实际调用了所有模型，不能把级联的低转交率解释为此次实验已节省的请求。JEV 单价未知时完整费用为空；缺少 token 用量也不会假定免费。累计实际失败/重试见 progress 和本地 attempts；表格中的 token、费用与延迟按终态请求统计，不含重试、排队和编排。
+级联调用、成本和延迟是基于完整预测重建的部署场景。本轮实际调用了所有模型，不能把级联的低转交率解释为此次实验已节省的请求。原始 summary.csv 保持运行时口径；cost_comparison.csv 明确记录 USD 与 historical 定价情景，billed_cost_comparison.csv 明确记录 CNY 与 billed 账单分摊。两种方式使用相同阈值与调用数。原始 LLM token 费用及延迟按终态请求统计，不含重试、排队和编排；JEV 报告总额及账单复核中的重试费用无法单独拆分。
+
+补充的 `python code/analyze_ragtruth_tradeoffs.py` 使用本地 predictions.jsonl，直接比较级联与对应纯 LLM、纯 JEV，对 150 个 source_id 做 10,000 次配对 bootstrap（seed 20261112），不改变阈值或请求。在历史 LLM 单价与 JEV 平均费用分摊假设下，Kimi 级联相对纯 Kimi 的估算成本降低 73.35%，重建的平均延迟减少 40.77%，accuracy 下降 2.86 个百分点。DeepSeek 的估算成本降低 43.93%～63.88%，但 accuracy 下降 4.46 个百分点，P95 延迟增加 16.37%。这些观察描述的是条件性的成本、延迟和准确率取舍，没有预设可接受损失界限，不能事后表述为已证明非劣效，也不是实际账单省钱结论。

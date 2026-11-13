@@ -1,0 +1,43 @@
+{
+  "dataset": "RAGTruth QA",
+  "source": "User-provided billing screenshot, transcribed; user confirmed it covers only the 2080 RAGTruth responses per model",
+  "billing_date": "2026-11-12",
+  "recorded_date": "2026-11-14",
+  "currency": "CNY",
+  "reported_total_cost_cny": 1.095,
+  "sum_of_displayed_model_costs_cny": 1.096,
+  "display_rounding_note": "Displayed model amounts sum to 1.096, which is 0.001 higher than the header total 1.095. Possibly display rounding; use each displayed model amount without forcing reconciliation.",
+  "scope_confirmed_by_user": true,
+  "requests_per_model": 2080,
+  "matched_terminal_requests": {
+    "pilot": 48,
+    "validation": 1157,
+    "test": 875
+  },
+  "model_costs_cny": {
+    "kimi-k3.1-pro": 0.516,
+    "qwen3.8-max": 0.507,
+    "deepseek-v4.1-flash-1017": 0.073
+  },
+  "other_displayed_models_cny": {
+    "glm-5.3-prime": 0.0,
+    "qwen-plus": 0.0
+  },
+  "fx": {
+    "date": "2026-11-12",
+    "cny_per_usd": 6.7174,
+    "type": "Official daily USD/CNY central parity, used for analytical conversion; not a verified card settlement rate",
+    "retrieved_date": "2026-11-14",
+    "source_url": "https://www.safe.gov.cn/AppStructured/hlw/RMBQuery.do?COLLCC=546877760",
+    "corroborating_url": "https://www.chinamoney.com.cn/chinese/bkccpr/index.html?tab=2",
+    "source_observation": "2026-11-12: 671.74 CNY per 100 USD; CFETS USD/CNY 6.7174"
+  },
+  "allocation_method": "For each model, divide its reported total by 2080 terminal requests and multiply by scenario calls; use the same mean-per-request allocation as JEV",
+  "limitations": [
+    "Stage and routed-subset costs are allocations, not separately measured bills",
+    "No per-request billed prices, cache discounts or retry charges can be recovered from the screenshot",
+    "Screenshot amounts are displayed to three decimal places",
+    "No additional retry surcharge is added to the aggregate reported spend",
+    "Used for a separate billing reconciliation; main figure uses an explicitly labeled historical USD pricing scenario"
+  ]
+}

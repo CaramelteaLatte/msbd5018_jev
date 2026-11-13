@@ -69,6 +69,8 @@ def validation_plots(out, points, folds, metrics):
 
 
 def final_plots(out, rows, metrics, intervals):
+    from plot_ragtruth_costs import write_plot
+    write_plot(out)
     names = [r['scenario'] for r in rows]
     short = [n.replace('llm_only/', '').replace('cascade/', 'JEV + ').replace('jev_only', 'JEV') for n in names]
     fig, axes = plt.subplots(2, 2, figsize=(14, 10), layout='constrained')
